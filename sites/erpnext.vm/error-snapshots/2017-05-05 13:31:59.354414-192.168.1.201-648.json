@@ -1,0 +1,138 @@
+{
+ "etype": "<type 'exceptions.KeyError'>", 
+ "evalue": "KeyError(u'BALLVALVE1',)", 
+ "exception": {
+  "args": "(u'BALLVALVE1',)", 
+  "message": "BALLVALVE1"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/?report_name=Stoc...ppe.desk.query_report.run&_=1493955084621' [GET]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.query_report.run'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.query_report.run', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'cmd': u'frappe.desk.query_report.run', 'filter...te\":\"2017-05-05\"}', 'report_name': u'Stock Card'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function run>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function run>, *args=(), **kwargs={'cmd': u'frappe.desk.query_report.run', 'filters': u'{\"from_date\":\"2015-11-01\",\"to_date\":\"2017-05-05\"}', 'report_name': u'Stock Card'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function run>", 
+    "newargs": "{'filters': u'{\"from_date\":\"2015-11-01\",\"to_date\":\"2017-05-05\"}', 'report_name': u'Stock Card'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(report_name=u'Stock Card', filters={u'from_date': u'2015-11-01', u'to_date': u'2017-05-05'})", 
+   "dump": {
+    "filters": "{u'from_date': u'2015-11-01', u'to_date': u'2017-05-05'}", 
+    "frappe. _dict": "<class 'frappe._dict'>", 
+    "frappe. get_attr": "<function get_attr>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method_name": "u'erpnext.stock.report.stock_card.stock_card.execute'", 
+    "res": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py", 
+   "func": "run", 
+   "lines": {
+    "86": "\t\tif report.is_standard==\"Yes\":", 
+    "87": "\t\t\tmethod_name = get_report_module_dotted_path(module, report.name) + \".execute\"", 
+    "88": "\t\t\tres = frappe.get_attr(method_name)(frappe._dict(filters))", 
+    "89": "", 
+    "90": "\t\t\tcolumns, result = res[0], res[1]"
+   }, 
+   "lnum": 88
+  }, 
+  {
+   "call": "(filters={u'from_date': u'2015-11-01', u'to_date': u'2017-05-05'})", 
+   "dump": {
+    "item_detail": "{'name': u'BALLFAUCET1/2', 'item_name': u'TYCOON... 'description': u'TYCOON BALL VALVE FAUCET 1/2\"'}", 
+    "item_details": "{u'#1002-GB': {'name': u'#1002-GB', 'item_name': u'YALE #1002-.../S', 'description': u'YALE #1002-GB DOOR CLOSER'}, u'#15-265': {'name': u'#15-265', 'item_name': u'#15-265 HACK..., 'description': u'#15-265 HACKSAW FRAME RUBBER'}, u'#15-565': {'name': u'#15-565', 'item_name': u'STANLEY THRI...ption': u'STANLEY THRIFTY HACKSAW FRAME #15-565'}, u'#198-1/4 AB': {'name': u'#198-1/4 AB', 'item_name': u'YALE #19...S', 'description': u'YALE #198 1/4 AB DEAD LOCK'}, u'#33-295 HM 2MTS': {'name': u'#33-295 HM 2MTS', 'item_name': u'STAN...cription': u'STANLEY #33-295 HM TAPE RULE 2 MTS'}, u'#633-4 HOLIDAY PDLCK': {'name': u'#633-4 HOLIDAY PDLCK', 'item_name': u...', 'description': u'YALE #633-4 HOLIDAY PADLOCK'}, u'#688 RESET PDLCK': {'name': u'#688 RESET PDLCK', 'item_name': u'YAL...escription': u'YALE #688 RESETABLE PADLOCK 20MM'}, u'#689-20MM': {'name': u'#689-20MM', 'item_name': u'#689-20MM ...'description': u'#689-20MM 4DIGIT RESET.PADLOCK'}, u'#705 CMBNATION PDLCK': {'name': u'#705 CMBNATION PDLCK', 'item_name': u... 'description': u'YALE #705 COMBINATION PADLOCK'}, u'005DEPTH': {'name': u'005DEPTH', 'item_name': u'DEPTH STOP ...'PC/S', 'description': u'DEPTH STOP 613 001 005'}, ...}", 
+    "sle": "{'stock_value': 400.0, 'incoming_rate': 0.0, 'va...'qty_after_transaction': 2.0, 'actual_qty': -1.0}", 
+    "sle. item_code": "u'BALLVALVE1'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_card/stock_card.py", 
+   "func": "execute", 
+   "lines": {
+    "17": "", 
+    "18": "    for sle in sl_entries:", 
+    "19": "        item_detail = item_details[sle.item_code]", 
+    "20": "", 
+    "21": "        temp_data = []"
+   }, 
+   "lnum": 19
+  }
+ ], 
+ "locals": {
+  "columns": "[u'Date:Date:95', u'Target Warehouse:Link/Warehouse:250', u'In:Int:75', u'Out:Int:75', u'Pending:Int:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110', u'Item:Link/Item:100', u'Description::200', u'Reference #:Dynamic Link/Voucher Type:100', u'Voucher Type::100']", 
+  "data": "[[datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 12.0, -2463.1, u'AL4864', u'ALABASTER 48 X 64 MINI BLINDS 234RT', u'P-00007732', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 7.0, -1231.62, u'GRN4864', u'GREEN 48 X 64 MINI BLINDS 611AT', u'P-00007732', u'Stock Entry'], [datetime.date(2015, 11, 2), u'APT JOSOL - APT', 1.0, u'', u'', 426.0, 137192.08, u'AL4864', u'ALABASTER 48 X 64 MINI BLINDS 234RT', u'P-00007732', u'Stock Entry'], [datetime.date(2015, 11, 2), u'APT JOSOL - APT', 1.0, u'', u'', 239.0, 101611.25, u'GRN4864', u'GREEN 48 X 64 MINI BLINDS 611AT', u'P-00007732', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 2.0, u'', 0.0, -3445.5, u'122-20', u'NOVO HBSCS20 SLIM BLUE 20\" INLINE HOUSING', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 1.0, -8383.57, u'124-20', u'NOVO HBSC20 BIG BLUE 20\" INLINE HOUSING', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 18.0, -3068.16, u'AL2450', u'ALABASTER 24 X 50 MINI BLINDS 234RT', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 6.0, -2551.32, u'AL3650', u'ALABASTER 36 X 50 MINI BLINDS 234RT', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 0.0, -4792.65, u'FT1', u'NOVO RYCT-C1 10 CLR 10\" SNGLE CRTRDGE CNTRTOP', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 6.0, -1161.6, u'GRY3650', u'GREY 36 X 50 MINI BLINDS 328T', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 0.0, -12524.16, u'MWF20', u'NOVO RY-20G-1 20L MINERAL WATER POT', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 2.0, -12782.78, u'MWF24', u'NOVO HTMWP24L 24L MINERAL WATER POT', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 26.0, -3693.45, u'STAGE FILT POT', u'FCMS5-MWP5  STAGE FILTER FOR MINERAL POT', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 0.0, -8453.09, u'US3', u'NOVO HWTFT-10 WHITE 10\" TRIPLE SINK CARTRIDGE', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'DIB - TACLOBAN RP (192) \\xa0B - APT', u'', 1.0, u'', 0.0, -5.82, u'WD6050', u'WOODTONE 60 X 50 MINI BLINDS W701T', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'APT JOSOL - APT', 2.0, u'', u'', 11.0, 71843.09, u'122-20', u'NOVO HBSCS20 SLIM BLUE 20\" INLINE HOUSING', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'APT JOSOL - APT', 1.0, u'', u'', 19.0, 159430.55, u'124-20', u'NOVO HBSC20 BIG BLUE 20\" INLINE HOUSING', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'APT JOSOL - APT', 1.0, u'', u'', 602.0, 101427.47, u'AL2450', u'ALABASTER 24 X 50 MINI BLINDS 234RT', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'APT JOSOL - APT', 1.0, u'', u'', 517.0, 133352.34, u'AL3650', u'ALABASTER 36 X 50 MINI BLINDS 234RT', u'P-00007733', u'Stock Entry'], [datetime.date(2015, 11, 2), u'APT JOSOL - APT', 1.0, u'', u'', 59.0, 103361.6, u'FT1', u'NOVO RYCT-C1 10 CLR 10\" SNGLE CRTRDGE CNTRTOP', u'P-00007733', u'Stock Entry'], ...]", 
+  "filters": "{u'from_date': u'2015-11-01', u'to_date': u'2017-05-05'}", 
+  "item_detail": "{'name': u'BALLFAUCET1/2', 'item_name': u'TYCOON... 'description': u'TYCOON BALL VALVE FAUCET 1/2\"'}", 
+  "item_details": "{u'#1002-GB': {'name': u'#1002-GB', 'item_name': u'YALE #1002-.../S', 'description': u'YALE #1002-GB DOOR CLOSER'}, u'#15-265': {'name': u'#15-265', 'item_name': u'#15-265 HACK..., 'description': u'#15-265 HACKSAW FRAME RUBBER'}, u'#15-565': {'name': u'#15-565', 'item_name': u'STANLEY THRI...ption': u'STANLEY THRIFTY HACKSAW FRAME #15-565'}, u'#198-1/4 AB': {'name': u'#198-1/4 AB', 'item_name': u'YALE #19...S', 'description': u'YALE #198 1/4 AB DEAD LOCK'}, u'#33-295 HM 2MTS': {'name': u'#33-295 HM 2MTS', 'item_name': u'STAN...cription': u'STANLEY #33-295 HM TAPE RULE 2 MTS'}, u'#633-4 HOLIDAY PDLCK': {'name': u'#633-4 HOLIDAY PDLCK', 'item_name': u...', 'description': u'YALE #633-4 HOLIDAY PADLOCK'}, u'#688 RESET PDLCK': {'name': u'#688 RESET PDLCK', 'item_name': u'YAL...escription': u'YALE #688 RESETABLE PADLOCK 20MM'}, u'#689-20MM': {'name': u'#689-20MM', 'item_name': u'#689-20MM ...'description': u'#689-20MM 4DIGIT RESET.PADLOCK'}, u'#705 CMBNATION PDLCK': {'name': u'#705 CMBNATION PDLCK', 'item_name': u... 'description': u'YALE #705 COMBINATION PADLOCK'}, u'005DEPTH': {'name': u'005DEPTH', 'item_name': u'DEPTH STOP ...'PC/S', 'description': u'DEPTH STOP 613 001 005'}, ...}", 
+  "opening_row": "None", 
+  "sl_entries": "[{'stock_value': -2463.1, 'incoming_rate': 0.0, '...qty_after_transaction': 12.0, 'actual_qty': -1.0}, {'stock_value': -1231.62, 'incoming_rate': 0.0, ...'qty_after_transaction': 7.0, 'actual_qty': -1.0}, {'stock_value': 137192.08, 'incoming_rate': 223....qty_after_transaction': 426.0, 'actual_qty': 1.0}, {'stock_value': 101611.25, 'incoming_rate': 223....qty_after_transaction': 239.0, 'actual_qty': 1.0}, {'stock_value': -3445.5, 'incoming_rate': 0.0, '...'qty_after_transaction': 0.0, 'actual_qty': -2.0}, {'stock_value': -8383.57, 'incoming_rate': 0.0, ...'qty_after_transaction': 1.0, 'actual_qty': -1.0}, {'stock_value': -3068.16, 'incoming_rate': 0.0, ...qty_after_transaction': 18.0, 'actual_qty': -1.0}, {'stock_value': -2551.32, 'incoming_rate': 0.0, ...'qty_after_transaction': 6.0, 'actual_qty': -1.0}, {'stock_value': -4792.65, 'incoming_rate': 0.0, ...'qty_after_transaction': 0.0, 'actual_qty': -1.0}, {'stock_value': -1161.6, 'incoming_rate': 0.0, '...'qty_after_transaction': 6.0, 'actual_qty': -1.0}, {'stock_value': -12524.16, 'incoming_rate': 0.0,...'qty_after_transaction': 0.0, 'actual_qty': -1.0}, {'stock_value': -12782.78, 'incoming_rate': 0.0,...'qty_after_transaction': 2.0, 'actual_qty': -1.0}, {'stock_value': -3693.45, 'incoming_rate': 0.0, ...qty_after_transaction': 26.0, 'actual_qty': -1.0}, {'stock_value': -8453.09, 'incoming_rate': 0.0, ...'qty_after_transaction': 0.0, 'actual_qty': -1.0}, {'stock_value': -5.82, 'incoming_rate': 0.0, 'va...'qty_after_transaction': 0.0, 'actual_qty': -1.0}, {'stock_value': 71843.09, 'incoming_rate': 387.5...'qty_after_transaction': 11.0, 'actual_qty': 2.0}, {'stock_value': 159430.55, 'incoming_rate': 1175...'qty_after_transaction': 19.0, 'actual_qty': 1.0}, {'stock_value': 101427.47, 'incoming_rate': 111....qty_after_transaction': 602.0, 'actual_qty': 1.0}, {'stock_value': 133352.34, 'incoming_rate': 170....qty_after_transaction': 517.0, 'actual_qty': 1.0}, {'stock_value': 103361.6, 'incoming_rate': 402.4...'qty_after_transaction': 59.0, 'actual_qty': 1.0}, ...]", 
+  "sle": "{'stock_value': 400.0, 'incoming_rate': 0.0, 'va...'qty_after_transaction': 2.0, 'actual_qty': -1.0}", 
+  "temp_data": "[datetime.date(2016, 3, 9), u'HANDYMAN - CARMONA (254) C - APT', u'', 4.0, u'', 9.0, -5301.04, u'BALLFAUCET1/2', u'TYCOON BALL VALVE FAUCET 1/2\"', u'SI-0039409', u'Sales Invoice']"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-05-05 13:31:59.354551", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py\", line 88, in run\n    res = frappe.get_attr(method_name)(frappe._dict(filters))\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_card/stock_card.py\", line 19, in execute\n    item_detail = item_details[sle.item_code]\nKeyError: u'BALLVALVE1'\n"
+}

@@ -1,0 +1,267 @@
+{
+ "etype": "<type 'exceptions.AttributeError'>", 
+ "evalue": "AttributeError(\"'NoneType' object has no attribute 'split'\",)", 
+ "exception": {
+  "args": "(\"'NoneType' object has no attribute 'split'\",)", 
+  "message": "\"'NoneType' object has no attribute 'split'\""
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/?txt=&doctype=SKU...e.desk.search.search_link&_=1485845683625' [GET]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.search.search_link'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.search.search_link', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'txt': u'', 'filters': u'[[\"consignee\",\"in\",nul...appe.desk.search.search_link', 'doctype': u'SKU'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function search_link>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function search_link>, *args=(), **kwargs={'cmd': u'frappe.desk.search.search_link', 'doctype': u'SKU', 'filters': u'[[\"consignee\",\"in\",null]]', 'txt': u''})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function search_link>", 
+    "newargs": "{'doctype': u'SKU', 'filters': u'[[\"consignee\",\"in\",null]]', 'txt': u''}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(doctype=u'SKU', txt=u'', query=None, filters=u'[[\"consignee\",\"in\",null]]', page_len=20, searchfield=None)", 
+   "dump": {
+    "doctype": "u'SKU'", 
+    "filters": "u'[[\"consignee\",\"in\",null]]'", 
+    "global search_widget": "<function search_widget>", 
+    "page_len": "20", 
+    "query": "None", 
+    "searchfield": "None", 
+    "txt": "u''"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/search.py", 
+   "func": "search_link", 
+   "lines": {
+    "10": "@frappe.whitelist()", 
+    "11": "def search_link(doctype, txt, query=None, filters=None, page_len=20, searchfield=None):", 
+    "12": "\tsearch_widget(doctype, txt, query, searchfield=searchfield, page_len=page_len, filters=filters)", 
+    "13": "\tfrappe.response['results'] = build_for_autosuggest(frappe.response[\"values\"])", 
+    "14": "\tdel frappe.response[\"values\"]"
+   }, 
+   "lnum": 12
+  }, 
+  {
+   "call": "(doctype=u'SKU', txt=u'', query=None, searchfield=u'name', start=0, page_len=20, filters=[[u'consignee', u'in', None]], as_dict=False)", 
+   "dump": {
+    "as_dict": "False", 
+    "as_list": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/search.py", 
+   "func": "search_widget", 
+   "lines": {
+    "89": "\t\t\t\torder_by=\"if(_relevance, _relevance, 99999), idx desc, modified desc\".format(doctype),", 
+    "90": "\t\t\t\tignore_permissions = True if doctype == \"DocType\" else False, # for dynamic links", 
+    "91": "\t\t\t\tas_list=not as_dict)", 
+    "92": "", 
+    "93": "\t\t\t# remove _relevance from results"
+   }, 
+   "lnum": 91
+  }, 
+  {
+   "call": "(doctype=u'SKU', *args=(), **kwargs={'as_list': True, 'fields': [u'`tabSKU`.`name`', u'`tabSKU`.`sku_name`', u'`tabSKU`.`consignee`', u'locate(\"\", `tabSKU`.`name`) as `_relevance`'], 'filters': [[u'consignee', u'in', None]], 'ignore_permissions': False, 'limit_page_length': 20, 'limit_start': 0, 'or_filters': [], 'order_by': u'if(_relevance, _relevance, 99999), idx desc, modified desc'})", 
+   "dump": {
+    ").execute": "undefined", 
+    "args": "()", 
+    "builtin None": "None", 
+    "doctype": "u'SKU'", 
+    "frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "frappe. model": "<module 'frappe.model' from '/home/frappe/frappe-bench/apps/frappe/frappe/model/__init__.pyc'>", 
+    "frappe.model. db_query": "<module 'frappe.model.db_query' from '/home/frap...ppe-bench/apps/frappe/frappe/model/db_query.pyc'>", 
+    "frappe.model.db_query. DatabaseQuery": "<class 'frappe.model.db_query.DatabaseQuery'>", 
+    "kwargs": "{'as_list': True, 'fields': [u'`tabSKU`.`name`', u'`tabSKU`.`sku_name`', u'`tabSKU`.`consignee`', u'locate(\"\", `tabSKU`.`name`) as `_relevance`'], 'filters': [[u'consignee', u'in', None]], 'ignore_permissions': False, 'limit_page_length': 20, 'limit_start': 0, 'or_filters': [], 'order_by': u'if(_relevance, _relevance, 99999), idx desc, modified desc'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "get_list", 
+   "lines": {
+    "1056": "\t\"\"\"", 
+    "1057": "\timport frappe.model.db_query", 
+    "1058": "\treturn frappe.model.db_query.DatabaseQuery(doctype).execute(None, *args, **kwargs)", 
+    "1059": "", 
+    "1060": "def get_all(doctype, *args, **kwargs):"
+   }, 
+   "lnum": 1058
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>, query=None, fields=[u'`tabSKU`.`name`', u'`tabSKU`.`sku_name`', u'`tabSKU`.`consignee`', u'locate(\"\", `tabSKU`.`name`) as `_relevance`'], filters=[[u'consignee', u'in', None]], or_filters=[], docstatus=None, group_by=None, order_by=u'if(_relevance, _relevance, 99999), idx desc, modified desc', limit_start=0, limit_page_length=20, as_list=True, with_childnames=False, debug=False, ignore_permissions=False, user=None, with_comment_count=False, join=u'left join', distinct=False, start=None, page_length=None, limit=None, ignore_ifnull=False, save_list_settings=False, save_list_settings_fields=False, update=None)", 
+   "dump": {
+    "result": "undefined", 
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. build_and_run": "<bound method DatabaseQuery.build_and_run of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "execute", 
+   "lines": {
+    "78": "\t\t\tresult = self.run_custom_query(query)", 
+    "79": "\t\telse:", 
+    "80": "\t\t\tresult = self.build_and_run()", 
+    "81": "", 
+    "82": "\t\tif with_comment_count and not as_list and self.doctype:"
+   }, 
+   "lnum": 80
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>)", 
+   "dump": {
+    "args": "undefined", 
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. prepare_args": "<bound method DatabaseQuery.prepare_args of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "build_and_run", 
+   "lines": {
+    "90": "", 
+    "91": "\tdef build_and_run(self):", 
+    "92": "\t\targs = self.prepare_args()", 
+    "93": "\t\targs.limit = self.add_limit()", 
+    "94": ""
+   }, 
+   "lnum": 92
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>)", 
+   "dump": {
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. build_conditions": "<bound method DatabaseQuery.build_conditions of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "prepare_args", 
+   "lines": {
+    "108": "\t\tself.extract_tables()", 
+    "109": "\t\tself.set_optional_columns()", 
+    "110": "\t\tself.build_conditions()", 
+    "111": "", 
+    "112": "\t\targs = frappe._dict()"
+   }, 
+   "lnum": 110
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>)", 
+   "dump": {
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. build_filter_conditions": "<bound method DatabaseQuery.build_filter_conditions of <frappe.model.db_query.DatabaseQuery object>>", 
+    "self. conditions": "[]", 
+    "self. filters": "[[u'consignee', u'in', None]]"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "build_conditions", 
+   "lines": {
+    "236": "\t\tself.conditions = []", 
+    "237": "\t\tself.grouped_or_conditions = []", 
+    "238": "\t\tself.build_filter_conditions(self.filters, self.conditions)", 
+    "239": "\t\tself.build_filter_conditions(self.or_filters, self.grouped_or_conditions)", 
+    "240": ""
+   }, 
+   "lnum": 238
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>, filters=[[u'consignee', u'in', None]], conditions=[])", 
+   "dump": {
+    "conditions": "[]", 
+    "conditions. append": "<built-in method append of list object>", 
+    "f": "[u'consignee', u'in', None]", 
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. prepare_filter_condition": "<bound method DatabaseQuery.prepare_filter_condi... of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "build_filter_conditions", 
+   "lines": {
+    "254": "\t\t\t\tconditions.append(f)", 
+    "255": "\t\t\telse:", 
+    "256": "\t\t\t\tconditions.append(self.prepare_filter_condition(f))", 
+    "257": "", 
+    "258": "\tdef prepare_filter_condition(self, f):"
+   }, 
+   "lnum": 256
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>, f={'operator': u'in', 'fieldname': u'consignee', 'doctype': u'SKU', 'value': None})", 
+   "dump": {
+    "values": "None", 
+    "values.split": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "prepare_filter_condition", 
+   "lines": {
+    "277": "\t\t\tvalues = f.value", 
+    "278": "\t\t\tif not isinstance(values, (list, tuple)):", 
+    "279": "\t\t\t\tvalues = values.split(\",\")", 
+    "280": "", 
+    "281": "\t\t\tfallback = \"''\""
+   }, 
+   "lnum": 279
+  }
+ ], 
+ "locals": {
+  "can_be_null": "True", 
+  "column_name": "u'`tabSKU`.consignee'", 
+  "f": "{'operator': u'in', 'fieldname': u'consignee', 'doctype': u'SKU', 'value': None}", 
+  "self": "<frappe.model.db_query.DatabaseQuery object>", 
+  "tname": "u'`tabSKU`'", 
+  "values": "None"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-01-31 14:54:56.903650", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/search.py\", line 12, in search_link\n    search_widget(doctype, txt, query, searchfield=searchfield, page_len=page_len, filters=filters)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/search.py\", line 91, in search_widget\n    as_list=not as_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 1058, in get_list\n    return frappe.model.db_query.DatabaseQuery(doctype).execute(None, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 80, in execute\n    result = self.build_and_run()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 92, in build_and_run\n    args = self.prepare_args()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 110, in prepare_args\n    self.build_conditions()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 238, in build_conditions\n    self.build_filter_conditions(self.filters, self.conditions)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 256, in build_filter_conditions\n    conditions.append(self.prepare_filter_condition(f))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 279, in prepare_filter_condition\n    values = values.split(\",\")\nAttributeError: 'NoneType' object has no attribute 'split'\n"
+}

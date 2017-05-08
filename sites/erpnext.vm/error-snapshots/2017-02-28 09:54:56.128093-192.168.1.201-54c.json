@@ -1,0 +1,254 @@
+{
+ "etype": "<type 'exceptions.SyntaxError'>", 
+ "evalue": "SyntaxError('invalid syntax', ('/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/customer/customer.py', 20, 39, '        if not self.default_price_list\\n'))", 
+ "exception": {
+  "args": "('invalid syntax', ('/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/customer/customer.py', 20, 39, '        if not self.default_price_list\\n'))", 
+  "filename": "'/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/customer/customer.py'", 
+  "lineno": "20", 
+  "message": "''", 
+  "msg": "'invalid syntax'", 
+  "offset": "39", 
+  "print_file_and_line": "None", 
+  "text": "'        if not self.default_price_list\\n'"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/' [POST]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'erpnext.accounts.party.get_party_details'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'erpnext.accounts.party.get_party_details', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'party_type': u'Customer', 'company': u'APT Hom...-02-28', 'party': u'ABENSON VENTURES - STA ROSA'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function get_party_details>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function get_party_details>, *args=(), **kwargs={'cmd': u'erpnext.accounts.party.get_party_details', 'company': u'APT Home Products Corporation', 'currency': u'PHP', 'doctype': u'Sales Invoice', 'party': u'ABENSON VENTURES - STA ROSA', 'party_type': u'Customer', 'posting_date': u'2017-02-28', 'price_list': u'SRP'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function get_party_details>", 
+    "newargs": "{'company': u'APT Home Products Corporation', 'currency': u'PHP', 'doctype': u'Sales Invoice', 'party': u'ABENSON VENTURES - STA ROSA', 'party_type': u'Customer', 'posting_date': u'2017-02-28', 'price_list': u'SRP'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(party=u'ABENSON VENTURES - STA ROSA', account=None, party_type=u'Customer', company=u'APT Home Products Corporation', posting_date=u'2017-02-28', price_list=u'SRP', currency=u'PHP', doctype=u'Sales Invoice', ignore_permissions=False)", 
+   "dump": {
+    "company": "u'APT Home Products Corporation'", 
+    "currency": "u'PHP'", 
+    "doctype": "u'Sales Invoice'", 
+    "ignore_permissions": "False", 
+    "posting_date": "u'2017-02-28'", 
+    "price_list": "u'SRP'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/party.py", 
+   "func": "get_party_details", 
+   "lines": {
+    "26": "", 
+    "27": "\treturn _get_party_details(party, account, party_type,", 
+    "28": "\t\tcompany, posting_date, price_list, currency, doctype, ignore_permissions)", 
+    "29": "", 
+    "30": "def _get_party_details(party=None, account=None, party_type=\"Customer\", company=None,"
+   }, 
+   "lnum": 28
+  }, 
+  {
+   "call": "(party=u'ABENSON VENTURES - STA ROSA', account=None, party_type=u'Customer', company=u'APT Home Products Corporation', posting_date=u'2017-02-28', price_list=u'SRP', currency=u'PHP', doctype=u'Sales Invoice', ignore_permissions=False)", 
+   "dump": {
+    "frappe. get_doc": "<function get_doc>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "party": "u'ABENSON VENTURES - STA ROSA'", 
+    "party_type": "u'Customer'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/party.py", 
+   "func": "_get_party_details", 
+   "lines": {
+    "38": "\t\tfrappe.throw(_(\"Not permitted for {0}\").format(party), frappe.PermissionError)", 
+    "39": "", 
+    "40": "\tparty = frappe.get_doc(party_type, party)", 
+    "41": "", 
+    "42": "\tset_address_details(out, party, party_type)"
+   }, 
+   "lnum": 40
+  }, 
+  {
+   "call": "(arg1=u'Customer', arg2=u'ABENSON VENTURES - STA ROSA')", 
+   "dump": {
+    "arg1": "u'Customer'", 
+    "arg2": "u'ABENSON VENTURES - STA ROSA'", 
+    "frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "frappe. model": "<module 'frappe.model' from '/home/frappe/frappe-bench/apps/frappe/frappe/model/__init__.pyc'>", 
+    "frappe.model. document": "<module 'frappe.model.document' from '/home/frap...ppe-bench/apps/frappe/frappe/model/document.pyc'>", 
+    "frappe.model.document. get_doc": "<function get_doc>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "get_doc", 
+   "lines": {
+    "576": "\t\"\"\"", 
+    "577": "\timport frappe.model.document", 
+    "578": "\treturn frappe.model.document.get_doc(arg1, arg2)", 
+    "579": "", 
+    "580": "def get_last_doc(doctype):"
+   }, 
+   "lnum": 578
+  }, 
+  {
+   "call": "(arg1=u'Customer', arg2=u'ABENSON VENTURES - STA ROSA')", 
+   "dump": {
+    "controller": "undefined", 
+    "doctype": "u'Customer'", 
+    "global get_controller": "<function get_controller>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "get_doc", 
+   "lines": {
+    "43": "\t\tdoctype = arg1.get(\"doctype\")", 
+    "44": "", 
+    "45": "\tcontroller = get_controller(doctype)", 
+    "46": "\tif controller:", 
+    "47": "\t\treturn controller(arg1, arg2)"
+   }, 
+   "lnum": 45
+  }, 
+  {
+   "call": "(doctype=u'Customer')", 
+   "dump": {
+    "doctype": "u'Customer'", 
+    "global load_doctype_module": "<function load_doctype_module>", 
+    "module": "undefined", 
+    "module_name": "u'Selling'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/base_document.py", 
+   "func": "get_controller", 
+   "lines": {
+    "30": "\t\t\t_class = Document", 
+    "31": "\t\telse:", 
+    "32": "\t\t\tmodule = load_doctype_module(doctype, module_name)", 
+    "33": "\t\t\tclassname = doctype.replace(\" \", \"\").replace(\"-\", \"\")", 
+    "34": "\t\t\tif hasattr(module, classname):"
+   }, 
+   "lnum": 32
+  }, 
+  {
+   "call": "(doctype=u'Customer', module=u'Selling', prefix=u'', suffix=u'')", 
+   "dump": {
+    "doctype": "u'Customer'", 
+    "frappe. get_module": "<function get_module>", 
+    "global doctype_python_modules": "{(u'erpnext', u'Item', u'', u''): <module 'erpnext.stock.doctype.item.item' from '...pps/erpnext/erpnext/stock/doctype/item/item.pyc'>, (u'erpnext', u'Item', u'', u'_dashboard'): <module 'erpnext.stock.doctype.item.item_dashboa...t/erpnext/stock/doctype/item/item_dashboard.pyc'>, (u'erpnext', u'Notification Control', u'', u''): <module 'erpnext.setup.doctype.notification_cont...e/notification_control/notification_control.pyc'>, (u'erpnext', u'Price List', u'', u''): <module 'erpnext.selling.doctype.price_list.pric...pnext/selling/doctype/price_list/price_list.pyc'>, (u'erpnext', u'Sales Invoice', u'', u''): <module 'erpnext.selling.doctype.sales_invoice.s...selling/doctype/sales_invoice/sales_invoice.pyc'>, (u'erpnext', u'Sales Invoice', u'', u'_dashboard'): <module 'erpnext.selling.doctype.sales_invoice.s...ctype/sales_invoice/sales_invoice_dashboard.pyc'>, (u'erpnext', u'Shopping Cart Settings', u'', u''): <module 'erpnext.shopping_cart.doctype.shopping_...opping_cart_settings/shopping_cart_settings.pyc'>, (u'frappe', u'Country', u'', u''): <module 'frappe.geo.doctype.country.country' fro...s/frappe/frappe/geo/doctype/country/country.pyc'>, (u'frappe', u'DocField', u'', u''): <module 'frappe.core.doctype.docfield.docfield' ...rappe/frappe/core/doctype/docfield/docfield.pyc'>, (u'frappe', u'DocPerm', u'', u''): <module 'frappe.core.doctype.docperm.docperm' fr.../frappe/frappe/core/doctype/docperm/docperm.pyc'>, ...}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "global get_module_name": "<function get_module_name>", 
+    "key": "(u'erpnext', u'Customer', u'', u'')", 
+    "module": "u'Selling'", 
+    "prefix": "u''", 
+    "suffix": "u''"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/modules/__init__.py", 
+   "func": "load_doctype_module", 
+   "lines": {
+    "62": "", 
+    "63": "\tif key not in doctype_python_modules:", 
+    "64": "\t\tdoctype_python_modules[key] = frappe.get_module(get_module_name(doctype, module, prefix, suffix))", 
+    "65": "", 
+    "66": "\treturn doctype_python_modules[key]"
+   }, 
+   "lnum": 64
+  }, 
+  {
+   "call": "(modulename=u'erpnext.selling.doctype.customer.customer')", 
+   "dump": {
+    "global importlib": "<module 'importlib' from '/usr/lib/python2.7/importlib/__init__.pyc'>", 
+    "importlib. import_module": "<function import_module>", 
+    "modulename": "u'erpnext.selling.doctype.customer.customer'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "get_module", 
+   "lines": {
+    "641": "def get_module(modulename):", 
+    "642": "\t\"\"\"Returns a module object for given Python module name using `importlib.import_module`.\"\"\"", 
+    "643": "\treturn importlib.import_module(modulename)", 
+    "644": "", 
+    "645": "def scrub(txt):"
+   }, 
+   "lnum": 643
+  }, 
+  {
+   "call": "(name=u'erpnext.selling.doctype.customer.customer', package=None)", 
+   "dump": {
+    "builtin __import__": "<built-in function __import__>", 
+    "name": "u'erpnext.selling.doctype.customer.customer'"
+   }, 
+   "file": "/usr/lib/python2.7/importlib/__init__.py", 
+   "func": "import_module", 
+   "lines": {
+    "34": "                break", 
+    "35": "            level += 1", 
+    "36": "        name = _resolve_name(name[level:], package, level)", 
+    "37": "    __import__(name)", 
+    "38": "    return sys.modules[name]"
+   }, 
+   "lnum": 37
+  }
+ ], 
+ "locals": {
+  "name": "u'erpnext.selling.doctype.customer.customer'", 
+  "package": "None"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-02-28 09:54:56.128316", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/party.py\", line 28, in get_party_details\n    company, posting_date, price_list, currency, doctype, ignore_permissions)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/party.py\", line 40, in _get_party_details\n    party = frappe.get_doc(party_type, party)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 578, in get_doc\n    return frappe.model.document.get_doc(arg1, arg2)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 45, in get_doc\n    controller = get_controller(doctype)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/base_document.py\", line 32, in get_controller\n    module = load_doctype_module(doctype, module_name)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/modules/__init__.py\", line 64, in load_doctype_module\n    doctype_python_modules[key] = frappe.get_module(get_module_name(doctype, module, prefix, suffix))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 643, in get_module\n    return importlib.import_module(modulename)\n  File \"/usr/lib/python2.7/importlib/__init__.py\", line 37, in import_module\n    __import__(name)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/customer/customer.py\", line 20\n    if not self.default_price_list\n                                 ^\nSyntaxError: invalid syntax\n"
+}

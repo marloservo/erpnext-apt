@@ -1,0 +1,297 @@
+{
+ "etype": "<type 'exceptions.ZeroDivisionError'>", 
+ "evalue": "ZeroDivisionError('integer division or modulo by zero',)", 
+ "exception": {
+  "args": "('integer division or modulo by zero',)", 
+  "message": "'integer division or modulo by zero'"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/' [POST]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.form.save.savedocs'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.form.save.savedocs', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'action': u'Save', 'doc': u'{\"docstatus\":0,\"doc...PHP\"}', 'cmd': u'frappe.desk.form.save.savedocs'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function savedocs>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function savedocs>, *args=(), **kwargs={'action': u'Save', 'cmd': u'frappe.desk.form.save.savedocs', 'doc': u'{\"docstatus\":0,\"doctype\":\"Sales Invoice\",\"name...,\"sales_team\":[],\"party_account_currency\":\"PHP\"}'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function savedocs>", 
+    "newargs": "{'action': u'Save', 'doc': u'{\"docstatus\":0,\"doctype\":\"Sales Invoice\",\"name...,\"sales_team\":[],\"party_account_currency\":\"PHP\"}'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(doc=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>, action=u'Save')", 
+   "dump": {
+    "doc": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>", 
+    "doc. save": "<bound method SalesInvoice.save of <erpnext.sell...sales_invoice.sales_invoice.SalesInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/save.py", 
+   "func": "savedocs", 
+   "lines": {
+    "20": "\t\telse:", 
+    "21": "\t\t\ttry:", 
+    "22": "\t\t\t\tdoc.save()", 
+    "23": "\t\t\texcept frappe.NameError, e:", 
+    "24": "\t\t\t\tdoctype, name, original_exception = e if isinstance(e, tuple) else (doc.doctype or \"\", doc.name or \"\", None)"
+   }, 
+   "lnum": 22
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "kwargs": "{}", 
+    "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>", 
+    "self. _save": "<bound method SalesInvoice._save of <erpnext.sel...sales_invoice.sales_invoice.SalesInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "save", 
+   "lines": {
+    "240": "\tdef save(self, *args, **kwargs):", 
+    "241": "\t\t\"\"\"Wrapper for _save\"\"\"", 
+    "242": "\t\treturn self._save(*args, **kwargs)", 
+    "243": "", 
+    "244": "\tdef _save(self, ignore_permissions=None):"
+   }, 
+   "lnum": 242
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>, ignore_permissions=None)", 
+   "dump": {
+    "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>", 
+    "self. insert": "<bound method SalesInvoice.insert of <erpnext.se...sales_invoice.sales_invoice.SalesInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "_save", 
+   "lines": {
+    "257": "", 
+    "258": "\t\tif self.get(\"__islocal\") or not self.get(\"name\"):", 
+    "259": "\t\t\tself.insert()", 
+    "260": "\t\t\treturn", 
+    "261": ""
+   }, 
+   "lnum": 259
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>, ignore_permissions=None)", 
+   "dump": {
+    "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>", 
+    "self. run_before_save_methods": "<bound method SalesInvoice.run_before_save_metho...sales_invoice.sales_invoice.SalesInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "insert", 
+   "lines": {
+    "210": "", 
+    "211": "\t\tself.flags.in_insert = True", 
+    "212": "\t\tself.run_before_save_methods()", 
+    "213": "\t\tself._validate()", 
+    "214": "\t\tself.set_docstatus()"
+   }, 
+   "lnum": 212
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>)", 
+   "dump": {
+    "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>", 
+    "self. run_method": "<bound method SalesInvoice.run_method of <erpnex...sales_invoice.sales_invoice.SalesInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "run_before_save_methods", 
+   "lines": {
+    "708": "", 
+    "709": "\t\tif self._action==\"save\":", 
+    "710": "\t\t\tself.run_method(\"validate\")", 
+    "711": "\t\t\tself.run_method(\"before_save\")", 
+    "712": "\t\telif self._action==\"submit\":"
+   }, 
+   "lnum": 710
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>, method=u'validate', *args=(), **kwargs={})", 
+   "dump": {
+    "Document. hook": "<function hook>", 
+    "args": "()", 
+    "fn": "<function validate>", 
+    "global Document": "<class 'frappe.model.document.Document'>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "run_method", 
+   "lines": {
+    "659": "", 
+    "660": "\t\tfn.__name__ = method.encode(\"utf-8\")", 
+    "661": "\t\treturn Document.hook(fn)(self, *args, **kwargs)", 
+    "662": "", 
+    "663": "\t@staticmethod"
+   }, 
+   "lnum": 661
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "composed": "<function runner>", 
+    "kwargs": "{}", 
+    "method": "'validate'", 
+    "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "composer", 
+   "lines": {
+    "837": "", 
+    "838": "\t\t\tcomposed = compose(f, *hooks)", 
+    "839": "\t\t\treturn composed(self, method, *args, **kwargs)", 
+    "840": "", 
+    "841": "\t\treturn composer"
+   }, 
+   "lnum": 839
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>, method='validate', *args=(), **kwargs={})", 
+   "dump": {
+    "add_to_return_value": "<function add_to_return_value>", 
+    "args": "()", 
+    "fn": "<function validate>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "runner", 
+   "lines": {
+    "820": "\t\tdef compose(fn, *hooks):", 
+    "821": "\t\t\tdef runner(self, method, *args, **kwargs):", 
+    "822": "\t\t\t\tadd_to_return_value(self, fn(self, *args, **kwargs))", 
+    "823": "\t\t\t\tfor f in hooks:", 
+    "824": "\t\t\t\t\tadd_to_return_value(self, f(self, method, *args, **kwargs))"
+   }, 
+   "lnum": 822
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "builtin getattr": "<built-in function getattr>", 
+    "fn": "undefined", 
+    "kwargs": "{}", 
+    "method": "u'validate'", 
+    "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "<lambda>", 
+   "lines": {
+    "653": "", 
+    "654": "\t\tif hasattr(self, method) and hasattr(getattr(self, method), \"__call__\"):", 
+    "655": "\t\t\tfn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)", 
+    "656": "\t\telse:", 
+    "657": "\t\t\t# hack! to run hooks even if method does not exist"
+   }, 
+   "lnum": 655
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>)", 
+   "dump": {
+    "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>", 
+    "self. validate_amounts": "<bound method SalesInvoice.validate_amounts of <...sales_invoice.sales_invoice.SalesInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sales_invoice/sales_invoice.py", 
+   "func": "validate", 
+   "lines": {
+    "53": "", 
+    "54": "    def validate(self):", 
+    "55": "        self.validate_amounts()", 
+    "56": "        self.set_customer_from_store_code()", 
+    "57": "        super(SalesInvoice, self).validate()"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>)", 
+   "dump": {
+    "d": "<erpnext.selling.doctype.sales_invoice_item.sales_invoice_item.SalesInvoiceItem object>", 
+    "d. amount": "0", 
+    "d. qty": "0", 
+    "d. rate": "2749.75"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sales_invoice/sales_invoice.py", 
+   "func": "validate_amounts", 
+   "lines": {
+    "757": "            sum_total = 0", 
+    "758": "            for d in self.get(\"items\"):", 
+    "759": "                d.rate = d.amount / d.qty", 
+    "760": "                d.base_rate = d.rate", 
+    "761": "                d.base_amount = d.amount"
+   }, 
+   "lnum": 759
+  }
+ ], 
+ "locals": {
+  "d": "<erpnext.selling.doctype.sales_invoice_item.sales_invoice_item.SalesInvoiceItem object>", 
+  "self": "<erpnext.selling.doctype.sales_invoice.sales_invoice.SalesInvoice object>", 
+  "sum_total": "0"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-02-03 14:46:12.258790", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/save.py\", line 22, in savedocs\n    doc.save()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 242, in save\n    return self._save(*args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 259, in _save\n    self.insert()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 212, in insert\n    self.run_before_save_methods()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 710, in run_before_save_methods\n    self.run_method(\"validate\")\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 661, in run_method\n    return Document.hook(fn)(self, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 839, in composer\n    return composed(self, method, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 822, in runner\n    add_to_return_value(self, fn(self, *args, **kwargs))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 655, in <lambda>\n    fn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sales_invoice/sales_invoice.py\", line 55, in validate\n    self.validate_amounts()\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sales_invoice/sales_invoice.py\", line 759, in validate_amounts\n    d.rate = d.amount / d.qty\nZeroDivisionError: integer division or modulo by zero\n"
+}

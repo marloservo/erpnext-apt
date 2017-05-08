@@ -1,0 +1,574 @@
+{
+ "etype": "<type 'exceptions.AttributeError'>", 
+ "evalue": "AttributeError(\"'ItemPrice' object has no attribute 'sku'\",)", 
+ "exception": {
+  "args": "(\"'ItemPrice' object has no attribute 'sku'\",)", 
+  "message": "\"'ItemPrice' object has no attribute 'sku'\""
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/' [POST]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.form.save.savedocs'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.form.save.savedocs', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'action': u'Save', 'doc': u'{\"docstatus\":0,\"doc...-21\"}', 'cmd': u'frappe.desk.form.save.savedocs'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function savedocs>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function savedocs>, *args=(), **kwargs={'action': u'Save', 'cmd': u'frappe.desk.form.save.savedocs', 'doc': u'{\"docstatus\":0,\"doctype\":\"Purchase Invoice\",\"n...:\"PHP\",\"bill_no\":\"123\",\"bill_date\":\"2017-04-21\"}'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function savedocs>", 
+    "newargs": "{'action': u'Save', 'doc': u'{\"docstatus\":0,\"doctype\":\"Purchase Invoice\",\"n...:\"PHP\",\"bill_no\":\"123\",\"bill_date\":\"2017-04-21\"}'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(doc=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, action=u'Save')", 
+   "dump": {
+    "doc": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>", 
+    "doc. save": "<bound method PurchaseInvoice.save of <erpnext.a...invoice.purchase_invoice.PurchaseInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/save.py", 
+   "func": "savedocs", 
+   "lines": {
+    "20": "\t\telse:", 
+    "21": "\t\t\ttry:", 
+    "22": "\t\t\t\tdoc.save()", 
+    "23": "\t\t\texcept frappe.NameError, e:", 
+    "24": "\t\t\t\tdoctype, name, original_exception = e if isinstance(e, tuple) else (doc.doctype or \"\", doc.name or \"\", None)"
+   }, 
+   "lnum": 22
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "kwargs": "{}", 
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>", 
+    "self. _save": "<bound method PurchaseInvoice._save of <erpnext....invoice.purchase_invoice.PurchaseInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "save", 
+   "lines": {
+    "240": "\tdef save(self, *args, **kwargs):", 
+    "241": "\t\t\"\"\"Wrapper for _save\"\"\"", 
+    "242": "\t\treturn self._save(*args, **kwargs)", 
+    "243": "", 
+    "244": "\tdef _save(self, ignore_permissions=None):"
+   }, 
+   "lnum": 242
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, ignore_permissions=None)", 
+   "dump": {
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>", 
+    "self. insert": "<bound method PurchaseInvoice.insert of <erpnext...invoice.purchase_invoice.PurchaseInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "_save", 
+   "lines": {
+    "257": "", 
+    "258": "\t\tif self.get(\"__islocal\") or not self.get(\"name\"):", 
+    "259": "\t\t\tself.insert()", 
+    "260": "\t\t\treturn", 
+    "261": ""
+   }, 
+   "lnum": 259
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, ignore_permissions=None)", 
+   "dump": {
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>", 
+    "self. run_before_save_methods": "<bound method PurchaseInvoice.run_before_save_me...invoice.purchase_invoice.PurchaseInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "insert", 
+   "lines": {
+    "210": "", 
+    "211": "\t\tself.flags.in_insert = True", 
+    "212": "\t\tself.run_before_save_methods()", 
+    "213": "\t\tself._validate()", 
+    "214": "\t\tself.set_docstatus()"
+   }, 
+   "lnum": 212
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>)", 
+   "dump": {
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>", 
+    "self. run_method": "<bound method PurchaseInvoice.run_method of <erp...invoice.purchase_invoice.PurchaseInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "run_before_save_methods", 
+   "lines": {
+    "708": "", 
+    "709": "\t\tif self._action==\"save\":", 
+    "710": "\t\t\tself.run_method(\"validate\")", 
+    "711": "\t\t\tself.run_method(\"before_save\")", 
+    "712": "\t\telif self._action==\"submit\":"
+   }, 
+   "lnum": 710
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, method=u'validate', *args=(), **kwargs={})", 
+   "dump": {
+    "Document. hook": "<function hook>", 
+    "args": "()", 
+    "fn": "<function validate>", 
+    "global Document": "<class 'frappe.model.document.Document'>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "run_method", 
+   "lines": {
+    "659": "", 
+    "660": "\t\tfn.__name__ = method.encode(\"utf-8\")", 
+    "661": "\t\treturn Document.hook(fn)(self, *args, **kwargs)", 
+    "662": "", 
+    "663": "\t@staticmethod"
+   }, 
+   "lnum": 661
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "composed": "<function runner>", 
+    "kwargs": "{}", 
+    "method": "'validate'", 
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "composer", 
+   "lines": {
+    "837": "", 
+    "838": "\t\t\tcomposed = compose(f, *hooks)", 
+    "839": "\t\t\treturn composed(self, method, *args, **kwargs)", 
+    "840": "", 
+    "841": "\t\treturn composer"
+   }, 
+   "lnum": 839
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, method='validate', *args=(), **kwargs={})", 
+   "dump": {
+    "add_to_return_value": "<function add_to_return_value>", 
+    "args": "()", 
+    "fn": "<function validate>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "runner", 
+   "lines": {
+    "820": "\t\tdef compose(fn, *hooks):", 
+    "821": "\t\t\tdef runner(self, method, *args, **kwargs):", 
+    "822": "\t\t\t\tadd_to_return_value(self, fn(self, *args, **kwargs))", 
+    "823": "\t\t\t\tfor f in hooks:", 
+    "824": "\t\t\t\t\tadd_to_return_value(self, f(self, method, *args, **kwargs))"
+   }, 
+   "lnum": 822
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "builtin getattr": "<built-in function getattr>", 
+    "fn": "undefined", 
+    "kwargs": "{}", 
+    "method": "u'validate'", 
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "<lambda>", 
+   "lines": {
+    "653": "", 
+    "654": "\t\tif hasattr(self, method) and hasattr(getattr(self, method), \"__call__\"):", 
+    "655": "\t\t\tfn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)", 
+    "656": "\t\telse:", 
+    "657": "\t\t\t# hack! to run hooks even if method does not exist"
+   }, 
+   "lnum": 655
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>)", 
+   "dump": {
+    "). validate": "<bound method PurchaseInvoice.validate of <erpne...invoice.purchase_invoice.PurchaseInvoice object>>", 
+    "builtin super": "<type 'super'>", 
+    "global PurchaseInvoice": "<class 'erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice'>", 
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.py", 
+   "func": "validate", 
+   "lines": {
+    "41": "\t\t\tself.is_opening = 'No'", 
+    "42": "", 
+    "43": "\t\tsuper(PurchaseInvoice, self).validate()", 
+    "44": "", 
+    "45": "\t\tif not self.is_return:"
+   }, 
+   "lnum": 43
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>)", 
+   "dump": {
+    "). validate": "<bound method PurchaseInvoice.validate of <erpne...invoice.purchase_invoice.PurchaseInvoice object>>", 
+    "builtin super": "<type 'super'>", 
+    "global BuyingController": "<class 'erpnext.controllers.buying_controller.BuyingController'>", 
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/buying_controller.py", 
+   "func": "validate", 
+   "lines": {
+    "26": "", 
+    "27": "\tdef validate(self):", 
+    "28": "\t\tsuper(BuyingController, self).validate()", 
+    "29": "\t\tif getattr(self, \"supplier\", None) and not self.supplier_name:", 
+    "30": "\t\t\tself.supplier_name = frappe.db.get_value(\"Supplier\", self.supplier, \"supplier_name\")"
+   }, 
+   "lnum": 28
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>)", 
+   "dump": {
+    "builtin True": "True", 
+    "for_validate": "undefined", 
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>", 
+    "self. set_missing_values": "<bound method PurchaseInvoice.set_missing_values...invoice.purchase_invoice.PurchaseInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/accounts_controller.py", 
+   "func": "validate", 
+   "lines": {
+    "29": "\tdef validate(self):", 
+    "30": "\t\tif self.get(\"_action\") and self._action != \"update_after_submit\":", 
+    "31": "\t\t\tself.set_missing_values(for_validate=True)", 
+    "32": "\t\tself.validate_date_with_fiscal_year()", 
+    "33": ""
+   }, 
+   "lnum": 31
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, for_validate=True)", 
+   "dump": {
+    "). set_missing_values": "<bound method PurchaseInvoice.set_missing_values...invoice.purchase_invoice.PurchaseInvoice object>>", 
+    "builtin super": "<type 'super'>", 
+    "for_validate": "True", 
+    "global PurchaseInvoice": "<class 'erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice'>", 
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.py", 
+   "func": "set_missing_values", 
+   "lines": {
+    "89": "\t\t\tself.due_date = get_due_date(self.posting_date, \"Supplier\", self.supplier, self.company)", 
+    "90": "", 
+    "91": "\t\tsuper(PurchaseInvoice, self).set_missing_values(for_validate)", 
+    "92": "", 
+    "93": "\tdef check_conversion_rate(self):"
+   }, 
+   "lnum": 91
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>, for_validate=True)", 
+   "dump": {
+    "self": "<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>", 
+    "self. set_missing_item_details": "<bound method PurchaseInvoice.set_missing_item_d...invoice.purchase_invoice.PurchaseInvoice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/buying_controller.py", 
+   "func": "set_missing_values", 
+   "lines": {
+    "63": "\t\t\tself.update_if_missing(get_party_details(self.supplier, party_type=\"Supplier\", ignore_permissions=self.flags.ignore_permissions))", 
+    "64": "", 
+    "65": "\t\tself.set_missing_item_details()", 
+    "66": "", 
+    "67": "\tdef set_supplier_from_item_default(self):"
+   }, 
+   "lnum": 65
+  }, 
+  {
+   "call": "(self=<erpnext.accounts.doctype.purchase_invoice.purchase_invoice.PurchaseInvoice object>)", 
+   "dump": {
+    "args": "{u'__islocal': 1, u'additional_discount_percentage': None, u'address_display': None, u'against_expense_account': None, u'amended_from': None, u'amount': 19095.0, u'apply_discount_on': u'Grand Total', u'asset': None, u'base_amount': 19095.0, u'base_discount_amount': 0, ...}", 
+    "get_item_details": "<function get_item_details>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/accounts_controller.py", 
+   "func": "set_missing_item_details", 
+   "lines": {
+    "172": "\t\t\t\t\t\targs[\"is_subcontracted\"] = self.is_subcontracted", 
+    "173": "", 
+    "174": "\t\t\t\t\tret = get_item_details(args)", 
+    "175": "", 
+    "176": ""
+   }, 
+   "lnum": 174
+  }, 
+  {
+   "call": "(args={u'purchase_receipt': None, u'__islocal': 1, u'c...otal_taxes_and_charges': 0, u'is_fixed_asset': 0})", 
+   "dump": {
+    "args": "{u'purchase_receipt': None, u'__islocal': 1, u'c...otal_taxes_and_charges': 0, u'is_fixed_asset': 0}", 
+    "global get_price_list_rate": "<function get_price_list_rate>", 
+    "item_doc": "<erpnext.stock.doctype.item.item.Item object>", 
+    "out": "{u'valuation_rate': 0, u'item_group': u'Products...te': 0.0, u'is_fixed_asset': 0L, u'uom': u'PC/S'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/get_item_details.py", 
+   "func": "get_item_details", 
+   "lines": {
+    "62": "\t\tout.update(get_valuation_rate(args.item_code, out.get(\"warehouse\")))", 
+    "63": "", 
+    "64": "\tget_price_list_rate(args, item_doc, out)", 
+    "65": "", 
+    "66": "\tif args.customer and cint(args.is_pos):"
+   }, 
+   "lnum": 64
+  }, 
+  {
+   "call": "(args={u'purchase_receipt': None, u'__islocal': 1, u'c...otal_taxes_and_charges': 0, u'is_fixed_asset': 0}, item_doc=<erpnext.stock.doctype.item.item.Item object>, out={u'valuation_rate': 0, u'item_group': u'Products...te': 0.0, u'is_fixed_asset': 0L, u'uom': u'PC/S'})", 
+   "dump": {
+    "args": "{u'purchase_receipt': None, u'__islocal': 1, u'c...otal_taxes_and_charges': 0, u'is_fixed_asset': 0}", 
+    "global insert_item_price": "<function insert_item_price>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/get_item_details.py", 
+   "func": "get_price_list_rate", 
+   "lines": {
+    "223": "\t\tif not price_list_rate:", 
+    "224": "\t\t\tif args.price_list and args.rate:", 
+    "225": "\t\t\t\tinsert_item_price(args)", 
+    "226": "\t\t\treturn {}", 
+    "227": ""
+   }, 
+   "lnum": 225
+  }, 
+  {
+   "call": "(args={u'purchase_receipt': None, u'__islocal': 1, u'c...otal_taxes_and_charges': 0, u'is_fixed_asset': 0})", 
+   "dump": {
+    "item_price": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>", 
+    "item_price. insert": "<bound method ItemPrice.insert of <erpnext.selling.doctype.item_price.item_price.ItemPrice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/get_item_details.py", 
+   "func": "insert_item_price", 
+   "lines": {
+    "259": "\t\t\t\t\targs.price_list))", 
+    "260": "\t\t\telse:", 
+    "261": "\t\t\t\titem_price.insert()", 
+    "262": "\t\t\t\tfrappe.msgprint(_(\"Item Price added for {0} in Price List {1}\").format(args.item_code,", 
+    "263": "\t\t\t\t\targs.price_list))"
+   }, 
+   "lnum": 261
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.item_price.item_price.ItemPrice object>, ignore_permissions=None)", 
+   "dump": {
+    "self": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>", 
+    "self. set_new_name": "<bound method ItemPrice.set_new_name of <erpnext....doctype.item_price.item_price.ItemPrice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "insert", 
+   "lines": {
+    "205": "\t\tself.check_if_latest()", 
+    "206": "\t\tself.run_method(\"before_insert\")", 
+    "207": "\t\tself.set_new_name()", 
+    "208": "\t\tself.set_parent_in_children()", 
+    "209": "\t\tself.validate_higher_perm_levels()"
+   }, 
+   "lnum": 207
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.item_price.item_price.ItemPrice object>)", 
+   "dump": {
+    "global set_new_name": "<function set_new_name>", 
+    "self": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "set_new_name", 
+   "lines": {
+    "323": "\tdef set_new_name(self):", 
+    "324": "\t\t\"\"\"Calls `frappe.naming.se_new_name` for parent and child docs.\"\"\"", 
+    "325": "\t\tset_new_name(self)", 
+    "326": "\t\t# set name for children", 
+    "327": "\t\tfor d in self.get_all_children():"
+   }, 
+   "lnum": 325
+  }, 
+  {
+   "call": "(doc=<erpnext.selling.doctype.item_price.item_price.ItemPrice object>)", 
+   "dump": {
+    "doc": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>", 
+    "doc. run_method": "<bound method ItemPrice.run_method of <erpnext.s....doctype.item_price.item_price.ItemPrice object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/naming.py", 
+   "func": "set_new_name", 
+   "lines": {
+    "36": "", 
+    "37": "\telse:", 
+    "38": "\t\tdoc.run_method(\"autoname\")", 
+    "39": "", 
+    "40": "\tif not doc.name and autoname:"
+   }, 
+   "lnum": 38
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.item_price.item_price.ItemPrice object>, method=u'autoname', *args=(), **kwargs={})", 
+   "dump": {
+    "Document. hook": "<function hook>", 
+    "args": "()", 
+    "fn": "<function autoname>", 
+    "global Document": "<class 'frappe.model.document.Document'>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "run_method", 
+   "lines": {
+    "659": "", 
+    "660": "\t\tfn.__name__ = method.encode(\"utf-8\")", 
+    "661": "\t\treturn Document.hook(fn)(self, *args, **kwargs)", 
+    "662": "", 
+    "663": "\t@staticmethod"
+   }, 
+   "lnum": 661
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.item_price.item_price.ItemPrice object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "composed": "<function runner>", 
+    "kwargs": "{}", 
+    "method": "'autoname'", 
+    "self": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "composer", 
+   "lines": {
+    "837": "", 
+    "838": "\t\t\tcomposed = compose(f, *hooks)", 
+    "839": "\t\t\treturn composed(self, method, *args, **kwargs)", 
+    "840": "", 
+    "841": "\t\treturn composer"
+   }, 
+   "lnum": 839
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.item_price.item_price.ItemPrice object>, method='autoname', *args=(), **kwargs={})", 
+   "dump": {
+    "add_to_return_value": "<function add_to_return_value>", 
+    "args": "()", 
+    "fn": "<function autoname>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "runner", 
+   "lines": {
+    "820": "\t\tdef compose(fn, *hooks):", 
+    "821": "\t\t\tdef runner(self, method, *args, **kwargs):", 
+    "822": "\t\t\t\tadd_to_return_value(self, fn(self, *args, **kwargs))", 
+    "823": "\t\t\t\tfor f in hooks:", 
+    "824": "\t\t\t\t\tadd_to_return_value(self, f(self, method, *args, **kwargs))"
+   }, 
+   "lnum": 822
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.item_price.item_price.ItemPrice object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "builtin getattr": "<built-in function getattr>", 
+    "fn": "undefined", 
+    "kwargs": "{}", 
+    "method": "u'autoname'", 
+    "self": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "<lambda>", 
+   "lines": {
+    "653": "", 
+    "654": "\t\tif hasattr(self, method) and hasattr(getattr(self, method), \"__call__\"):", 
+    "655": "\t\t\tfn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)", 
+    "656": "\t\telse:", 
+    "657": "\t\t\t# hack! to run hooks even if method does not exist"
+   }, 
+   "lnum": 655
+  }, 
+  {
+   "call": "(self=<erpnext.selling.doctype.item_price.item_price.ItemPrice object>)", 
+   "dump": {
+    "self": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>", 
+    "self.sku": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/item_price/item_price.py", 
+   "func": "autoname", 
+   "lines": {
+    "45": "    def autoname(self):", 
+    "46": "        # MARLO 20161215", 
+    "47": "        if self.sku:", 
+    "48": "            self.name = self.sku", 
+    "49": ""
+   }, 
+   "lnum": 47
+  }
+ ], 
+ "locals": {
+  "self": "<erpnext.selling.doctype.item_price.item_price.ItemPrice object>"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-04-21 19:20:19.373732", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/save.py\", line 22, in savedocs\n    doc.save()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 242, in save\n    return self._save(*args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 259, in _save\n    self.insert()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 212, in insert\n    self.run_before_save_methods()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 710, in run_before_save_methods\n    self.run_method(\"validate\")\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 661, in run_method\n    return Document.hook(fn)(self, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 839, in composer\n    return composed(self, method, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 822, in runner\n    add_to_return_value(self, fn(self, *args, **kwargs))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 655, in <lambda>\n    fn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.py\", line 43, in validate\n    super(PurchaseInvoice, self).validate()\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/buying_controller.py\", line 28, in validate\n    super(BuyingController, self).validate()\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/accounts_controller.py\", line 31, in validate\n    self.set_missing_values(for_validate=True)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/doctype/purchase_invoice/purchase_invoice.py\", line 91, in set_missing_values\n    super(PurchaseInvoice, self).set_missing_values(for_validate)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/buying_controller.py\", line 65, in set_missing_values\n    self.set_missing_item_details()\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/accounts_controller.py\", line 174, in set_missing_item_details\n    ret = get_item_details(args)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/get_item_details.py\", line 64, in get_item_details\n    get_price_list_rate(args, item_doc, out)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/get_item_details.py\", line 225, in get_price_list_rate\n    insert_item_price(args)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/get_item_details.py\", line 261, in insert_item_price\n    item_price.insert()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 207, in insert\n    self.set_new_name()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 325, in set_new_name\n    set_new_name(self)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/naming.py\", line 38, in set_new_name\n    doc.run_method(\"autoname\")\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 661, in run_method\n    return Document.hook(fn)(self, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 839, in composer\n    return composed(self, method, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 822, in runner\n    add_to_return_value(self, fn(self, *args, **kwargs))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 655, in <lambda>\n    fn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/item_price/item_price.py\", line 47, in autoname\n    if self.sku:\nAttributeError: 'ItemPrice' object has no attribute 'sku'\n"
+}

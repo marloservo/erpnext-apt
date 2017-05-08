@@ -1,0 +1,156 @@
+{
+ "etype": "<type 'exceptions.IndexError'>", 
+ "evalue": "IndexError('list assignment index out of range',)", 
+ "exception": {
+  "args": "('list assignment index out of range',)", 
+  "message": "'list assignment index out of range'"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/?report_name=Stoc...ppe.desk.query_report.run&_=1490269449732' [GET]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.query_report.run'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.query_report.run', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'cmd': u'frappe.desk.query_report.run', 'filter..._code\":\"#15-265\"}', 'report_name': u'Stock Card'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function run>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function run>, *args=(), **kwargs={'cmd': u'frappe.desk.query_report.run', 'filters': u'{\"from_date\":\"2017-02-23\",\"to_date\":\"2017-03-2...LDERS DEPOT TAYTAY - APT\",\"item_code\":\"#15-265\"}', 'report_name': u'Stock Card'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function run>", 
+    "newargs": "{'filters': u'{\"from_date\":\"2017-02-23\",\"to_date\":\"2017-03-2...LDERS DEPOT TAYTAY - APT\",\"item_code\":\"#15-265\"}', 'report_name': u'Stock Card'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(report_name=u'Stock Card', filters={u'from_date': u'2017-02-23', u'item_code': u'#15-265', u'to_date': u'2017-03-23', u'warehouse': u'WBS BUILDERS DEPOT TAYTAY - APT'})", 
+   "dump": {
+    "filters": "{u'from_date': u'2017-02-23', u'item_code': u'#15-265', u'to_date': u'2017-03-23', u'warehouse': u'WBS BUILDERS DEPOT TAYTAY - APT'}", 
+    "frappe. _dict": "<class 'frappe._dict'>", 
+    "frappe. get_attr": "<function get_attr>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method_name": "u'erpnext.stock.report.stock_card.stock_card.execute'", 
+    "res": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py", 
+   "func": "run", 
+   "lines": {
+    "86": "\t\tif report.is_standard==\"Yes\":", 
+    "87": "\t\t\tmethod_name = get_report_module_dotted_path(module, report.name) + \".execute\"", 
+    "88": "\t\t\tres = frappe.get_attr(method_name)(frappe._dict(filters))", 
+    "89": "", 
+    "90": "\t\t\tcolumns, result = res[0], res[1]"
+   }, 
+   "lnum": 88
+  }, 
+  {
+   "call": "(filters={u'warehouse': u'WBS BUILDERS DEPOT TAYTAY - APT...o_date': u'2017-03-23', u'item_code': u'#15-265'})", 
+   "dump": {
+    "columns": "[u'Date:Date:95', u'Reference #:Dynamic Link/Voucher Type:100', u'Warehouse:Link/Warehouse:250', u'Target Warehouse:Link/Warehouse:250', u'Item:Link/Item:100', u'Description::200', u'In:Int:50', u'Out:Int:50', u'Balance Qty:Int:100', u'Balance Value:Currency:110']", 
+    "filters": "{u'warehouse': u'WBS BUILDERS DEPOT TAYTAY - APT...o_date': u'2017-03-23', u'item_code': u'#15-265'}", 
+    "global get_opening_balance": "<function get_opening_balance>", 
+    "opening_row": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_card/stock_card.py", 
+   "func": "execute", 
+   "lines": {
+    "10": "    sl_entries = get_stock_ledger_entries(filters)", 
+    "11": "    item_details = get_item_details(filters)", 
+    "12": "    opening_row = get_opening_balance(filters, columns)", 
+    "13": "", 
+    "14": "    data = []"
+   }, 
+   "lnum": 12
+  }, 
+  {
+   "call": "(filters={u'warehouse': u'WBS BUILDERS DEPOT TAYTAY - APT...o_date': u'2017-03-23', u'item_code': u'#15-265'}, columns=[u'Date:Date:95', u'Reference #:Dynamic Link/Voucher Type:100', u'Warehouse:Link/Warehouse:250', u'Target Warehouse:Link/Warehouse:250', u'Item:Link/Item:100', u'Description::200', u'In:Int:50', u'Out:Int:50', u'Balance Qty:Int:100', u'Balance Value:Currency:110'])", 
+   "dump": {
+    "i": "10", 
+    "last_entry": "{}", 
+    "last_entry. get": "<built-in method get of dict object>", 
+    "row": "[u'', u\"'Opening'\", u'', u'', u'', u'', u'', u'', u'', 0]", 
+    "v": "u'stock_value'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_card/stock_card.py", 
+   "func": "get_opening_balance", 
+   "lines": {
+    "109": "    #else :", 
+    "110": "    for i, v in ((9, 'qty_after_transaction'), (10, 'stock_value')):", 
+    "111": "            row[i] = last_entry.get(v, 0)", 
+    "112": "", 
+    "113": "    return row"
+   }, 
+   "lnum": 111
+  }
+ ], 
+ "locals": {
+  "columns": "[u'Date:Date:95', u'Reference #:Dynamic Link/Voucher Type:100', u'Warehouse:Link/Warehouse:250', u'Target Warehouse:Link/Warehouse:250', u'Item:Link/Item:100', u'Description::200', u'In:Int:50', u'Out:Int:50', u'Balance Qty:Int:100', u'Balance Value:Currency:110']", 
+  "filters": "{u'warehouse': u'WBS BUILDERS DEPOT TAYTAY - APT...o_date': u'2017-03-23', u'item_code': u'#15-265'}", 
+  "get_previous_sle": "<function get_previous_sle>", 
+  "i": "10", 
+  "last_entry": "{}", 
+  "row": "[u'', u\"'Opening'\", u'', u'', u'', u'', u'', u'', u'', 0]", 
+  "v": "u'stock_value'"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-03-23 19:44:18.724379", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py\", line 88, in run\n    res = frappe.get_attr(method_name)(frappe._dict(filters))\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_card/stock_card.py\", line 12, in execute\n    opening_row = get_opening_balance(filters, columns)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_card/stock_card.py\", line 111, in get_opening_balance\n    row[i] = last_entry.get(v, 0)\nIndexError: list assignment index out of range\n"
+}

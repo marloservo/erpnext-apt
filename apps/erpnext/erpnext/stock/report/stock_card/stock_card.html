@@ -1,0 +1,55 @@
+<div style="margin-bottom: 7px;" class="text-center">
+    APT Home Products Corporation
+</div>
+<h2 class="text-center">{%= __("Stock Card") %}</h2>
+<h4 class="text-center">{%= (filters.warehouse) || "" %}</h4>
+{% if(filters.item_code) { %}
+        <h4 class="text-center">{%= (filters.item_code) %}</h4>
+{% } %}
+<h5 class="text-center">
+	{%= dateutil.str_to_user(filters.from_date) %}
+	{%= __("to") %}
+	{%= dateutil.str_to_user(filters.to_date) %}
+</h5>
+<hr>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th style="width: 14%">{%= __("Date") %}</th>
+            {% if(!filters.warehouse) { %}
+                <th style="width: 20%">{%= __("Target Warehouse") %}</th>
+            {% } %}
+            {% if(!filters.item_code) { %}
+                <th style="width: 15%">{%= __("Item") %}</th>
+            {% } %}
+			<th style="width: 8%">{%= __("In") %}</th>
+			<th style="width: 8%">{%= __("Out") %}</th>
+			<th style="width: 8%">{%= __("Pending") %}</th>
+			<th style="width: 15%">{%= __("Balance Qty") %}</th>
+            <th style="width: 18%">{%= __("Balance Value") %}</th>
+            <th style="width: 15%">{%= __("Reference #") %}</th>
+            <th style="width: 15%">{%= __("Voucher Type") %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for(var i=0, l=data.length; i<l; i++) { %}
+			<tr>
+				<td>{%= dateutil.str_to_user(data[i][__("Date")]) %}</td>
+                {% if(!filters.warehouse) { %}
+                    <td style="text-align: right">{%= data[i][__("Target Warehouse")] || '' %}</td>
+                {% } %}
+                {% if(!filters.item_code) { %}
+                    <td style="text-align: right">{%= data[i][__("Item")] || '' %}</td>
+                {% } %}
+				<td style="text-align: right">{%= data[i][__("In")] || '0' %}</td>
+				<td style="text-align: right">{%= data[i][__("Out")] || '0' %}</td>
+				<td style="text-align: right">{%= data[i][__("Pending")] || '0' %}</td>
+				<td style="text-align: right">{%= data[i][__("Balance Qty")] || '0' %}</td>
+				<td style="text-align: right">{%= format_currency(data[i][__("Balance Value")]) || '0.00' %}</td>
+				<td style="text-align: right">{%= data[i][__("Reference #")] || '' %}</td>
+                <td style="text-align: right">{%= data[i][__("Voucher Type")] || '' %}</td>
+			</tr>
+		{% } %}
+	</tbody>
+</table>
+<p class="text-right text-muted">Printed On {%= dateutil.str_to_user(dateutil.get_datetime_as_string()) %}</p>

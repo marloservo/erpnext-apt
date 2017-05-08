@@ -1,0 +1,111 @@
+{
+ "etype": "<type 'exceptions.AttributeError'>", 
+ "evalue": "AttributeError(\"'module' object has no attribute 'ppp_confirm_store'\",)", 
+ "exception": {
+  "args": "(\"'module' object has no attribute 'ppp_confirm_store'\",)", 
+  "message": "\"'module' object has no attribute 'ppp_confirm_store'\""
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/' [POST]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'erpnext.stock.doctype.stock_entry.ppp_confirm_store'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'erpnext.stock.doctype.stock_entry.ppp_confirm_store', from_async=False)", 
+   "dump": {
+    "cmd": "u'erpnext.stock.doctype.stock_entry.ppp_confirm_store'", 
+    "global get_attr": "<function get_attr>", 
+    "method": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "28": "\t\tbreak", 
+    "29": "", 
+    "30": "\tmethod = get_attr(cmd)", 
+    "31": "\tif from_async:", 
+    "32": "\t\tmethod = method.queue"
+   }, 
+   "lnum": 30
+  }, 
+  {
+   "call": "(cmd=u'erpnext.stock.doctype.stock_entry.ppp_confirm_store')", 
+   "dump": {
+    "cmd": "u'erpnext.stock.doctype.stock_entry.ppp_confirm_store'", 
+    "frappe. get_attr": "<function get_attr>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "get_attr", 
+   "lines": {
+    "112": "\t\"\"\"get method object from cmd\"\"\"", 
+    "113": "\tif '.' in cmd:", 
+    "114": "\t\tmethod = frappe.get_attr(cmd)", 
+    "115": "\telse:", 
+    "116": "\t\tmethod = globals()[cmd]"
+   }, 
+   "lnum": 114
+  }, 
+  {
+   "call": "(method_string=u'erpnext.stock.doctype.stock_entry.ppp_confirm_store')", 
+   "dump": {
+    "builtin getattr": "<built-in function getattr>", 
+    "global get_module": "<function get_module>", 
+    "methodname": "u'ppp_confirm_store'", 
+    "modulename": "u'erpnext.stock.doctype.stock_entry'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "get_attr", 
+   "lines": {
+    "857": "\tmodulename = '.'.join(method_string.split('.')[:-1])", 
+    "858": "\tmethodname = method_string.split('.')[-1]", 
+    "859": "\treturn getattr(get_module(modulename), methodname)", 
+    "860": "", 
+    "861": "def call(fn, *args, **kwargs):"
+   }, 
+   "lnum": 859
+  }
+ ], 
+ "locals": {
+  "app_name": "u'erpnext'", 
+  "method_string": "u'erpnext.stock.doctype.stock_entry.ppp_confirm_store'", 
+  "methodname": "u'ppp_confirm_store'", 
+  "modulename": "u'erpnext.stock.doctype.stock_entry'"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-03-21 12:55:31.526153", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 30, in execute_cmd\n    method = get_attr(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 114, in get_attr\n    method = frappe.get_attr(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 859, in get_attr\n    return getattr(get_module(modulename), methodname)\nAttributeError: 'module' object has no attribute 'ppp_confirm_store'\n"
+}

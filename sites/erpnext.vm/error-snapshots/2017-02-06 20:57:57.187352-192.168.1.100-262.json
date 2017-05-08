@@ -1,0 +1,267 @@
+{
+ "etype": "<type 'exceptions.SyntaxError'>", 
+ "evalue": "SyntaxError('invalid syntax', ('/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sales_invoice/sales_invoice.py', 784, 47, '            for d in zero_invoice.get(\"items\")\\n'))", 
+ "exception": {
+  "args": "('invalid syntax', ('/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sales_invoice/sales_invoice.py', 784, 47, '            for d in zero_invoice.get(\"items\")\\n'))", 
+  "filename": "'/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sales_invoice/sales_invoice.py'", 
+  "lineno": "784", 
+  "message": "''", 
+  "msg": "'invalid syntax'", 
+  "offset": "47", 
+  "print_file_and_line": "None", 
+  "text": "'            for d in zero_invoice.get(\"items\")\\n'"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/?doctype=Sales+In...desk.form.load.getdoctype&_=1486385857330' [GET]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.form.load.getdoctype'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.form.load.getdoctype', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'cmd': u'frappe.desk.form.load.getdoctype', 'with_parent': u'1', 'doctype': u'Sales Invoice'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function getdoctype>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function getdoctype>, *args=(), **kwargs={'cmd': u'frappe.desk.form.load.getdoctype', 'doctype': u'Sales Invoice', 'with_parent': u'1'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function getdoctype>", 
+    "newargs": "{'doctype': u'Sales Invoice', 'with_parent': u'1'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(doctype=u'Sales Invoice', with_parent=u'1', cached_timestamp=None)", 
+   "dump": {
+    "docs": "[]", 
+    "doctype": "u'Sales Invoice'", 
+    "global get_meta_bundle": "<function get_meta_bundle>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/load.py", 
+   "func": "getdoctype", 
+   "lines": {
+    "68": "", 
+    "69": "\tif not docs:", 
+    "70": "\t\tdocs = get_meta_bundle(doctype)", 
+    "71": "", 
+    "72": "\tfrappe.response['user_permissions'] = get_user_permissions(docs)"
+   }, 
+   "lnum": 70
+  }, 
+  {
+   "call": "(doctype=u'Sales Invoice')", 
+   "dump": {
+    "bundle": "undefined", 
+    "doctype": "u'Sales Invoice'", 
+    "frappe. desk": "<module 'frappe.desk' from '/home/frappe/frappe-bench/apps/frappe/frappe/desk/__init__.pyc'>", 
+    "frappe.desk. form": "<module 'frappe.desk.form' from '/home/frappe/fr...bench/apps/frappe/frappe/desk/form/__init__.pyc'>", 
+    "frappe.desk.form. meta": "<module 'frappe.desk.form.meta' from '/home/frap...ppe-bench/apps/frappe/frappe/desk/form/meta.pyc'>", 
+    "frappe.desk.form.meta. get_meta": "<function get_meta>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/load.py", 
+   "func": "get_meta_bundle", 
+   "lines": {
+    "79": "", 
+    "80": "def get_meta_bundle(doctype):", 
+    "81": "\tbundle = [frappe.desk.form.meta.get_meta(doctype)]", 
+    "82": "\tfor df in bundle[0].fields:", 
+    "83": "\t\tif df.fieldtype==\"Table\":"
+   }, 
+   "lnum": 81
+  }, 
+  {
+   "call": "(doctype=u'Sales Invoice', cached=True)", 
+   "dump": {
+    "doctype": "u'Sales Invoice'", 
+    "global FormMeta": "<class 'frappe.desk.form.meta.FormMeta'>", 
+    "meta": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/meta.py", 
+   "func": "get_meta", 
+   "lines": {
+    "20": "\t\tmeta = frappe.cache().hget(\"form_meta\", doctype, lambda: FormMeta(doctype))", 
+    "21": "\telse:", 
+    "22": "\t\tmeta = FormMeta(doctype)", 
+    "23": "", 
+    "24": "\tif frappe.local.lang != 'en':"
+   }, 
+   "lnum": 22
+  }, 
+  {
+   "call": "(self=<frappe.desk.form.meta.FormMeta object>, doctype=u'Sales Invoice')", 
+   "dump": {
+    "self": "<frappe.desk.form.meta.FormMeta object>", 
+    "self. load_assets": "<bound method FormMeta.load_assets of <frappe.desk.form.meta.FormMeta object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/meta.py", 
+   "func": "__init__", 
+   "lines": {
+    "30": "\tdef __init__(self, doctype):", 
+    "31": "\t\tsuper(FormMeta, self).__init__(doctype)", 
+    "32": "\t\tself.load_assets()", 
+    "33": "", 
+    "34": "\tdef load_assets(self):"
+   }, 
+   "lnum": 32
+  }, 
+  {
+   "call": "(self=<frappe.desk.form.meta.FormMeta object>)", 
+   "dump": {
+    "self": "<frappe.desk.form.meta.FormMeta object>", 
+    "self. load_templates": "<bound method FormMeta.load_templates of <frappe.desk.form.meta.FormMeta object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/meta.py", 
+   "func": "load_assets", 
+   "lines": {
+    "40": "\t\t\tself.load_print_formats()", 
+    "41": "\t\t\tself.load_workflows()", 
+    "42": "\t\t\tself.load_templates()", 
+    "43": "\t\t\tself.load_dashboard()", 
+    "44": ""
+   }, 
+   "lnum": 42
+  }, 
+  {
+   "call": "(self=<frappe.desk.form.meta.FormMeta object>)", 
+   "dump": {
+    "global load_doctype_module": "<function load_doctype_module>", 
+    "module": "undefined", 
+    "self": "<frappe.desk.form.meta.FormMeta object>", 
+    "self. name": "u'Sales Invoice'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/meta.py", 
+   "func": "load_templates", 
+   "lines": {
+    "147": "\tdef load_templates(self):", 
+    "148": "\t\tif not self.custom:", 
+    "149": "\t\t\tmodule = load_doctype_module(self.name)", 
+    "150": "\t\t\tapp = module.__name__.split(\".\")[0]", 
+    "151": "\t\t\ttemplates = {}"
+   }, 
+   "lnum": 149
+  }, 
+  {
+   "call": "(doctype=u'Sales Invoice', module=u'Selling', prefix=u'', suffix=u'')", 
+   "dump": {
+    "doctype": "u'Sales Invoice'", 
+    "frappe. get_module": "<function get_module>", 
+    "global doctype_python_modules": "{(u'frappe', u'DocField', u'', u''): <module 'frappe.core.doctype.docfield.docfield' ...rappe/frappe/core/doctype/docfield/docfield.pyc'>, (u'frappe', u'DocPerm', u'', u''): <module 'frappe.core.doctype.docperm.docperm' fr.../frappe/frappe/core/doctype/docperm/docperm.pyc'>}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "global get_module_name": "<function get_module_name>", 
+    "key": "(u'erpnext', u'Sales Invoice', u'', u'')", 
+    "module": "u'Selling'", 
+    "prefix": "u''", 
+    "suffix": "u''"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/modules/__init__.py", 
+   "func": "load_doctype_module", 
+   "lines": {
+    "62": "", 
+    "63": "\tif key not in doctype_python_modules:", 
+    "64": "\t\tdoctype_python_modules[key] = frappe.get_module(get_module_name(doctype, module, prefix, suffix))", 
+    "65": "", 
+    "66": "\treturn doctype_python_modules[key]"
+   }, 
+   "lnum": 64
+  }, 
+  {
+   "call": "(modulename=u'erpnext.selling.doctype.sales_invoice.sales_invoice')", 
+   "dump": {
+    "global importlib": "<module 'importlib' from '/usr/lib/python2.7/importlib/__init__.pyc'>", 
+    "importlib. import_module": "<function import_module>", 
+    "modulename": "u'erpnext.selling.doctype.sales_invoice.sales_invoice'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "get_module", 
+   "lines": {
+    "641": "def get_module(modulename):", 
+    "642": "\t\"\"\"Returns a module object for given Python module name using `importlib.import_module`.\"\"\"", 
+    "643": "\treturn importlib.import_module(modulename)", 
+    "644": "", 
+    "645": "def scrub(txt):"
+   }, 
+   "lnum": 643
+  }, 
+  {
+   "call": "(name=u'erpnext.selling.doctype.sales_invoice.sales_invoice', package=None)", 
+   "dump": {
+    "builtin __import__": "<built-in function __import__>", 
+    "name": "u'erpnext.selling.doctype.sales_invoice.sales_invoice'"
+   }, 
+   "file": "/usr/lib/python2.7/importlib/__init__.py", 
+   "func": "import_module", 
+   "lines": {
+    "34": "                break", 
+    "35": "            level += 1", 
+    "36": "        name = _resolve_name(name[level:], package, level)", 
+    "37": "    __import__(name)", 
+    "38": "    return sys.modules[name]"
+   }, 
+   "lnum": 37
+  }
+ ], 
+ "locals": {
+  "name": "u'erpnext.selling.doctype.sales_invoice.sales_invoice'", 
+  "package": "None"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-02-06 20:57:57.187629", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/load.py\", line 70, in getdoctype\n    docs = get_meta_bundle(doctype)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/load.py\", line 81, in get_meta_bundle\n    bundle = [frappe.desk.form.meta.get_meta(doctype)]\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/meta.py\", line 22, in get_meta\n    meta = FormMeta(doctype)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/meta.py\", line 32, in __init__\n    self.load_assets()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/meta.py\", line 42, in load_assets\n    self.load_templates()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/meta.py\", line 149, in load_templates\n    module = load_doctype_module(self.name)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/modules/__init__.py\", line 64, in load_doctype_module\n    doctype_python_modules[key] = frappe.get_module(get_module_name(doctype, module, prefix, suffix))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 643, in get_module\n    return importlib.import_module(modulename)\n  File \"/usr/lib/python2.7/importlib/__init__.py\", line 37, in import_module\n    __import__(name)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sales_invoice/sales_invoice.py\", line 784\n    for d in zero_invoice.get(\"items\")\n                                     ^\nSyntaxError: invalid syntax\n"
+}

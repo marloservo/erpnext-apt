@@ -1,0 +1,228 @@
+{
+ "etype": "<type 'exceptions.NameError'>", 
+ "evalue": "NameError(\"global name 'new_doc' is not defined\",)", 
+ "exception": {
+  "args": "(\"global name 'new_doc' is not defined\",)", 
+  "message": "\"global name 'new_doc' is not defined\""
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/' [POST]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.client.insert'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.client.insert', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'doc': u'{\"docstatus\":0,\"doctype\":\"Warehouse\",\"...\"Stores - APT\"}', 'cmd': u'frappe.client.insert'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function insert>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function insert>, *args=(), **kwargs={'cmd': u'frappe.client.insert', 'doc': u'{\"docstatus\":0,\"doctype\":\"Warehouse\",\"name\":\"N...an - Ortigas\",\"parent_warehouse\":\"Stores - APT\"}'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function insert>", 
+    "newargs": "{'doc': u'{\"docstatus\":0,\"doctype\":\"Warehouse\",\"name\":\"N...an - Ortigas\",\"parent_warehouse\":\"Stores - APT\"}'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(doc={u'__islocal': 1, u'__run_link_triggers': 1, u'__unsaved': 1, u'company': u'APT Home Products Corporation', u'docstatus': 0, u'doctype': u'Warehouse', u'is_group': 0, u'name': u'New Warehouse 1', u'owner': u'Administrator', u'parent_warehouse': u'Stores - APT', ...})", 
+   "dump": {
+    ").insert": "undefined", 
+    "doc": "{u'__islocal': 1, u'__run_link_triggers': 1, u'__unsaved': 1, u'company': u'APT Home Products Corporation', u'docstatus': 0, u'doctype': u'Warehouse', u'is_group': 0, u'name': u'New Warehouse 1', u'owner': u'Administrator', u'parent_warehouse': u'Stores - APT', ...}", 
+    "frappe. get_doc": "<function get_doc>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/client.py", 
+   "func": "insert", 
+   "lines": {
+    "81": "\t\treturn parent.as_dict()", 
+    "82": "\telse:", 
+    "83": "\t\tdoc = frappe.get_doc(doc).insert()", 
+    "84": "\t\treturn doc.as_dict()", 
+    "85": ""
+   }, 
+   "lnum": 83
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>, ignore_permissions=None)", 
+   "dump": {
+    "self": "<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>", 
+    "self. run_method": "<bound method Warehouse.run_method of <erpnext.stock.doctype.warehouse.warehouse.Warehouse object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "insert", 
+   "lines": {
+    "204": "\t\tself.set_docstatus()", 
+    "205": "\t\tself.check_if_latest()", 
+    "206": "\t\tself.run_method(\"before_insert\")", 
+    "207": "\t\tself.set_new_name()", 
+    "208": "\t\tself.set_parent_in_children()"
+   }, 
+   "lnum": 206
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>, method=u'before_insert', *args=(), **kwargs={})", 
+   "dump": {
+    "Document. hook": "<function hook>", 
+    "args": "()", 
+    "fn": "<function before_insert>", 
+    "global Document": "<class 'frappe.model.document.Document'>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "run_method", 
+   "lines": {
+    "659": "", 
+    "660": "\t\tfn.__name__ = method.encode(\"utf-8\")", 
+    "661": "\t\treturn Document.hook(fn)(self, *args, **kwargs)", 
+    "662": "", 
+    "663": "\t@staticmethod"
+   }, 
+   "lnum": 661
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "composed": "<function runner>", 
+    "kwargs": "{}", 
+    "method": "'before_insert'", 
+    "self": "<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "composer", 
+   "lines": {
+    "837": "", 
+    "838": "\t\t\tcomposed = compose(f, *hooks)", 
+    "839": "\t\t\treturn composed(self, method, *args, **kwargs)", 
+    "840": "", 
+    "841": "\t\treturn composer"
+   }, 
+   "lnum": 839
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>, method='before_insert', *args=(), **kwargs={})", 
+   "dump": {
+    "add_to_return_value": "<function add_to_return_value>", 
+    "args": "()", 
+    "fn": "<function before_insert>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "runner", 
+   "lines": {
+    "820": "\t\tdef compose(fn, *hooks):", 
+    "821": "\t\t\tdef runner(self, method, *args, **kwargs):", 
+    "822": "\t\t\t\tadd_to_return_value(self, fn(self, *args, **kwargs))", 
+    "823": "\t\t\t\tfor f in hooks:", 
+    "824": "\t\t\t\t\tadd_to_return_value(self, f(self, method, *args, **kwargs))"
+   }, 
+   "lnum": 822
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "builtin getattr": "<built-in function getattr>", 
+    "fn": "undefined", 
+    "kwargs": "{}", 
+    "method": "u'before_insert'", 
+    "self": "<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "<lambda>", 
+   "lines": {
+    "653": "", 
+    "654": "\t\tif hasattr(self, method) and hasattr(getattr(self, method), \"__call__\"):", 
+    "655": "\t\t\tfn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)", 
+    "656": "\t\telse:", 
+    "657": "\t\t\t# hack! to run hooks even if method does not exist"
+   }, 
+   "lnum": 655
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>)", 
+   "dump": {
+    "group": "undefined", 
+    "group_name": "u'HandyMan'", 
+    "new_doc": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/doctype/warehouse/warehouse.py", 
+   "func": "before_insert", 
+   "lines": {
+    "18": "        group_name = customer_name.split(' ', 1)[0]", 
+    "19": "        if not frappe.db.exists(\"Customer Group\", group_name):", 
+    "20": "            group = new_doc({", 
+    "21": "                \"doctype\": \"Customer Group\",", 
+    "22": "                \"customer_group_name\": group_name,"
+   }, 
+   "lnum": 20
+  }
+ ], 
+ "locals": {
+  "customer_name": "u'HandyMan - Ortigas'", 
+  "group_name": "u'HandyMan'", 
+  "self": "<erpnext.stock.doctype.warehouse.warehouse.Warehouse object>"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2016-10-18 12:29:39.136870", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/client.py\", line 83, in insert\n    doc = frappe.get_doc(doc).insert()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 206, in insert\n    self.run_method(\"before_insert\")\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 661, in run_method\n    return Document.hook(fn)(self, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 839, in composer\n    return composed(self, method, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 822, in runner\n    add_to_return_value(self, fn(self, *args, **kwargs))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 655, in <lambda>\n    fn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/doctype/warehouse/warehouse.py\", line 20, in before_insert\n    group = new_doc({\nNameError: global name 'new_doc' is not defined\n"
+}

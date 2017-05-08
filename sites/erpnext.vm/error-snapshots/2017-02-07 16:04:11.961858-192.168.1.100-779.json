@@ -1,0 +1,127 @@
+{
+ "etype": "<type 'exceptions.ImportError'>", 
+ "evalue": "ImportError('No module named sales_invoice.sales_invoice',)", 
+ "exception": {
+  "args": "('No module named sales_invoice.sales_invoice',)", 
+  "message": "'No module named sales_invoice.sales_invoice'"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/' [POST]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'erpnext.accounts.doctype.payment_entry.payment_entry.get_payment_entry'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'erpnext.accounts.doctype.payment_entry.payment_entry.get_payment_entry', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'dn': u'SINV-00111', 'dt': u'Sales Invoice', 'c...e.payment_entry.payment_entry.get_payment_entry'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function get_payment_entry>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function get_payment_entry>, *args=(), **kwargs={'cmd': u'erpnext.accounts.doctype.payment_entry.payment_entry.get_payment_entry', 'dn': u'SINV-00111', 'dt': u'Sales Invoice'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function get_payment_entry>", 
+    "newargs": "{'dn': u'SINV-00111', 'dt': u'Sales Invoice'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(dt=u'Sales Invoice', dn=u'SINV-00111', party_amount=None, bank_account=None, bank_amount=None)", 
+   "dump": {
+    "account": "undefined", 
+    "bank_account": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/doctype/payment_entry/payment_entry.py", 
+   "func": "get_payment_entry", 
+   "lines": {
+    "642": "\t# bank or cash", 
+    "643": "\tbank = get_default_bank_cash_account(doc.company, \"Bank\", mode_of_payment=doc.get(\"mode_of_payment\"),", 
+    "644": "\t\taccount=bank_account)", 
+    "645": "", 
+    "646": "\tpaid_amount = received_amount = 0"
+   }, 
+   "lnum": 644
+  }, 
+  {
+   "call": "(company=u'APT Home Products Corporation', account_type=u'Bank', mode_of_payment=None, account=None)", 
+   "dump": {
+    "erpnext": "undefined", 
+    "get_bank_cash_account": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py", 
+   "func": "get_default_bank_cash_account", 
+   "lines": {
+    "527": "@frappe.whitelist()", 
+    "528": "def get_default_bank_cash_account(company, account_type=None, mode_of_payment=None, account=None):", 
+    "529": "\tfrom erpnext.accounts.doctype.sales_invoice.sales_invoice import get_bank_cash_account", 
+    "530": "\tif mode_of_payment:", 
+    "531": "\t\taccount = get_bank_cash_account(mode_of_payment, company).get(\"account\")"
+   }, 
+   "lnum": 529
+  }
+ ], 
+ "locals": {
+  "account": "None", 
+  "account_type": "u'Bank'", 
+  "company": "u'APT Home Products Corporation'", 
+  "mode_of_payment": "None"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-02-07 16:04:11.962033", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/doctype/payment_entry/payment_entry.py\", line 644, in get_payment_entry\n    account=bank_account)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/accounts/doctype/journal_entry/journal_entry.py\", line 529, in get_default_bank_cash_account\n    from erpnext.accounts.doctype.sales_invoice.sales_invoice import get_bank_cash_account\nImportError: No module named sales_invoice.sales_invoice\n"
+}

@@ -1,0 +1,301 @@
+{
+ "etype": "<type 'exceptions.IndexError'>", 
+ "evalue": "IndexError('list index out of range',)", 
+ "exception": {
+  "args": "('list index out of range',)", 
+  "message": "'list index out of range'"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/' [POST]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'erpnext.stock.doctype.stock_entry.stock_entry.ppp_confirm_store'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'erpnext.stock.doctype.stock_entry.stock_entry.ppp_confirm_store', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'date_confirmed': u'2017-03-21', 'cmd': u'erpne...ess\":null,\"customer_name\":null,\"customer\":null}'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function ppp_confirm_store>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function ppp_confirm_store>, *args=(), **kwargs={'cmd': u'erpnext.stock.doctype.stock_entry.stock_entry.ppp_confirm_store', 'date_confirmed': u'2017-03-21', 'stock_entry': u'{\"use_multi_level_bom\":1,\"ppp_confirmed_in_dc\"...ress\":null,\"customer_name\":null,\"customer\":null}'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function ppp_confirm_store>", 
+    "newargs": "{'date_confirmed': u'2017-03-21', 'stock_entry': u'{\"use_multi_level_bom\":1,\"ppp_confirmed_in_dc\"...ress\":null,\"customer_name\":null,\"customer\":null}'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(stock_entry={u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}, date_confirmed=u'2017-03-21')", 
+   "dump": {
+    "frappe. get_doc": "<function get_doc>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "ref_entry": "undefined", 
+    "stock_entry": "{u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py", 
+   "func": "ppp_confirm_store", 
+   "lines": {
+    "820": "def ppp_confirm_store(stock_entry, date_confirmed):", 
+    "821": "    stock_entry = json.loads(stock_entry)", 
+    "822": "    ref_entry = frappe.get_doc(\"Stock Entry\", stock_entry)", 
+    "823": "    ref_entry.ppp_confirmed_in_store = date_confirmed", 
+    "824": "    ref_entry.save()"
+   }, 
+   "lnum": 822
+  }, 
+  {
+   "call": "(arg1=u'Stock Entry', arg2={u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...})", 
+   "dump": {
+    "arg1": "u'Stock Entry'", 
+    "arg2": "{u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}", 
+    "frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "frappe. model": "<module 'frappe.model' from '/home/frappe/frappe-bench/apps/frappe/frappe/model/__init__.pyc'>", 
+    "frappe.model. document": "<module 'frappe.model.document' from '/home/frap...ppe-bench/apps/frappe/frappe/model/document.pyc'>", 
+    "frappe.model.document. get_doc": "<function get_doc>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "get_doc", 
+   "lines": {
+    "576": "\t\"\"\"", 
+    "577": "\timport frappe.model.document", 
+    "578": "\treturn frappe.model.document.get_doc(arg1, arg2)", 
+    "579": "", 
+    "580": "def get_last_doc(doctype):"
+   }, 
+   "lnum": 578
+  }, 
+  {
+   "call": "(arg1=u'Stock Entry', arg2={u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...})", 
+   "dump": {
+    "arg1": "u'Stock Entry'", 
+    "arg2": "{u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}", 
+    "controller": "<class 'erpnext.stock.doctype.stock_entry.stock_entry.StockEntry'>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "get_doc", 
+   "lines": {
+    "45": "\tcontroller = get_controller(doctype)", 
+    "46": "\tif controller:", 
+    "47": "\t\treturn controller(arg1, arg2)", 
+    "48": "", 
+    "49": "\traise ImportError, arg1"
+   }, 
+   "lnum": 47
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>, arg1=u'Stock Entry', arg2={u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...})", 
+   "dump": {
+    "). __init__": "<bound method StockEntry.__init__ of <erpnext.st...ctype.stock_entry.stock_entry.StockEntry object>>", 
+    "arg1": "u'Stock Entry'", 
+    "arg2": "{u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}", 
+    "builtin super": "<type 'super'>", 
+    "global AccountsController": "<class 'erpnext.controllers.accounts_controller.AccountsController'>", 
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/accounts_controller.py", 
+   "func": "__init__", 
+   "lines": {
+    "18": "class AccountsController(TransactionBase):", 
+    "19": "\tdef __init__(self, arg1, arg2=None):", 
+    "20": "\t\tsuper(AccountsController, self).__init__(arg1, arg2)", 
+    "21": "", 
+    "22": "\t@property"
+   }, 
+   "lnum": 20
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>, arg1=u'Stock Entry', arg2={u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...})", 
+   "dump": {
+    "arg1": "u'Stock Entry'", 
+    "arg2": "{u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}", 
+    "frappe. db": "<frappe.database.Database instance>", 
+    "frappe.db. get_value": "<bound method Database.get_value of <frappe.database.Database instance>>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>", 
+    "self. name": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "__init__", 
+   "lines": {
+    "72": "\t\t\t\tif isinstance(arg2, dict):", 
+    "73": "\t\t\t\t\t# filter", 
+    "74": "\t\t\t\t\tself.name = frappe.db.get_value(arg1, arg2, \"name\")", 
+    "75": "\t\t\t\t\tif self.name is None:", 
+    "76": "\t\t\t\t\t\tfrappe.throw(_(\"{0} {1} not found\").format(_(arg1), arg2), frappe.DoesNotExistError)"
+   }, 
+   "lnum": 74
+  }, 
+  {
+   "call": "(self=<frappe.database.Database instance>, doctype=u'Stock Entry', filters={u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}, fieldname=u'name', ignore=None, as_dict=False, debug=False, cache=False)", 
+   "dump": {
+    "as_dict": "False", 
+    "cache": "False", 
+    "debug": "False", 
+    "doctype": "u'Stock Entry'", 
+    "fieldname": "u'name'", 
+    "filters": "{u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}", 
+    "ignore": "None", 
+    "ret": "undefined", 
+    "self": "<frappe.database.Database instance>", 
+    "self. get_values": "<bound method Database.get_values of <frappe.database.Database instance>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/database.py", 
+   "func": "get_value", 
+   "lines": {
+    "408": "\t\t\"\"\"", 
+    "409": "", 
+    "410": "\t\tret = self.get_values(doctype, filters, fieldname, ignore, as_dict, debug, cache=cache)", 
+    "411": "", 
+    "412": "\t\treturn ((len(ret[0]) > 1 or as_dict) and ret[0] or ret[0][0]) if ret else None"
+   }, 
+   "lnum": 410
+  }, 
+  {
+   "call": "(self=<frappe.database.Database instance>, doctype=u'Stock Entry', filters={u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}, fieldname=u'name', ignore=None, as_dict=False, debug=False, order_by=None, update=None, cache=False)", 
+   "dump": {
+    "as_dict": "False", 
+    "debug": "False", 
+    "doctype": "u'Stock Entry'", 
+    "fields": "[u'name']", 
+    "filters": "{u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}", 
+    "order_by": "None", 
+    "out": "None", 
+    "self": "<frappe.database.Database instance>", 
+    "self. _get_values_from_table": "<bound method Database._get_values_from_table of <frappe.database.Database instance>>", 
+    "update": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/database.py", 
+   "func": "get_values", 
+   "lines": {
+    "449": "\t\t\tif (filters is not None) and (filters!=doctype or doctype==\"DocType\"):", 
+    "450": "\t\t\t\ttry:", 
+    "451": "\t\t\t\t\tout = self._get_values_from_table(fields, filters, doctype, as_dict, debug, order_by, update)", 
+    "452": "\t\t\t\texcept Exception, e:", 
+    "453": "\t\t\t\t\tif ignore and e.args[0] in (1146, 1054):"
+   }, 
+   "lnum": 451
+  }, 
+  {
+   "call": "(self=<frappe.database.Database instance>, fields=[u'name'], filters={u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}, doctype=u'Stock Entry', as_dict=False, debug=False, order_by=None, update=None)", 
+   "dump": {
+    "conditions": "undefined", 
+    "filters": "{u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}", 
+    "self": "<frappe.database.Database instance>", 
+    "self. build_conditions": "<bound method Database.build_conditions of <frappe.database.Database instance>>", 
+    "values": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/database.py", 
+   "func": "_get_values_from_table", 
+   "lines": {
+    "556": "\t\t\t\tas_dict = True", 
+    "557": "", 
+    "558": "\t\tconditions, values = self.build_conditions(filters)", 
+    "559": "", 
+    "560": "\t\torder_by = (\"order by \" + order_by) if order_by else \"\""
+   }, 
+   "lnum": 558
+  }, 
+  {
+   "call": "(self=<frappe.database.Database instance>, filters={u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...})", 
+   "dump": {
+    "_build_condition": "<function _build_condition>", 
+    "f": "u'additional_costs'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/database.py", 
+   "func": "build_conditions", 
+   "lines": {
+    "374": "", 
+    "375": "\t\tfor f in filters:", 
+    "376": "\t\t\t_build_condition(f)", 
+    "377": "", 
+    "378": "\t\treturn \" and \".join(conditions), values"
+   }, 
+   "lnum": 376
+  }, 
+  {
+   "call": "(key=u'additional_costs')", 
+   "dump": {
+    "_operator": "u'='", 
+    "value": "[]"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/database.py", 
+   "func": "_build_condition", 
+   "lines": {
+    "345": "\t\t\tif isinstance(value, (list, tuple)):", 
+    "346": "\t\t\t\t# value is a tuble like (\"!=\", 0)", 
+    "347": "\t\t\t\t_operator = value[0]", 
+    "348": "\t\t\t\tvalues[key] = value[1]", 
+    "349": "\t\t\t\tif isinstance(value[1], (tuple, list)):"
+   }, 
+   "lnum": 347
+  }
+ ], 
+ "locals": {
+  "_operator": "u'='", 
+  "_rhs": "u' %(additional_costs)s'", 
+  "conditions": "[u'`use_multi_level_bom` = %(use_multi_level_bom)s', u'`ppp_confirmed_in_dc` = %(ppp_confirmed_in_dc)s', u'`delivery_note_no` = %(delivery_note_no)s', u'`supplier_address` = %(supplier_address)s', u'`naming_series` = %(naming_series)s', u'`creation` = %(creation)s', u'`fg_completed_qty` = %(fg_completed_qty)s', u'`modified` = %(modified)s']", 
+  "filters": "{u'__last_sync_on': u'2017-03-21T04:55:51.891Z', u'additional_costs': [], u'company': u'APT Home Products Corporation', u'creation': u'2017-03-20 00:00:00', u'customer': None, u'customer_address': None, u'customer_name': None, u'delivery_note_no': None, u'docstatus': 1, u'doctype': u'Stock Entry', ...}", 
+  "key": "u'additional_costs'", 
+  "value": "[]", 
+  "values": "{u'additional_costs': [], u'creation': u'2017-03-20 00:00:00', u'delivery_note_no': None, u'fg_completed_qty': 0, u'modified': u'2017-03-20 14:42:50.849332', u'naming_series': u'TR-', u'ppp_confirmed_in_dc': u'2017-03-20', u'supplier_address': None, u'use_multi_level_bom': 1}"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-03-21 12:55:55.111879", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py\", line 822, in ppp_confirm_store\n    ref_entry = frappe.get_doc(\"Stock Entry\", stock_entry)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 578, in get_doc\n    return frappe.model.document.get_doc(arg1, arg2)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 47, in get_doc\n    return controller(arg1, arg2)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/controllers/accounts_controller.py\", line 20, in __init__\n    super(AccountsController, self).__init__(arg1, arg2)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 74, in __init__\n    self.name = frappe.db.get_value(arg1, arg2, \"name\")\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/database.py\", line 410, in get_value\n    ret = self.get_values(doctype, filters, fieldname, ignore, as_dict, debug, cache=cache)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/database.py\", line 451, in get_values\n    out = self._get_values_from_table(fields, filters, doctype, as_dict, debug, order_by, update)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/database.py\", line 558, in _get_values_from_table\n    conditions, values = self.build_conditions(filters)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/database.py\", line 376, in build_conditions\n    _build_condition(f)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/database.py\", line 347, in _build_condition\n    _operator = value[0]\nIndexError: list index out of range\n"
+}

@@ -1,0 +1,139 @@
+{
+ "etype": "<type 'exceptions.AttributeError'>", 
+ "evalue": "AttributeError(\"'NoneType' object has no attribute 'description'\",)", 
+ "exception": {
+  "args": "(\"'NoneType' object has no attribute 'description'\",)", 
+  "message": "\"'NoneType' object has no attribute 'description'\""
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/?report_name=Stoc...ppe.desk.query_report.run&_=1493368985921' [GET]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.query_report.run'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.query_report.run', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'cmd': u'frappe.desk.query_report.run', 'filter...te\":\"2017-04-28\"}', 'report_name': u'Stock Card'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function run>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function run>, *args=(), **kwargs={'cmd': u'frappe.desk.query_report.run', 'filters': u'{\"from_date\":\"2017-02-14\",\"to_date\":\"2017-04-28\"}', 'report_name': u'Stock Card'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function run>", 
+    "newargs": "{'filters': u'{\"from_date\":\"2017-02-14\",\"to_date\":\"2017-04-28\"}', 'report_name': u'Stock Card'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(report_name=u'Stock Card', filters={u'from_date': u'2017-02-14', u'to_date': u'2017-04-28'})", 
+   "dump": {
+    "filters": "{u'from_date': u'2017-02-14', u'to_date': u'2017-04-28'}", 
+    "frappe. _dict": "<class 'frappe._dict'>", 
+    "frappe. get_attr": "<function get_attr>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method_name": "u'erpnext.stock.report.stock_card.stock_card.execute'", 
+    "res": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py", 
+   "func": "run", 
+   "lines": {
+    "86": "\t\tif report.is_standard==\"Yes\":", 
+    "87": "\t\t\tmethod_name = get_report_module_dotted_path(module, report.name) + \".execute\"", 
+    "88": "\t\t\tres = frappe.get_attr(method_name)(frappe._dict(filters))", 
+    "89": "", 
+    "90": "\t\t\tcolumns, result = res[0], res[1]"
+   }, 
+   "lnum": 88
+  }, 
+  {
+   "call": "(filters={u'from_date': u'2017-02-14', u'to_date': u'2017-04-28'})", 
+   "dump": {
+    "sle": "{'stock_value': 0.0, 'from_warehouse': u'RTV - M...'qty_after_transaction': 0.0, 'actual_qty': -2.0}", 
+    "sle. item_detail": "None", 
+    "sle.item_detail.description": "undefined", 
+    "temp_data": "[u'2017-02-14', u'APT JOSOL - APT', u'', 2.0, u'', 0.0, 0.0, u'SIMPLICITY']", 
+    "temp_data. append": "<built-in method append of list object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_card/stock_card.py", 
+   "func": "execute", 
+   "lines": {
+    "32": "        temp_data.append(sle.stock_value)", 
+    "33": "        temp_data.append(sle.item_code)", 
+    "34": "        temp_data.append(sle.item_detail.description)", 
+    "35": "        temp_data.append(sle.voucher_no)", 
+    "36": "        temp_data.append(sle.voucher_type)"
+   }, 
+   "lnum": 34
+  }
+ ], 
+ "locals": {
+  "columns": "[u'Date:Date:95', u'Target Warehouse:Link/Warehouse:250', u'In:Int:75', u'Out:Int:75', u'Pending:Int:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110', u'Item:Link/Item:100', u'Description::200', u'Reference #:Dynamic Link/Voucher Type:100', u'Voucher Type::100']", 
+  "data": "[]", 
+  "filters": "{u'from_date': u'2017-02-14', u'to_date': u'2017-04-28'}", 
+  "item_detail": "{'name': u'SIMPLICITY', 'item_name': u'HILLS SIM...om': u'PC/S', 'description': u'HILLS SIMPLICITY'}", 
+  "item_details": "{u'#1002-GB': {'name': u'#1002-GB', 'item_name': u'YALE #1002-.../S', 'description': u'YALE #1002-GB DOOR CLOSER'}, u'#15-265': {'name': u'#15-265', 'item_name': u'#15-265 HACK..., 'description': u'#15-265 HACKSAW FRAME RUBBER'}, u'#15-565': {'name': u'#15-565', 'item_name': u'STANLEY THRI...ption': u'STANLEY THRIFTY HACKSAW FRAME #15-565'}, u'#198-1/4 AB': {'name': u'#198-1/4 AB', 'item_name': u'YALE #19...S', 'description': u'YALE #198 1/4 AB DEAD LOCK'}, u'#33-295 HM 2MTS': {'name': u'#33-295 HM 2MTS', 'item_name': u'STAN...cription': u'STANLEY #33-295 HM TAPE RULE 2 MTS'}, u'#633-4 HOLIDAY PDLCK': {'name': u'#633-4 HOLIDAY PDLCK', 'item_name': u...', 'description': u'YALE #633-4 HOLIDAY PADLOCK'}, u'#688 RESET PDLCK': {'name': u'#688 RESET PDLCK', 'item_name': u'YAL...escription': u'YALE #688 RESETABLE PADLOCK 20MM'}, u'#689-20MM': {'name': u'#689-20MM', 'item_name': u'#689-20MM ...'description': u'#689-20MM 4DIGIT RESET.PADLOCK'}, u'#705 CMBNATION PDLCK': {'name': u'#705 CMBNATION PDLCK', 'item_name': u... 'description': u'YALE #705 COMBINATION PADLOCK'}, u'005DEPTH': {'name': u'005DEPTH', 'item_name': u'DEPTH STOP ...'PC/S', 'description': u'DEPTH STOP 613 001 005'}, ...}", 
+  "opening_row": "None", 
+  "sl_entries": "[{'stock_value': 0.0, 'from_warehouse': u'RTV - M...'qty_after_transaction': 0.0, 'actual_qty': -2.0}, {'stock_value': 0.0, 'from_warehouse': u'RTV - M...'qty_after_transaction': 0.0, 'actual_qty': -1.0}, {'stock_value': 1866.98, 'from_warehouse': u'RTV... 'qty_after_transaction': 2.0, 'actual_qty': 2.0}, {'stock_value': 815.67, 'from_warehouse': u'RTV ... 'qty_after_transaction': 1.0, 'actual_qty': 1.0}, {'stock_value': 0.0, 'from_warehouse': u'APT JOS...'qty_after_transaction': 0.0, 'actual_qty': -2.0}, {'stock_value': 0.0, 'from_warehouse': u'APT JOS...'qty_after_transaction': 0.0, 'actual_qty': -2.0}, {'stock_value': 3988.94, 'from_warehouse': u'APT... 'qty_after_transaction': 2.0, 'actual_qty': 2.0}, {'stock_value': 3548.44, 'from_warehouse': u'APT... 'qty_after_transaction': 2.0, 'actual_qty': 2.0}, {'stock_value': 0.0, 'from_warehouse': u'APT JOS...qty_after_transaction': 0.0, 'actual_qty': -10.0}, {'stock_value': 511.8, 'from_warehouse': u'APT J...qty_after_transaction': 10.0, 'actual_qty': 10.0}, {'stock_value': 0.0, 'from_warehouse': u'APT JOS...'qty_after_transaction': 0.0, 'actual_qty': -5.0}, {'stock_value': 0.0, 'from_warehouse': u'APT JOS...'qty_after_transaction': 0.0, 'actual_qty': -5.0}, {'stock_value': 8541.4, 'from_warehouse': u'APT ... 'qty_after_transaction': 5.0, 'actual_qty': 5.0}, {'stock_value': 12602.1, 'from_warehouse': u'APT... 'qty_after_transaction': 5.0, 'actual_qty': 5.0}, {'stock_value': 0.0, 'from_warehouse': u'APT JOS...'qty_after_transaction': 0.0, 'actual_qty': -1.0}, {'stock_value': 0.0, 'from_warehouse': u'APT JOS...'qty_after_transaction': 0.0, 'actual_qty': -2.0}, {'stock_value': 8352.79, 'from_warehouse': u'APT... 'qty_after_transaction': 1.0, 'actual_qty': 1.0}, {'stock_value': 10914.64, 'from_warehouse': u'AP... 'qty_after_transaction': 2.0, 'actual_qty': 2.0}, {'stock_value': 0.0, 'from_warehouse': u'APT JOS...'qty_after_transaction': 0.0, 'actual_qty': -3.0}, {'stock_value': 0.0, 'from_warehouse': u'APT JOS...'qty_after_transaction': 0.0, 'actual_qty': -3.0}, ...]", 
+  "sle": "{'stock_value': 0.0, 'from_warehouse': u'RTV - M...'qty_after_transaction': 0.0, 'actual_qty': -2.0}", 
+  "temp_data": "[u'2017-02-14', u'APT JOSOL - APT', u'', 2.0, u'', 0.0, 0.0, u'SIMPLICITY']"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-04-28 16:43:09.779371", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py\", line 88, in run\n    res = frappe.get_attr(method_name)(frappe._dict(filters))\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_card/stock_card.py\", line 34, in execute\n    temp_data.append(sle.item_detail.description)\nAttributeError: 'NoneType' object has no attribute 'description'\n"
+}

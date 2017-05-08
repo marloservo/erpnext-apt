@@ -1,0 +1,234 @@
+{
+ "etype": "<type 'exceptions.IndexError'>", 
+ "evalue": "IndexError('list index out of range',)", 
+ "exception": {
+  "args": "('list index out of range',)", 
+  "message": "'list index out of range'"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/' [POST]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.notifications.get_notifications'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.notifications.get_notifications', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'cmd': u'frappe.desk.notifications.get_notifications'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function get_notifications>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function get_notifications>, *args=(), **kwargs={'cmd': u'frappe.desk.notifications.get_notifications'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function get_notifications>", 
+    "newargs": "{}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "config": "{u'for_doctype': {u'Lead': {u'status': u'Open'},...'frappe.core.notifications.get_unread_messages'}}", 
+    "global get_notifications_for_doctypes": "<function get_notifications_for_doctypes>", 
+    "notification_count": "{u'BOM': 0, u'Contact': 0, u'Customer': 1, u'Delivery Note': 0, u'Error Snapshot': 0, u'Event': 0, u'Expense Claim': 0, u'Issue': 0, u'Item': 1, u'Job Applicant': 0, ...}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/notifications.py", 
+   "func": "get_notifications", 
+   "lines": {
+    "24": "", 
+    "25": "\treturn {", 
+    "26": "\t\t\"open_count_doctype\": get_notifications_for_doctypes(config, notification_count),", 
+    "27": "\t\t\"open_count_module\": get_notifications_for_modules(config, notification_count),", 
+    "28": "\t\t\"open_count_other\": get_notifications_for_other(config, notification_count),"
+   }, 
+   "lnum": 26
+  }, 
+  {
+   "call": "(config={u'for_doctype': {u'Lead': {u'status': u'Open'},...'frappe.core.notifications.get_unread_messages'}}, notification_count={u'BOM': 0, u'Contact': 0, u'Customer': 1, u'Delivery Note': 0, u'Error Snapshot': 0, u'Event': 0, u'Expense Claim': 0, u'Issue': 0, u'Item': 1, u'Job Applicant': 0, ...})", 
+   "dump": {
+    "as_list": "undefined", 
+    "builtin True": "True", 
+    "condition": "{u'docstatus': 0}", 
+    "filters": "undefined", 
+    "ignore_ifnull": "undefined", 
+    "limit_page_length": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/notifications.py", 
+   "func": "get_notifications_for_doctypes", 
+   "lines": {
+    "90": "\t\t\t\t\tif isinstance(condition, dict):", 
+    "91": "\t\t\t\t\t\tresult = len(frappe.get_list(d, fields=[\"name\"],", 
+    "92": "\t\t\t\t\t\t\tfilters=condition, limit_page_length = 21, as_list=True, ignore_ifnull=True))", 
+    "93": "\t\t\t\t\telse:", 
+    "94": "\t\t\t\t\t\tresult = frappe.get_attr(condition)()"
+   }, 
+   "lnum": 92
+  }, 
+  {
+   "call": "(doctype=u'Stock Entry', *args=(), **kwargs={'as_list': True, 'fields': [u'name'], 'filters': {u'docstatus': 0}, 'ignore_ifnull': True, 'limit_page_length': 21})", 
+   "dump": {
+    ").execute": "undefined", 
+    "args": "()", 
+    "builtin None": "None", 
+    "doctype": "u'Stock Entry'", 
+    "frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "frappe. model": "<module 'frappe.model' from '/home/frappe/frappe-bench/apps/frappe/frappe/model/__init__.pyc'>", 
+    "frappe.model. db_query": "<module 'frappe.model.db_query' from '/home/frap...ppe-bench/apps/frappe/frappe/model/db_query.pyc'>", 
+    "frappe.model.db_query. DatabaseQuery": "<class 'frappe.model.db_query.DatabaseQuery'>", 
+    "kwargs": "{'as_list': True, 'fields': [u'name'], 'filters': {u'docstatus': 0}, 'ignore_ifnull': True, 'limit_page_length': 21}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "get_list", 
+   "lines": {
+    "1056": "\t\"\"\"", 
+    "1057": "\timport frappe.model.db_query", 
+    "1058": "\treturn frappe.model.db_query.DatabaseQuery(doctype).execute(None, *args, **kwargs)", 
+    "1059": "", 
+    "1060": "def get_all(doctype, *args, **kwargs):"
+   }, 
+   "lnum": 1058
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>, query=None, fields=[u'name'], filters={u'docstatus': 0}, or_filters=None, docstatus=None, group_by=None, order_by=None, limit_start=False, limit_page_length=21, as_list=True, with_childnames=False, debug=False, ignore_permissions=False, user=None, with_comment_count=False, join=u'left join', distinct=False, start=None, page_length=None, limit=None, ignore_ifnull=True, save_list_settings=False, save_list_settings_fields=False, update=None)", 
+   "dump": {
+    "result": "undefined", 
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. build_and_run": "<bound method DatabaseQuery.build_and_run of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "execute", 
+   "lines": {
+    "78": "\t\t\tresult = self.run_custom_query(query)", 
+    "79": "\t\telse:", 
+    "80": "\t\t\tresult = self.build_and_run()", 
+    "81": "", 
+    "82": "\t\tif with_comment_count and not as_list and self.doctype:"
+   }, 
+   "lnum": 80
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>)", 
+   "dump": {
+    "args": "undefined", 
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. prepare_args": "<bound method DatabaseQuery.prepare_args of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "build_and_run", 
+   "lines": {
+    "90": "", 
+    "91": "\tdef build_and_run(self):", 
+    "92": "\t\targs = self.prepare_args()", 
+    "93": "\t\targs.limit = self.add_limit()", 
+    "94": ""
+   }, 
+   "lnum": 92
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>)", 
+   "dump": {
+    "args": "{'order_by': u'', 'tables': u'`tabStock Entry`',...Stock Entry`.docstatus = 0.0', 'fields': u'name'}", 
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. set_order_by": "<bound method DatabaseQuery.set_order_by of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "prepare_args", 
+   "lines": {
+    "138": "\t\targs.fields = ', '.join(self.fields)", 
+    "139": "", 
+    "140": "\t\tself.set_order_by(args)", 
+    "141": "\t\tself.check_sort_by_table(args.order_by)", 
+    "142": "\t\targs.order_by = args.order_by and (\" order by \" + args.order_by) or \"\""
+   }, 
+   "lnum": 140
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>, args={'order_by': u'', 'tables': u'`tabStock Entry`',...Stock Entry`.docstatus = 0.0', 'fields': u'name'})", 
+   "dump": {
+    "].strip": "undefined", 
+    "f": "u'posting_date'", 
+    "f. split": "<built-in method split of unicode object>", 
+    "meta": "<frappe.model.meta.Meta object>", 
+    "meta. sort_field": "u'posting_date, from_warehouse, to_warehouse, purpose, remarks'", 
+    "meta.sort_field. split": "<built-in method split of unicode object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "set_order_by", 
+   "lines": {
+    "458": "\t\t\t\t\t# `tabItem`.`idx` desc, `tabItem`.`modified` desc", 
+    "459": "\t\t\t\t\targs.order_by = ', '.join(['`tab{0}`.`{1}` {2}'.format(self.doctype,", 
+    "460": "\t\t\t\t\t\tf.split()[0].strip(), f.split()[1].strip()) for f in meta.sort_field.split(',')])", 
+    "461": "\t\t\t\telse:", 
+    "462": "\t\t\t\t\tsort_field = meta.sort_field or 'modified'"
+   }, 
+   "lnum": 460
+  }
+ ], 
+ "locals": {
+  "args": "{'order_by': u'', 'tables': u'`tabStock Entry`',...Stock Entry`.docstatus = 0.0', 'fields': u'name'}", 
+  "f": "u'posting_date'", 
+  "group_function_without_group_by": "False", 
+  "meta": "<frappe.model.meta.Meta object>", 
+  "self": "<frappe.model.db_query.DatabaseQuery object>", 
+  "sort_field": "None", 
+  "sort_order": "None"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-04-11 12:44:11.683505", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/notifications.py\", line 26, in get_notifications\n    \"open_count_doctype\": get_notifications_for_doctypes(config, notification_count),\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/notifications.py\", line 92, in get_notifications_for_doctypes\n    filters=condition, limit_page_length = 21, as_list=True, ignore_ifnull=True))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 1058, in get_list\n    return frappe.model.db_query.DatabaseQuery(doctype).execute(None, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 80, in execute\n    result = self.build_and_run()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 92, in build_and_run\n    args = self.prepare_args()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 140, in prepare_args\n    self.set_order_by(args)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 460, in set_order_by\n    f.split()[0].strip(), f.split()[1].strip()) for f in meta.sort_field.split(',')])\nIndexError: list index out of range\n"
+}

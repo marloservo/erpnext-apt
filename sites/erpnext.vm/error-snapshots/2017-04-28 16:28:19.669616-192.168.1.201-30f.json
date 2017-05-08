@@ -1,0 +1,169 @@
+{
+ "etype": "<type 'exceptions.TypeError'>", 
+ "evalue": "TypeError(\"'NoneType' object is not iterable\",)", 
+ "exception": {
+  "args": "(\"'NoneType' object is not iterable\",)", 
+  "message": "\"'NoneType' object is not iterable\""
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/?report_name=Stoc...ppe.desk.query_report.run&_=1493368071293' [GET]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.query_report.run'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.query_report.run', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'cmd': u'frappe.desk.query_report.run', 'filter...te\":\"2017-04-28\"}', 'report_name': u'Stock Card'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function run>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function run>, *args=(), **kwargs={'cmd': u'frappe.desk.query_report.run', 'filters': u'{\"from_date\":\"2017-02-14\",\"to_date\":\"2017-04-28\"}', 'report_name': u'Stock Card'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function run>", 
+    "newargs": "{'filters': u'{\"from_date\":\"2017-02-14\",\"to_date\":\"2017-04-28\"}', 'report_name': u'Stock Card'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(report_name=u'Stock Card', filters={u'from_date': u'2017-02-14', u'to_date': u'2017-04-28'})", 
+   "dump": {
+    "columns": "[None, u'Date:Date:95', u'Target Warehouse:Link/Warehouse:250', None, u'In:Int:75', u'Out:Int:75', u'Pending:Int:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110', u'Item:Link/Item:100', u'Description::200', u'Reference #:Dynamic Link/Voucher Type:100', u'Voucher Type::100']", 
+    "global get_filtered_data": "<function get_filtered_data>", 
+    "report": "<frappe.core.doctype.report.report.Report object>", 
+    "report. ref_doctype": "u'Stock Ledger Entry'", 
+    "result": "[[None, u'2017-02-14', u'APT JOSOL - APT', None, u'', 2.0, u'', 0.0, 0.0, u'SIMPLICITY', u'HILLS SIMPLICITY', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, u'', 1.0, u'', 0.0, 0.0, u'TRILOGY', u'HILLS TRILOGY CLOTHES AIRER', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'RTV - MAGNOLIA (509) B - APT', None, 2.0, u'', u'', 2.0, 1866.98, u'SIMPLICITY', u'HILLS SIMPLICITY', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'RTV - MAGNOLIA (509) B - APT', None, 1.0, u'', u'', 1.0, 815.67, u'TRILOGY', u'HILLS TRILOGY CLOTHES AIRER', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - WM TAGAYTAY (375) - APT', None, u'', 2.0, u'', 0.0, 0.0, u'S RANGE', u'ALPHA RANGEHOOD STAINLESS', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - WM TAGAYTAY (375) - APT', None, u'', 2.0, u'', 0.0, 0.0, u'W RANGE', u'ALPHA RANGEHOOD WHITE', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 3988.94, u'S RANGE', u'ALPHA RANGEHOOD STAINLESS', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 3548.44, u'W RANGE', u'ALPHA RANGEHOOD WHITE', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - PALAWAN RP (308) B - APT', None, u'', 10.0, u'', 0.0, 0.0, u'BALLFAUCET1/2', u'TYCOON BALL VALVE FAUCET 1/2\"', u'TR-0115562', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 10.0, u'', u'', 10.0, 511.8, u'BALLFAUCET1/2', u'TYCOON BALL VALVE FAUCET 1/2\"', u'TR-0115562', u'Stock Entry'], [None, u'2017-02-14', u'DIB - ELIZABETH CEBU (189) \\xa0E - APT', None, u'', 5.0, u'', 0.0, 0.0, u'LH', u'LH1000 INSTANT HEATER', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'DIB - ELIZABETH CEBU (189) \\xa0E - APT', None, u'', 5.0, u'', 0.0, 0.0, u'S100E', u'ALPHA SLIM S100E', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 5.0, u'', u'', 5.0, 8541.4, u'LH', u'LH1000 INSTANT HEATER', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 5.0, u'', u'', 5.0, 12602.1, u'S100E', u'ALPHA SLIM S100E', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'MAKATI HOME DEPOT - APT', None, u'', 1.0, u'', 0.0, 0.0, u'SH-100', u'SH-100 ALPHA SOLAR HEATER', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'MAKATI HOME DEPOT - APT', None, u'', 2.0, u'', 0.0, 0.0, u'STO80', u'STORAGE 80', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 1.0, u'', u'', 1.0, 8352.79, u'SH-100', u'SH-100 ALPHA SOLAR HEATER', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 10914.64, u'STO80', u'STORAGE 80', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'RTV - ROCKWELL \\xa0(504) A - APT', None, u'', 3.0, u'', 0.0, 0.0, u'14Q VANWBBLU', u'2958 14.4Q VANITY WASTEBASKET RBLUE', u'TR-0115565', u'Stock Entry'], [None, u'2017-02-14', u'RTV - ROCKWELL \\xa0(504) A - APT', None, u'', 3.0, u'', 0.0, 0.0, u'30G RCGRN', u'2979 E GREEN 30 GAL REFUSE CONTAINER', u'TR-0115565', u'Stock Entry'], ...]"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py", 
+   "func": "run", 
+   "lines": {
+    "95": "", 
+    "96": "\tif report.apply_user_permissions and result:", 
+    "97": "\t\tresult = get_filtered_data(report.ref_doctype, columns, result)", 
+    "98": "", 
+    "99": "\tif cint(report.add_total_row) and result:"
+   }, 
+   "lnum": 97
+  }, 
+  {
+   "call": "(ref_doctype=u'Stock Ledger Entry', columns=[None, u'Date:Date:95', u'Target Warehouse:Link/Warehouse:250', None, u'In:Int:75', u'Out:Int:75', u'Pending:Int:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110', u'Item:Link/Item:100', u'Description::200', u'Reference #:Dynamic Link/Voucher Type:100', u'Voucher Type::100'], data=[[None, u'2017-02-14', u'APT JOSOL - APT', None, u'', 2.0, u'', 0.0, 0.0, u'SIMPLICITY', u'HILLS SIMPLICITY', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, u'', 1.0, u'', 0.0, 0.0, u'TRILOGY', u'HILLS TRILOGY CLOTHES AIRER', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'RTV - MAGNOLIA (509) B - APT', None, 2.0, u'', u'', 2.0, 1866.98, u'SIMPLICITY', u'HILLS SIMPLICITY', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'RTV - MAGNOLIA (509) B - APT', None, 1.0, u'', u'', 1.0, 815.67, u'TRILOGY', u'HILLS TRILOGY CLOTHES AIRER', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - WM TAGAYTAY (375) - APT', None, u'', 2.0, u'', 0.0, 0.0, u'S RANGE', u'ALPHA RANGEHOOD STAINLESS', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - WM TAGAYTAY (375) - APT', None, u'', 2.0, u'', 0.0, 0.0, u'W RANGE', u'ALPHA RANGEHOOD WHITE', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 3988.94, u'S RANGE', u'ALPHA RANGEHOOD STAINLESS', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 3548.44, u'W RANGE', u'ALPHA RANGEHOOD WHITE', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - PALAWAN RP (308) B - APT', None, u'', 10.0, u'', 0.0, 0.0, u'BALLFAUCET1/2', u'TYCOON BALL VALVE FAUCET 1/2\"', u'TR-0115562', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 10.0, u'', u'', 10.0, 511.8, u'BALLFAUCET1/2', u'TYCOON BALL VALVE FAUCET 1/2\"', u'TR-0115562', u'Stock Entry'], [None, u'2017-02-14', u'DIB - ELIZABETH CEBU (189) \\xa0E - APT', None, u'', 5.0, u'', 0.0, 0.0, u'LH', u'LH1000 INSTANT HEATER', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'DIB - ELIZABETH CEBU (189) \\xa0E - APT', None, u'', 5.0, u'', 0.0, 0.0, u'S100E', u'ALPHA SLIM S100E', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 5.0, u'', u'', 5.0, 8541.4, u'LH', u'LH1000 INSTANT HEATER', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 5.0, u'', u'', 5.0, 12602.1, u'S100E', u'ALPHA SLIM S100E', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'MAKATI HOME DEPOT - APT', None, u'', 1.0, u'', 0.0, 0.0, u'SH-100', u'SH-100 ALPHA SOLAR HEATER', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'MAKATI HOME DEPOT - APT', None, u'', 2.0, u'', 0.0, 0.0, u'STO80', u'STORAGE 80', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 1.0, u'', u'', 1.0, 8352.79, u'SH-100', u'SH-100 ALPHA SOLAR HEATER', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 10914.64, u'STO80', u'STORAGE 80', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'RTV - ROCKWELL \\xa0(504) A - APT', None, u'', 3.0, u'', 0.0, 0.0, u'14Q VANWBBLU', u'2958 14.4Q VANITY WASTEBASKET RBLUE', u'TR-0115565', u'Stock Entry'], [None, u'2017-02-14', u'RTV - ROCKWELL \\xa0(504) A - APT', None, u'', 3.0, u'', 0.0, 0.0, u'30G RCGRN', u'2979 E GREEN 30 GAL REFUSE CONTAINER', u'TR-0115565', u'Stock Entry'], ...])", 
+   "dump": {
+    "columns": "[None, u'Date:Date:95', u'Target Warehouse:Link/Warehouse:250', None, u'In:Int:75', u'Out:Int:75', u'Pending:Int:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110', u'Item:Link/Item:100', u'Description::200', u'Reference #:Dynamic Link/Voucher Type:100', u'Voucher Type::100']", 
+    "data": "[[None, u'2017-02-14', u'APT JOSOL - APT', None, u'', 2.0, u'', 0.0, 0.0, u'SIMPLICITY', u'HILLS SIMPLICITY', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, u'', 1.0, u'', 0.0, 0.0, u'TRILOGY', u'HILLS TRILOGY CLOTHES AIRER', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'RTV - MAGNOLIA (509) B - APT', None, 2.0, u'', u'', 2.0, 1866.98, u'SIMPLICITY', u'HILLS SIMPLICITY', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'RTV - MAGNOLIA (509) B - APT', None, 1.0, u'', u'', 1.0, 815.67, u'TRILOGY', u'HILLS TRILOGY CLOTHES AIRER', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - WM TAGAYTAY (375) - APT', None, u'', 2.0, u'', 0.0, 0.0, u'S RANGE', u'ALPHA RANGEHOOD STAINLESS', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - WM TAGAYTAY (375) - APT', None, u'', 2.0, u'', 0.0, 0.0, u'W RANGE', u'ALPHA RANGEHOOD WHITE', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 3988.94, u'S RANGE', u'ALPHA RANGEHOOD STAINLESS', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 3548.44, u'W RANGE', u'ALPHA RANGEHOOD WHITE', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - PALAWAN RP (308) B - APT', None, u'', 10.0, u'', 0.0, 0.0, u'BALLFAUCET1/2', u'TYCOON BALL VALVE FAUCET 1/2\"', u'TR-0115562', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 10.0, u'', u'', 10.0, 511.8, u'BALLFAUCET1/2', u'TYCOON BALL VALVE FAUCET 1/2\"', u'TR-0115562', u'Stock Entry'], [None, u'2017-02-14', u'DIB - ELIZABETH CEBU (189) \\xa0E - APT', None, u'', 5.0, u'', 0.0, 0.0, u'LH', u'LH1000 INSTANT HEATER', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'DIB - ELIZABETH CEBU (189) \\xa0E - APT', None, u'', 5.0, u'', 0.0, 0.0, u'S100E', u'ALPHA SLIM S100E', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 5.0, u'', u'', 5.0, 8541.4, u'LH', u'LH1000 INSTANT HEATER', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 5.0, u'', u'', 5.0, 12602.1, u'S100E', u'ALPHA SLIM S100E', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'MAKATI HOME DEPOT - APT', None, u'', 1.0, u'', 0.0, 0.0, u'SH-100', u'SH-100 ALPHA SOLAR HEATER', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'MAKATI HOME DEPOT - APT', None, u'', 2.0, u'', 0.0, 0.0, u'STO80', u'STORAGE 80', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 1.0, u'', u'', 1.0, 8352.79, u'SH-100', u'SH-100 ALPHA SOLAR HEATER', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 10914.64, u'STO80', u'STORAGE 80', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'RTV - ROCKWELL \\xa0(504) A - APT', None, u'', 3.0, u'', 0.0, 0.0, u'14Q VANWBBLU', u'2958 14.4Q VANITY WASTEBASKET RBLUE', u'TR-0115565', u'Stock Entry'], [None, u'2017-02-14', u'RTV - ROCKWELL \\xa0(504) A - APT', None, u'', 3.0, u'', 0.0, 0.0, u'30G RCGRN', u'2979 E GREEN 30 GAL REFUSE CONTAINER', u'TR-0115565', u'Stock Entry'], ...]", 
+    "global get_linked_doctypes": "<function get_linked_doctypes>", 
+    "linked_doctypes": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py", 
+   "func": "get_filtered_data", 
+   "lines": {
+    "158": "def get_filtered_data(ref_doctype, columns, data):", 
+    "159": "\tresult = []", 
+    "160": "\tlinked_doctypes = get_linked_doctypes(columns, data)", 
+    "161": "\tmatch_filters_per_doctype = get_user_match_filters(linked_doctypes, ref_doctype)", 
+    "162": "\tshared = frappe.share.get_shared(ref_doctype)"
+   }, 
+   "lnum": 160
+  }, 
+  {
+   "call": "(columns=[None, u'Date:Date:95', u'Target Warehouse:Link/Warehouse:250', None, u'In:Int:75', u'Out:Int:75', u'Pending:Int:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110', u'Item:Link/Item:100', u'Description::200', u'Reference #:Dynamic Link/Voucher Type:100', u'Voucher Type::100'], data=[[None, u'2017-02-14', u'APT JOSOL - APT', None, u'', 2.0, u'', 0.0, 0.0, u'SIMPLICITY', u'HILLS SIMPLICITY', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, u'', 1.0, u'', 0.0, 0.0, u'TRILOGY', u'HILLS TRILOGY CLOTHES AIRER', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'RTV - MAGNOLIA (509) B - APT', None, 2.0, u'', u'', 2.0, 1866.98, u'SIMPLICITY', u'HILLS SIMPLICITY', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'RTV - MAGNOLIA (509) B - APT', None, 1.0, u'', u'', 1.0, 815.67, u'TRILOGY', u'HILLS TRILOGY CLOTHES AIRER', u'P-00008603', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - WM TAGAYTAY (375) - APT', None, u'', 2.0, u'', 0.0, 0.0, u'S RANGE', u'ALPHA RANGEHOOD STAINLESS', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - WM TAGAYTAY (375) - APT', None, u'', 2.0, u'', 0.0, 0.0, u'W RANGE', u'ALPHA RANGEHOOD WHITE', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 3988.94, u'S RANGE', u'ALPHA RANGEHOOD STAINLESS', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 3548.44, u'W RANGE', u'ALPHA RANGEHOOD WHITE', u'TR-0115560', u'Stock Entry'], [None, u'2017-02-14', u'HANDYMAN - PALAWAN RP (308) B - APT', None, u'', 10.0, u'', 0.0, 0.0, u'BALLFAUCET1/2', u'TYCOON BALL VALVE FAUCET 1/2\"', u'TR-0115562', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 10.0, u'', u'', 10.0, 511.8, u'BALLFAUCET1/2', u'TYCOON BALL VALVE FAUCET 1/2\"', u'TR-0115562', u'Stock Entry'], [None, u'2017-02-14', u'DIB - ELIZABETH CEBU (189) \\xa0E - APT', None, u'', 5.0, u'', 0.0, 0.0, u'LH', u'LH1000 INSTANT HEATER', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'DIB - ELIZABETH CEBU (189) \\xa0E - APT', None, u'', 5.0, u'', 0.0, 0.0, u'S100E', u'ALPHA SLIM S100E', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 5.0, u'', u'', 5.0, 8541.4, u'LH', u'LH1000 INSTANT HEATER', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 5.0, u'', u'', 5.0, 12602.1, u'S100E', u'ALPHA SLIM S100E', u'TR-0115563', u'Stock Entry'], [None, u'2017-02-14', u'MAKATI HOME DEPOT - APT', None, u'', 1.0, u'', 0.0, 0.0, u'SH-100', u'SH-100 ALPHA SOLAR HEATER', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'MAKATI HOME DEPOT - APT', None, u'', 2.0, u'', 0.0, 0.0, u'STO80', u'STORAGE 80', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 1.0, u'', u'', 1.0, 8352.79, u'SH-100', u'SH-100 ALPHA SOLAR HEATER', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'APT JOSOL - APT', None, 2.0, u'', u'', 2.0, 10914.64, u'STO80', u'STORAGE 80', u'TR-0115564', u'Stock Entry'], [None, u'2017-02-14', u'RTV - ROCKWELL \\xa0(504) A - APT', None, u'', 3.0, u'', 0.0, 0.0, u'14Q VANWBBLU', u'2958 14.4Q VANITY WASTEBASKET RBLUE', u'TR-0115565', u'Stock Entry'], [None, u'2017-02-14', u'RTV - ROCKWELL \\xa0(504) A - APT', None, u'', 3.0, u'', 0.0, 0.0, u'30G RCGRN', u'2979 E GREEN 30 GAL REFUSE CONTAINER', u'TR-0115565', u'Stock Entry'], ...])", 
+   "dump": {
+    "columns": "[None, u'Date:Date:95', u'Target Warehouse:Link/Warehouse:250', None, u'In:Int:75', u'Out:Int:75', u'Pending:Int:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110', u'Item:Link/Item:100', u'Description::200', u'Reference #:Dynamic Link/Voucher Type:100', u'Voucher Type::100']", 
+    "columns_dict": "undefined", 
+    "global get_columns_dict": "<function get_columns_dict>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py", 
+   "func": "get_linked_doctypes", 
+   "lines": {
+    "238": "\tlinked_doctypes = {}", 
+    "239": "", 
+    "240": "\tcolumns_dict = get_columns_dict(columns)", 
+    "241": "", 
+    "242": "\tfor idx, col in enumerate(columns):"
+   }, 
+   "lnum": 240
+  }, 
+  {
+   "call": "(columns=[None, u'Date:Date:95', u'Target Warehouse:Link/Warehouse:250', None, u'In:Int:75', u'Out:Int:75', u'Pending:Int:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110', u'Item:Link/Item:100', u'Description::200', u'Reference #:Dynamic Link/Voucher Type:100', u'Voucher Type::100'])", 
+   "dump": {
+    "col": "None", 
+    "col_dict": "{}", 
+    "col_dict. update": "<built-in method update of dict object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py", 
+   "func": "get_columns_dict", 
+   "lines": {
+    "291": "\t\t# dict", 
+    "292": "\t\telse:", 
+    "293": "\t\t\tcol_dict.update(col)", 
+    "294": "\t\t\tif \"fieldname\" not in col_dict:", 
+    "295": "\t\t\t\tcol_dict[\"fieldname\"] = frappe.scrub(col_dict[\"label\"])"
+   }, 
+   "lnum": 293
+  }
+ ], 
+ "locals": {
+  "col": "None", 
+  "col_dict": "{}", 
+  "columns": "[None, u'Date:Date:95', u'Target Warehouse:Link/Warehouse:250', None, u'In:Int:75', u'Out:Int:75', u'Pending:Int:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110', u'Item:Link/Item:100', u'Description::200', u'Reference #:Dynamic Link/Voucher Type:100', u'Voucher Type::100']", 
+  "columns_dict": "{}", 
+  "idx": "0"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-04-28 16:28:19.670062", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py\", line 97, in run\n    result = get_filtered_data(report.ref_doctype, columns, result)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py\", line 160, in get_filtered_data\n    linked_doctypes = get_linked_doctypes(columns, data)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py\", line 240, in get_linked_doctypes\n    columns_dict = get_columns_dict(columns)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py\", line 293, in get_columns_dict\n    col_dict.update(col)\nTypeError: 'NoneType' object is not iterable\n"
+}

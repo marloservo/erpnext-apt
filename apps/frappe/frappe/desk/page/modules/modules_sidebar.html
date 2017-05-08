@@ -1,0 +1,15 @@
+<ul class="module-sidebar-nav overlay-sidebar nav nav-pills nav-stacked">
+    {% for (var i=0, l= modules.length; i < l; i++) { var item = modules[i];
+			if(item.type==="module" && !item.blocked 
+                && (    item.module_name == "Maintenance Setup"
+                    || item.module_name == "Setup"
+                    || item.module_name == "Core"
+                    || item.module_name == "Stock"
+                    || item.module_name == "Buying"
+                    || item.module_name == "Selling"
+                    || item.module_name == "Accounts"
+                    )
+                ) { %}
+			{{ frappe.render_template("modules_sidebar_item", {"item": item}) }}
+    {% }; } %}
+</ul>

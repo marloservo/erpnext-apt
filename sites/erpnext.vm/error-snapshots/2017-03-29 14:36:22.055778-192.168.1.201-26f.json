@@ -1,0 +1,312 @@
+{
+ "etype": "<type 'exceptions.NameError'>", 
+ "evalue": "NameError(\"global name 'true' is not defined\",)", 
+ "exception": {
+  "args": "(\"global name 'true' is not defined\",)", 
+  "message": "\"global name 'true' is not defined\""
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/' [POST]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.form.save.savedocs'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.form.save.savedocs', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'action': u'Submit', 'doc': u'{\"use_multi_level...null}', 'cmd': u'frappe.desk.form.save.savedocs'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function savedocs>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function savedocs>, *args=(), **kwargs={'action': u'Submit', 'cmd': u'frappe.desk.form.save.savedocs', 'doc': u'{\"use_multi_level_bom\":1,\"naming_series\":\"TR-\"...ress\":null,\"customer_name\":null,\"customer\":null}'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function savedocs>", 
+    "newargs": "{'action': u'Submit', 'doc': u'{\"use_multi_level_bom\":1,\"naming_series\":\"TR-\"...ress\":null,\"customer_name\":null,\"customer\":null}'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(doc=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>, action=u'Submit')", 
+   "dump": {
+    "doc": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>", 
+    "doc. submit": "<bound method StockEntry.submit of <erpnext.stoc...ctype.stock_entry.stock_entry.StockEntry object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/save.py", 
+   "func": "savedocs", 
+   "lines": {
+    "17": "", 
+    "18": "\t\tif doc.docstatus==1:", 
+    "19": "\t\t\tdoc.submit()", 
+    "20": "\t\telse:", 
+    "21": "\t\t\ttry:"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>)", 
+   "dump": {
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>", 
+    "self. _submit": "<bound method StockEntry._submit of <erpnext.sto...ctype.stock_entry.stock_entry.StockEntry object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "submit", 
+   "lines": {
+    "681": "\tdef submit(self):", 
+    "682": "\t\t\"\"\"Submit the document. Sets `docstatus` = 1, then saves.\"\"\"", 
+    "683": "\t\tself._submit()", 
+    "684": "", 
+    "685": "\t@whitelist.__func__"
+   }, 
+   "lnum": 683
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>)", 
+   "dump": {
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>", 
+    "self. save": "<bound method StockEntry.save of <erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "_submit", 
+   "lines": {
+    "670": "\t\t\"\"\"Submit the document. Sets `docstatus` = 1, then saves.\"\"\"", 
+    "671": "\t\tself.docstatus = 1", 
+    "672": "\t\tself.save()", 
+    "673": "", 
+    "674": "\t@whitelist.__func__"
+   }, 
+   "lnum": 672
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "kwargs": "{}", 
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>", 
+    "self. _save": "<bound method StockEntry._save of <erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "save", 
+   "lines": {
+    "240": "\tdef save(self, *args, **kwargs):", 
+    "241": "\t\t\"\"\"Wrapper for _save\"\"\"", 
+    "242": "\t\treturn self._save(*args, **kwargs)", 
+    "243": "", 
+    "244": "\tdef _save(self, ignore_permissions=None):"
+   }, 
+   "lnum": 242
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>, ignore_permissions=None)", 
+   "dump": {
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>", 
+    "self. run_post_save_methods": "<bound method StockEntry.run_post_save_methods o...ctype.stock_entry.stock_entry.StockEntry object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "_save", 
+   "lines": {
+    "284": "", 
+    "285": "\t\tself.update_children()", 
+    "286": "\t\tself.run_post_save_methods()", 
+    "287": "", 
+    "288": "\t\treturn self"
+   }, 
+   "lnum": 286
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>)", 
+   "dump": {
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>", 
+    "self. run_method": "<bound method StockEntry.run_method of <erpnext....ctype.stock_entry.stock_entry.StockEntry object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "run_post_save_methods", 
+   "lines": {
+    "729": "\t\telif self._action==\"submit\":", 
+    "730": "\t\t\tself.run_method(\"on_update\")", 
+    "731": "\t\t\tself.run_method(\"on_submit\")", 
+    "732": "\t\t\tif not self.flags.ignore_submit_comment:", 
+    "733": "\t\t\t\tself.add_comment(\"Submitted\")"
+   }, 
+   "lnum": 731
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>, method=u'on_submit', *args=(), **kwargs={})", 
+   "dump": {
+    "Document. hook": "<function hook>", 
+    "args": "()", 
+    "fn": "<function on_submit>", 
+    "global Document": "<class 'frappe.model.document.Document'>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "run_method", 
+   "lines": {
+    "659": "", 
+    "660": "\t\tfn.__name__ = method.encode(\"utf-8\")", 
+    "661": "\t\treturn Document.hook(fn)(self, *args, **kwargs)", 
+    "662": "", 
+    "663": "\t@staticmethod"
+   }, 
+   "lnum": 661
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "composed": "<function runner>", 
+    "kwargs": "{}", 
+    "method": "'on_submit'", 
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "composer", 
+   "lines": {
+    "837": "", 
+    "838": "\t\t\tcomposed = compose(f, *hooks)", 
+    "839": "\t\t\treturn composed(self, method, *args, **kwargs)", 
+    "840": "", 
+    "841": "\t\treturn composer"
+   }, 
+   "lnum": 839
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>, method='on_submit', *args=(), **kwargs={})", 
+   "dump": {
+    "add_to_return_value": "<function add_to_return_value>", 
+    "args": "()", 
+    "fn": "<function on_submit>", 
+    "kwargs": "{}", 
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "runner", 
+   "lines": {
+    "820": "\t\tdef compose(fn, *hooks):", 
+    "821": "\t\t\tdef runner(self, method, *args, **kwargs):", 
+    "822": "\t\t\t\tadd_to_return_value(self, fn(self, *args, **kwargs))", 
+    "823": "\t\t\t\tfor f in hooks:", 
+    "824": "\t\t\t\t\tadd_to_return_value(self, f(self, method, *args, **kwargs))"
+   }, 
+   "lnum": 822
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>, *args=(), **kwargs={})", 
+   "dump": {
+    "args": "()", 
+    "builtin getattr": "<built-in function getattr>", 
+    "fn": "undefined", 
+    "kwargs": "{}", 
+    "method": "u'on_submit'", 
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "<lambda>", 
+   "lines": {
+    "653": "", 
+    "654": "\t\tif hasattr(self, method) and hasattr(getattr(self, method), \"__call__\"):", 
+    "655": "\t\t\tfn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)", 
+    "656": "\t\telse:", 
+    "657": "\t\t\t# hack! to run hooks even if method does not exist"
+   }, 
+   "lnum": 655
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>)", 
+   "dump": {
+    "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>", 
+    "self. update_stock_ledger": "<bound method StockEntry.update_stock_ledger of ...ctype.stock_entry.stock_entry.StockEntry object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py", 
+   "func": "on_submit", 
+   "lines": {
+    "82": "", 
+    "83": "    def on_submit(self):", 
+    "84": "        self.update_stock_ledger()", 
+    "85": "", 
+    "86": "        from erpnext.stock.doctype.serial_no.serial_no import update_serial_nos_after_submit"
+   }, 
+   "lnum": 84
+  }, 
+  {
+   "call": "(self=<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>)", 
+   "dump": {
+    "is_direct_adjustment": "False", 
+    "true": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py", 
+   "func": "update_stock_ledger", 
+   "lines": {
+    "395": "        if self.amended_from :", 
+    "396": "            if frappe.db.exists('Stock Entry', {\"name\": self.amended_from, \"docstatus\": 1}) :", 
+    "397": "                is_direct_adjustment = true", 
+    "398": "", 
+    "399": "        if not is_direct_adjustment :"
+   }, 
+   "lnum": 397
+  }
+ ], 
+ "locals": {
+  "is_direct_adjustment": "False", 
+  "self": "<erpnext.stock.doctype.stock_entry.stock_entry.StockEntry object>", 
+  "sl_entries": "[]"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-03-29 14:36:22.056187", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/save.py\", line 19, in savedocs\n    doc.submit()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 683, in submit\n    self._submit()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 672, in _submit\n    self.save()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 242, in save\n    return self._save(*args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 286, in _save\n    self.run_post_save_methods()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 731, in run_post_save_methods\n    self.run_method(\"on_submit\")\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 661, in run_method\n    return Document.hook(fn)(self, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 839, in composer\n    return composed(self, method, *args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 822, in runner\n    add_to_return_value(self, fn(self, *args, **kwargs))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 655, in <lambda>\n    fn = lambda self, *args, **kwargs: getattr(self, method)(*args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py\", line 84, in on_submit\n    self.update_stock_ledger()\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/doctype/stock_entry/stock_entry.py\", line 397, in update_stock_ledger\n    is_direct_adjustment = true\nNameError: global name 'true' is not defined\n"
+}

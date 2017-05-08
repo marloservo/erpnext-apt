@@ -1,0 +1,137 @@
+{
+ "etype": "<type 'exceptions.KeyError'>", 
+ "evalue": "KeyError(u'FTANK',)", 
+ "exception": {
+  "args": "(u'FTANK',)", 
+  "message": "FTANK"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/?report_name=Stoc...ppe.desk.query_report.run&_=1493964897518' [GET]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.query_report.run'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.query_report.run', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'cmd': u'frappe.desk.query_report.run', 'filter...\"2017-05-05\"}', 'report_name': u'Stock Position'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function run>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function run>, *args=(), **kwargs={'cmd': u'frappe.desk.query_report.run', 'filters': u'{\"to_date\":\"2017-05-05\"}', 'report_name': u'Stock Position'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function run>", 
+    "newargs": "{'filters': u'{\"to_date\":\"2017-05-05\"}', 'report_name': u'Stock Position'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(report_name=u'Stock Position', filters={u'to_date': u'2017-05-05'})", 
+   "dump": {
+    "filters": "{u'to_date': u'2017-05-05'}", 
+    "frappe. _dict": "<class 'frappe._dict'>", 
+    "frappe. get_attr": "<function get_attr>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method_name": "u'erpnext.stock.report.stock_position.stock_position.execute'", 
+    "res": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py", 
+   "func": "run", 
+   "lines": {
+    "86": "\t\tif report.is_standard==\"Yes\":", 
+    "87": "\t\t\tmethod_name = get_report_module_dotted_path(module, report.name) + \".execute\"", 
+    "88": "\t\t\tres = frappe.get_attr(method_name)(frappe._dict(filters))", 
+    "89": "", 
+    "90": "\t\t\tcolumns, result = res[0], res[1]"
+   }, 
+   "lnum": 88
+  }, 
+  {
+   "call": "(filters={u'to_date': u'2017-05-05'})", 
+   "dump": {
+    "item_detail": "{'name': u'FT3', 'item_name': u'NOVO HCTFT-10 CL...u'NOVO HCTFT-10 CLR 10\" TRIPLE CARTRDGE CNTRTOP'}", 
+    "item_details": "{u'#1002-GB': {'name': u'#1002-GB', 'item_name': u'YALE #1002-.../S', 'description': u'YALE #1002-GB DOOR CLOSER'}, u'#15-265': {'name': u'#15-265', 'item_name': u'#15-265 HACK..., 'description': u'#15-265 HACKSAW FRAME RUBBER'}, u'#15-565': {'name': u'#15-565', 'item_name': u'STANLEY THRI...ption': u'STANLEY THRIFTY HACKSAW FRAME #15-565'}, u'#198-1/4 AB': {'name': u'#198-1/4 AB', 'item_name': u'YALE #19...S', 'description': u'YALE #198 1/4 AB DEAD LOCK'}, u'#33-295 HM 2MTS': {'name': u'#33-295 HM 2MTS', 'item_name': u'STAN...cription': u'STANLEY #33-295 HM TAPE RULE 2 MTS'}, u'#633-4 HOLIDAY PDLCK': {'name': u'#633-4 HOLIDAY PDLCK', 'item_name': u...', 'description': u'YALE #633-4 HOLIDAY PADLOCK'}, u'#688 RESET PDLCK': {'name': u'#688 RESET PDLCK', 'item_name': u'YAL...escription': u'YALE #688 RESETABLE PADLOCK 20MM'}, u'#689-20MM': {'name': u'#689-20MM', 'item_name': u'#689-20MM ...'description': u'#689-20MM 4DIGIT RESET.PADLOCK'}, u'#705 CMBNATION PDLCK': {'name': u'#705 CMBNATION PDLCK', 'item_name': u... 'description': u'YALE #705 COMBINATION PADLOCK'}, u'005DEPTH': {'name': u'005DEPTH', 'item_name': u'DEPTH STOP ...'PC/S', 'description': u'DEPTH STOP 613 001 005'}, ...}", 
+    "sle": "{'stock_value': -3800.0, 'item_code': u'FTANK', ...ter_transaction': -2.0, 'valuation_rate': 1900.0}", 
+    "sle. item_code": "u'FTANK'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_position/stock_position.py", 
+   "func": "execute", 
+   "lines": {
+    "13": "    data = []", 
+    "14": "    for sle in sl_entries:", 
+    "15": "        item_detail = item_details[sle.item_code]", 
+    "16": "", 
+    "17": "        temp_data = []"
+   }, 
+   "lnum": 15
+  }
+ ], 
+ "locals": {
+  "columns": "[u'Warehouse:Link/Warehouse:300', u'Item:Link/Item:100', u'Description::200', u'Brand:Link/Brand:100', u'UOM:Link/UOM:75', u'Balance Qty:Int:100', u'Balance Value:Currency:110']", 
+  "data": "[[None, u'14W T85-CW', u'14W T85 INTEGRATED LAMP-COOL WHITE', u'GREENERGY', u'PC/S', -3300.0, -643500.0], [None, u'28W T85-CWR', u'28W T85 INTEGRATED LAMP-COOL WHITE W/ REFLCTR', u'GREENERGY', u'PC/S', -1672.0, -401280.0], [None, u'ADSL1.8LADDER', u'GEELONG ADSL1.8 LADDER 6FT', u'HANDYMATE', u'PC/S', -14.0, -70708.4], [None, u'AL2450', u'ALABASTER 24 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -2.0, -222.2], [None, u'AL2750', u'ALABASTER 27 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -1.0, -125.4], [None, u'AL2864', u'ALABASTER 28 X 64 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -2.0, -314.56], [None, u'AL3050', u'ALABASTER 30 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -17.0, -2365.55], [None, u'AL3350', u'ALABASTER 33 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -3.0, -512.01], [None, u'AL3650', u'ALABASTER 36 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -282.0, -47150.4], [None, u'AL3664', u'ALABASTER 36 X 64 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -3.0, -491.7], [None, u'AL3950', u'ALABASTER 39 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -6.0, -1085.7], [None, u'AL3964', u'ALABASTER 39 X 64 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -42.0, -7484.4], [None, u'AL4250', u'ALABASTER 42 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -17.0, -3309.9], [None, u'AL4264', u'ALABASTER 42 X 64 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -6.0, -1148.4], [None, u'AL4850', u'ALABASTER 48 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -911.0, -202925.25], [None, u'AL4864', u'ALABASTER 48 X 64 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -141.0, -30864.9], [None, u'AL5450', u'ALABASTER 54 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -139.0, -34861.2], [None, u'AL5464', u'ALABASTER 54 X 64 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -186.0, -45830.4], [None, u'AL6050', u'ALABASTER 60 X 50 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -336.0, -93508.8], [None, u'AL6064', u'ALABASTER 60 X 64 MINI BLINDS 234RT', u'IMPRESSION', u'PC/S', -96.0, -26241.6], ...]", 
+  "filters": "{u'to_date': u'2017-05-05'}", 
+  "item_detail": "{'name': u'FT3', 'item_name': u'NOVO HCTFT-10 CL...u'NOVO HCTFT-10 CLR 10\" TRIPLE CARTRDGE CNTRTOP'}", 
+  "item_details": "{u'#1002-GB': {'name': u'#1002-GB', 'item_name': u'YALE #1002-.../S', 'description': u'YALE #1002-GB DOOR CLOSER'}, u'#15-265': {'name': u'#15-265', 'item_name': u'#15-265 HACK..., 'description': u'#15-265 HACKSAW FRAME RUBBER'}, u'#15-565': {'name': u'#15-565', 'item_name': u'STANLEY THRI...ption': u'STANLEY THRIFTY HACKSAW FRAME #15-565'}, u'#198-1/4 AB': {'name': u'#198-1/4 AB', 'item_name': u'YALE #19...S', 'description': u'YALE #198 1/4 AB DEAD LOCK'}, u'#33-295 HM 2MTS': {'name': u'#33-295 HM 2MTS', 'item_name': u'STAN...cription': u'STANLEY #33-295 HM TAPE RULE 2 MTS'}, u'#633-4 HOLIDAY PDLCK': {'name': u'#633-4 HOLIDAY PDLCK', 'item_name': u...', 'description': u'YALE #633-4 HOLIDAY PADLOCK'}, u'#688 RESET PDLCK': {'name': u'#688 RESET PDLCK', 'item_name': u'YAL...escription': u'YALE #688 RESETABLE PADLOCK 20MM'}, u'#689-20MM': {'name': u'#689-20MM', 'item_name': u'#689-20MM ...'description': u'#689-20MM 4DIGIT RESET.PADLOCK'}, u'#705 CMBNATION PDLCK': {'name': u'#705 CMBNATION PDLCK', 'item_name': u... 'description': u'YALE #705 COMBINATION PADLOCK'}, u'005DEPTH': {'name': u'005DEPTH', 'item_name': u'DEPTH STOP ...'PC/S', 'description': u'DEPTH STOP 613 001 005'}, ...}", 
+  "sl_entries": "[{'stock_value': -643500.0, 'item_code': u'14W T8...r_transaction': -3300.0, 'valuation_rate': 195.0}, {'stock_value': -401280.0, 'item_code': u'28W T8...r_transaction': -1672.0, 'valuation_rate': 240.0}, {'stock_value': -70708.4, 'item_code': u'ADSL1.8...er_transaction': -14.0, 'valuation_rate': 5050.6}, {'stock_value': -222.2, 'item_code': u'AL2450', ...fter_transaction': -2.0, 'valuation_rate': 111.1}, {'stock_value': -125.4, 'item_code': u'AL2750', ...fter_transaction': -1.0, 'valuation_rate': 125.4}, {'stock_value': -314.56, 'item_code': u'AL2864',...ter_transaction': -2.0, 'valuation_rate': 157.28}, {'stock_value': -2365.55, 'item_code': u'AL3050'...er_transaction': -17.0, 'valuation_rate': 139.15}, {'stock_value': -512.01, 'item_code': u'AL3350',...ter_transaction': -3.0, 'valuation_rate': 170.67}, {'stock_value': -47150.4, 'item_code': u'AL3650'...er_transaction': -282.0, 'valuation_rate': 167.2}, {'stock_value': -491.7, 'item_code': u'AL3664', ...fter_transaction': -3.0, 'valuation_rate': 163.9}, {'stock_value': -1085.7, 'item_code': u'AL3950',...ter_transaction': -6.0, 'valuation_rate': 180.95}, {'stock_value': -7484.4, 'item_code': u'AL3964',...ter_transaction': -42.0, 'valuation_rate': 178.2}, {'stock_value': -3309.9, 'item_code': u'AL4250',...ter_transaction': -17.0, 'valuation_rate': 194.7}, {'stock_value': -1148.4, 'item_code': u'AL4264',...fter_transaction': -6.0, 'valuation_rate': 191.4}, {'stock_value': -202925.25, 'item_code': u'AL485...r_transaction': -911.0, 'valuation_rate': 222.75}, {'stock_value': -30864.9, 'item_code': u'AL4864'...er_transaction': -141.0, 'valuation_rate': 218.9}, {'stock_value': -34861.2, 'item_code': u'AL5450'...er_transaction': -139.0, 'valuation_rate': 250.8}, {'stock_value': -45830.4, 'item_code': u'AL5464'...er_transaction': -186.0, 'valuation_rate': 246.4}, {'stock_value': -93508.8, 'item_code': u'AL6050'...er_transaction': -336.0, 'valuation_rate': 278.3}, {'stock_value': -26241.6, 'item_code': u'AL6064'...er_transaction': -96.0, 'valuation_rate': 273.35}, ...]", 
+  "sle": "{'stock_value': -3800.0, 'item_code': u'FTANK', ...ter_transaction': -2.0, 'valuation_rate': 1900.0}", 
+  "temp_data": "[u'APT JOSOL - APT', u'FT3', u'NOVO HCTFT-10 CLR 10\" TRIPLE CARTRDGE CNTRTOP', u'NOVO', u'PC/S', 153.0, 305943.71]"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-05-05 17:27:38.620882", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/query_report.py\", line 88, in run\n    res = frappe.get_attr(method_name)(frappe._dict(filters))\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/stock/report/stock_position/stock_position.py\", line 15, in execute\n    item_detail = item_details[sle.item_code]\nKeyError: u'FTANK'\n"
+}

@@ -1,0 +1,211 @@
+{
+ "etype": "<type 'exceptions.IndexError'>", 
+ "evalue": "IndexError('list index out of range',)", 
+ "exception": {
+  "args": "('list index out of range',)", 
+  "message": "'list index out of range'"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/?stats=[\"_user_ta...desk.reportview.get_stats&_=1491902166838' [GET]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.reportview.get_stats'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.reportview.get_stats', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'cmd': u'frappe.desk.reportview.get_stats', 'stats': u'[\"_user_tags\"]', 'doctype': u'Price List'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function get_stats>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function get_stats>, *args=(), **kwargs={'cmd': u'frappe.desk.reportview.get_stats', 'doctype': u'Price List', 'stats': u'[\"_user_tags\"]'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function get_stats>", 
+    "newargs": "{'doctype': u'Price List', 'stats': u'[\"_user_tags\"]'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(stats={}, doctype=u'Price List')", 
+   "dump": {
+    "as_list": "undefined", 
+    "builtin True": "True", 
+    "filters": "undefined", 
+    "group_by": "undefined", 
+    "tag": "u'_user_tags'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/reportview.py", 
+   "func": "get_stats", 
+   "lines": {
+    "149": "\t\tif not tag in columns: continue", 
+    "150": "\t\ttagcount = execute(doctype, fields=[tag, \"count(*)\"],", 
+    "151": "\t\t\tfilters=[\"ifnull(`%s`,'')!=''\" % tag], group_by=tag, as_list=True)", 
+    "152": "", 
+    "153": "\t\tif tag=='_user_tags':"
+   }, 
+   "lnum": 151
+  }, 
+  {
+   "call": "(doctype=u'Price List', *args=(), **kwargs={'as_list': True, 'fields': [u'_user_tags', u'count(*)'], 'filters': [u\"ifnull(`_user_tags`,'')!=''\"], 'group_by': u'_user_tags'})", 
+   "dump": {
+    ").execute": "undefined", 
+    "args": "()", 
+    "doctype": "u'Price List'", 
+    "global DatabaseQuery": "<class 'frappe.model.db_query.DatabaseQuery'>", 
+    "kwargs": "{'as_list': True, 'fields': [u'_user_tags', u'count(*)'], 'filters': [u\"ifnull(`_user_tags`,'')!=''\"], 'group_by': u'_user_tags'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/reportview.py", 
+   "func": "execute", 
+   "lines": {
+    "19": "", 
+    "20": "def execute(doctype, *args, **kwargs):", 
+    "21": "\treturn DatabaseQuery(doctype).execute(*args, **kwargs)", 
+    "22": "", 
+    "23": "def get_form_params():"
+   }, 
+   "lnum": 21
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>, query=None, fields=[u'_user_tags', u'count(*)'], filters=[u\"ifnull(`_user_tags`,'')!=''\"], or_filters=None, docstatus=None, group_by=u'_user_tags', order_by=None, limit_start=False, limit_page_length=None, as_list=True, with_childnames=False, debug=False, ignore_permissions=False, user=None, with_comment_count=False, join=u'left join', distinct=False, start=None, page_length=None, limit=None, ignore_ifnull=False, save_list_settings=False, save_list_settings_fields=False, update=None)", 
+   "dump": {
+    "result": "undefined", 
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. build_and_run": "<bound method DatabaseQuery.build_and_run of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "execute", 
+   "lines": {
+    "78": "\t\t\tresult = self.run_custom_query(query)", 
+    "79": "\t\telse:", 
+    "80": "\t\t\tresult = self.build_and_run()", 
+    "81": "", 
+    "82": "\t\tif with_comment_count and not as_list and self.doctype:"
+   }, 
+   "lnum": 80
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>)", 
+   "dump": {
+    "args": "undefined", 
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. prepare_args": "<bound method DatabaseQuery.prepare_args of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "build_and_run", 
+   "lines": {
+    "90": "", 
+    "91": "\tdef build_and_run(self):", 
+    "92": "\t\targs = self.prepare_args()", 
+    "93": "\t\targs.limit = self.add_limit()", 
+    "94": ""
+   }, 
+   "lnum": 92
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>)", 
+   "dump": {
+    "args": "{'order_by': u'', 'tables': u'`tabPrice List`', ...ags`,'')!=''\", 'fields': u'_user_tags, count(*)'}", 
+    "self": "<frappe.model.db_query.DatabaseQuery object>", 
+    "self. set_order_by": "<bound method DatabaseQuery.set_order_by of <frappe.model.db_query.DatabaseQuery object>>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "prepare_args", 
+   "lines": {
+    "138": "\t\targs.fields = ', '.join(self.fields)", 
+    "139": "", 
+    "140": "\t\tself.set_order_by(args)", 
+    "141": "\t\tself.check_sort_by_table(args.order_by)", 
+    "142": "\t\targs.order_by = args.order_by and (\" order by \" + args.order_by) or \"\""
+   }, 
+   "lnum": 140
+  }, 
+  {
+   "call": "(self=<frappe.model.db_query.DatabaseQuery object>, args={'order_by': u'', 'tables': u'`tabPrice List`', ...ags`,'')!=''\", 'fields': u'_user_tags, count(*)'})", 
+   "dump": {
+    "].strip": "undefined", 
+    "f": "u'selling'", 
+    "f. split": "<built-in method split of unicode object>", 
+    "meta": "<frappe.model.meta.Meta object>", 
+    "meta. sort_field": "u'selling, buying, name'", 
+    "meta.sort_field. split": "<built-in method split of unicode object>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py", 
+   "func": "set_order_by", 
+   "lines": {
+    "458": "\t\t\t\t\t# `tabItem`.`idx` desc, `tabItem`.`modified` desc", 
+    "459": "\t\t\t\t\targs.order_by = ', '.join(['`tab{0}`.`{1}` {2}'.format(self.doctype,", 
+    "460": "\t\t\t\t\t\tf.split()[0].strip(), f.split()[1].strip()) for f in meta.sort_field.split(',')])", 
+    "461": "\t\t\t\telse:", 
+    "462": "\t\t\t\t\tsort_field = meta.sort_field or 'modified'"
+   }, 
+   "lnum": 460
+  }
+ ], 
+ "locals": {
+  "args": "{'order_by': u'', 'tables': u'`tabPrice List`', ...ags`,'')!=''\", 'fields': u'_user_tags, count(*)'}", 
+  "f": "u'selling'", 
+  "group_function_without_group_by": "False", 
+  "meta": "<frappe.model.meta.Meta object>", 
+  "self": "<frappe.model.db_query.DatabaseQuery object>", 
+  "sort_field": "None", 
+  "sort_order": "None"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2017-04-11 17:16:05.750589", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/reportview.py\", line 151, in get_stats\n    filters=[\"ifnull(`%s`,'')!=''\" % tag], group_by=tag, as_list=True)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/reportview.py\", line 21, in execute\n    return DatabaseQuery(doctype).execute(*args, **kwargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 80, in execute\n    result = self.build_and_run()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 92, in build_and_run\n    args = self.prepare_args()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 140, in prepare_args\n    self.set_order_by(args)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/db_query.py\", line 460, in set_order_by\n    f.split()[0].strip(), f.split()[1].strip()) for f in meta.sort_field.split(',')])\nIndexError: list index out of range\n"
+}

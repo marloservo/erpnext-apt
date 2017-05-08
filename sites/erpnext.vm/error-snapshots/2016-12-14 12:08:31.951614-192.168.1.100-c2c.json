@@ -1,0 +1,234 @@
+{
+ "etype": "<type 'exceptions.SyntaxError'>", 
+ "evalue": "SyntaxError('invalid syntax', ('/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sku/sku.py', 13, 38, '        if existing == self.consignee\\n'))", 
+ "exception": {
+  "args": "('invalid syntax', ('/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sku/sku.py', 13, 38, '        if existing == self.consignee\\n'))", 
+  "filename": "'/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sku/sku.py'", 
+  "lineno": "13", 
+  "message": "''", 
+  "msg": "'invalid syntax'", 
+  "offset": "38", 
+  "print_file_and_line": "None", 
+  "text": "'        if existing == self.consignee\\n'"
+ }, 
+ "frames": [
+  {
+   "call": "(request=<Request 'http://192.168.1.160/?doctype=SKU&name...ppe.desk.form.load.getdoc&_=1481688480857' [GET]>)", 
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/frappe/frappe-bench/apps/frappe/frappe/handler.pyc'>", 
+    "frappe.handler. handle": "<function handle>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "response": "None"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/app.py", 
+   "func": "application", 
+   "lines": {
+    "53": "", 
+    "54": "\t\tif frappe.local.form_dict.cmd:", 
+    "55": "\t\t\tresponse = frappe.handler.handle()", 
+    "56": "", 
+    "57": "\t\telif frappe.request.path.startswith(\"/api/\"):"
+   }, 
+   "lnum": 55
+  }, 
+  {
+   "call": "()", 
+   "dump": {
+    "cmd": "u'frappe.desk.form.load.getdoc'", 
+    "global execute_cmd": "<function execute_cmd>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "handle", 
+   "lines": {
+    "17": "", 
+    "18": "\tif cmd!='login':", 
+    "19": "\t\texecute_cmd(cmd)", 
+    "20": "", 
+    "21": "\treturn build_response(\"json\")"
+   }, 
+   "lnum": 19
+  }, 
+  {
+   "call": "(cmd=u'frappe.desk.form.load.getdoc', from_async=False)", 
+   "dump": {
+    "frappe. call": "<function call>", 
+    "frappe. form_dict": "{'cmd': u'frappe.desk.form.load.getdoc', 'doctype': u'SKU', 'name': u'321321'}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "method": "<function getdoc>", 
+    "ret": "undefined"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/handler.py", 
+   "func": "execute_cmd", 
+   "lines": {
+    "34": "\tis_whitelisted(method)", 
+    "35": "", 
+    "36": "\tret = frappe.call(method, **frappe.form_dict)", 
+    "37": "", 
+    "38": "\t# returns with a message"
+   }, 
+   "lnum": 36
+  }, 
+  {
+   "call": "(fn=<function getdoc>, *args=(), **kwargs={'cmd': u'frappe.desk.form.load.getdoc', 'doctype': u'SKU', 'name': u'321321'})", 
+   "dump": {
+    "args": "()", 
+    "fn": "<function getdoc>", 
+    "newargs": "{'doctype': u'SKU', 'name': u'321321'}"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "call", 
+   "lines": {
+    "877": "\t\tdel newargs[\"flags\"]", 
+    "878": "", 
+    "879": "\treturn fn(*args, **newargs)", 
+    "880": "", 
+    "881": "def make_property_setter(args, ignore_validate=False, validate_fields_for_doctype=True):"
+   }, 
+   "lnum": 879
+  }, 
+  {
+   "call": "(doctype=u'SKU', name=u'321321', user=None)", 
+   "dump": {
+    "doc": "undefined", 
+    "doctype": "u'SKU'", 
+    "frappe. get_doc": "<function get_doc>", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "name": "u'321321'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/load.py", 
+   "func": "getdoc", 
+   "lines": {
+    "30": "", 
+    "31": "\ttry:", 
+    "32": "\t\tdoc = frappe.get_doc(doctype, name)", 
+    "33": "\t\trun_onload(doc)", 
+    "34": ""
+   }, 
+   "lnum": 32
+  }, 
+  {
+   "call": "(arg1=u'SKU', arg2=u'321321')", 
+   "dump": {
+    "arg1": "u'SKU'", 
+    "arg2": "u'321321'", 
+    "frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "frappe. model": "<module 'frappe.model' from '/home/frappe/frappe-bench/apps/frappe/frappe/model/__init__.pyc'>", 
+    "frappe.model. document": "<module 'frappe.model.document' from '/home/frap...ppe-bench/apps/frappe/frappe/model/document.pyc'>", 
+    "frappe.model.document. get_doc": "<function get_doc>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "get_doc", 
+   "lines": {
+    "576": "\t\"\"\"", 
+    "577": "\timport frappe.model.document", 
+    "578": "\treturn frappe.model.document.get_doc(arg1, arg2)", 
+    "579": "", 
+    "580": "def get_last_doc(doctype):"
+   }, 
+   "lnum": 578
+  }, 
+  {
+   "call": "(arg1=u'SKU', arg2=u'321321')", 
+   "dump": {
+    "controller": "undefined", 
+    "doctype": "u'SKU'", 
+    "global get_controller": "<function get_controller>"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py", 
+   "func": "get_doc", 
+   "lines": {
+    "43": "\t\tdoctype = arg1.get(\"doctype\")", 
+    "44": "", 
+    "45": "\tcontroller = get_controller(doctype)", 
+    "46": "\tif controller:", 
+    "47": "\t\treturn controller(arg1, arg2)"
+   }, 
+   "lnum": 45
+  }, 
+  {
+   "call": "(doctype=u'SKU')", 
+   "dump": {
+    "doctype": "u'SKU'", 
+    "global load_doctype_module": "<function load_doctype_module>", 
+    "module": "undefined", 
+    "module_name": "u'Selling'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/model/base_document.py", 
+   "func": "get_controller", 
+   "lines": {
+    "30": "\t\t\t_class = Document", 
+    "31": "\t\telse:", 
+    "32": "\t\t\tmodule = load_doctype_module(doctype, module_name)", 
+    "33": "\t\t\tclassname = doctype.replace(\" \", \"\").replace(\"-\", \"\")", 
+    "34": "\t\t\tif hasattr(module, classname):"
+   }, 
+   "lnum": 32
+  }, 
+  {
+   "call": "(doctype=u'SKU', module=u'Selling', prefix=u'', suffix=u'')", 
+   "dump": {
+    "doctype": "u'SKU'", 
+    "frappe. get_module": "<function get_module>", 
+    "global doctype_python_modules": "{(u'frappe', u'DocField', u'', u''): <module 'frappe.core.doctype.docfield.docfield' ...rappe/frappe/core/doctype/docfield/docfield.pyc'>, (u'frappe', u'DocPerm', u'', u''): <module 'frappe.core.doctype.docperm.docperm' fr.../frappe/frappe/core/doctype/docperm/docperm.pyc'>, (u'frappe', u'Page', u'', u''): <module 'frappe.core.doctype.page.page' from '/h...h/apps/frappe/frappe/core/doctype/page/page.pyc'>, (u'frappe', u'User', u'', u''): <module 'frappe.core.doctype.user.user' from '/h...h/apps/frappe/frappe/core/doctype/user/user.pyc'>, (u'frappe', u'UserRole', u'', u''): <module 'frappe.core.doctype.userrole.userrole' ...rappe/frappe/core/doctype/userrole/userrole.pyc'>}", 
+    "global frappe": "<module 'frappe' from '/home/frappe/frappe-bench/apps/frappe/frappe/__init__.pyc'>", 
+    "global get_module_name": "<function get_module_name>", 
+    "key": "(u'erpnext', u'SKU', u'', u'')", 
+    "module": "u'Selling'", 
+    "prefix": "u''", 
+    "suffix": "u''"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/modules/__init__.py", 
+   "func": "load_doctype_module", 
+   "lines": {
+    "62": "", 
+    "63": "\tif key not in doctype_python_modules:", 
+    "64": "\t\tdoctype_python_modules[key] = frappe.get_module(get_module_name(doctype, module, prefix, suffix))", 
+    "65": "", 
+    "66": "\treturn doctype_python_modules[key]"
+   }, 
+   "lnum": 64
+  }, 
+  {
+   "call": "(modulename=u'erpnext.selling.doctype.sku.sku')", 
+   "dump": {
+    "global importlib": "<module 'importlib' from '/usr/lib/python2.7/importlib/__init__.pyc'>", 
+    "importlib. import_module": "<function import_module>", 
+    "modulename": "u'erpnext.selling.doctype.sku.sku'"
+   }, 
+   "file": "/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py", 
+   "func": "get_module", 
+   "lines": {
+    "641": "def get_module(modulename):", 
+    "642": "\t\"\"\"Returns a module object for given Python module name using `importlib.import_module`.\"\"\"", 
+    "643": "\treturn importlib.import_module(modulename)", 
+    "644": "", 
+    "645": "def scrub(txt):"
+   }, 
+   "lnum": 643
+  }, 
+  {
+   "call": "(name=u'erpnext.selling.doctype.sku.sku', package=None)", 
+   "dump": {
+    "builtin __import__": "<built-in function __import__>", 
+    "name": "u'erpnext.selling.doctype.sku.sku'"
+   }, 
+   "file": "/usr/lib/python2.7/importlib/__init__.py", 
+   "func": "import_module", 
+   "lines": {
+    "34": "                break", 
+    "35": "            level += 1", 
+    "36": "        name = _resolve_name(name[level:], package, level)", 
+    "37": "    __import__(name)", 
+    "38": "    return sys.modules[name]"
+   }, 
+   "lnum": 37
+  }
+ ], 
+ "locals": {
+  "name": "u'erpnext.selling.doctype.sku.sku'", 
+  "package": "None"
+ }, 
+ "pyver": "Python 2.7.6: /home/frappe/frappe-bench/env/bin/python (prefix: /home/frappe/frappe-bench/env)", 
+ "timestamp": "2016-12-14 12:08:31.952081", 
+ "traceback": "Traceback (most recent call last):\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/app.py\", line 55, in application\n    response = frappe.handler.handle()\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 19, in handle\n    execute_cmd(cmd)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/handler.py\", line 36, in execute_cmd\n    ret = frappe.call(method, **frappe.form_dict)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 879, in call\n    return fn(*args, **newargs)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/desk/form/load.py\", line 32, in getdoc\n    doc = frappe.get_doc(doctype, name)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 578, in get_doc\n    return frappe.model.document.get_doc(arg1, arg2)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/document.py\", line 45, in get_doc\n    controller = get_controller(doctype)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/model/base_document.py\", line 32, in get_controller\n    module = load_doctype_module(doctype, module_name)\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/modules/__init__.py\", line 64, in load_doctype_module\n    doctype_python_modules[key] = frappe.get_module(get_module_name(doctype, module, prefix, suffix))\n  File \"/home/frappe/frappe-bench/apps/frappe/frappe/__init__.py\", line 643, in get_module\n    return importlib.import_module(modulename)\n  File \"/usr/lib/python2.7/importlib/__init__.py\", line 37, in import_module\n    __import__(name)\n  File \"/home/frappe/frappe-bench/apps/erpnext/erpnext/selling/doctype/sku/sku.py\", line 13\n    if existing == self.consignee\n                                ^\nSyntaxError: invalid syntax\n"
+}
