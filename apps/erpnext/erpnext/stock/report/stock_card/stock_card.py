@@ -8,7 +8,6 @@ from frappe import _
 def execute(filters=None):
     columns = get_columns(filters)
     sl_entries = get_stock_ledger_entries(filters)
-    item_details = get_item_details(filters)
     opening_row = get_opening_balance(filters, columns)
     
     data = []
@@ -16,8 +15,6 @@ def execute(filters=None):
         data.append(opening_row)
 
     for sle in sl_entries:
-        item_detail = item_details[sle.item_code]
-        
         temp_data = []
         temp_data.append(sle.date)
         if not filters.warehouse :
@@ -27,9 +24,9 @@ def execute(filters=None):
         temp_data.append(sle.actual_qty if sle.ppp_is_adjustable else '')
         temp_data.append(sle.qty_after_transaction)
         temp_data.append(sle.stock_value)
-        if not filters.item_code :
+        if not filters.item_code:
             temp_data.append(sle.item_code)
-            temp_data.append(item_detail.description)
+            temp_data.append(sle.description)
         temp_data.append(sle.voucher_no)
         temp_data.append(sle.voucher_type)
         
@@ -58,22 +55,14 @@ def get_columns(filters=None):
 def get_stock_ledger_entries(filters):
     return frappe.db.sql("""select date(sle.posting_date) date,
             sle.item_code, sle.warehouse, sle.actual_qty, sle.qty_after_transaction, sle.incoming_rate, sle.valuation_rate,
-            sle.stock_value, sle.voucher_type, sle.voucher_no
+            sle.stock_value, sle.voucher_type, sle.voucher_no, i.item_description
         from `tabStock Ledger Entry` sle
+        left join `tabItem` i on i.name = sle.item_code
         where 
             sle.posting_date between %(from_date)s and %(to_date)s
             {sle_conditions}
             order by sle.posting_date asc, sle.posting_time asc, sle.name asc"""\
         .format(sle_conditions=get_sle_conditions(filters)), filters, as_dict=1)
-
-def get_item_details(filters):
-    item_details = {}
-    for item in frappe.db.sql("""select name, item_name, description, item_group,
-            brand, stock_uom from `tabItem` {item_conditions}"""\
-            .format(item_conditions=get_item_conditions(filters)), filters, as_dict=1):
-        item_details.setdefault(item.name, item)
-
-    return item_details
 
 def get_item_conditions(filters):
     conditions = []

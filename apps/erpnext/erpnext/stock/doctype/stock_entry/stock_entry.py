@@ -192,6 +192,13 @@ class StockEntry(StockController):
         source_mandatory = ["Material Transfer", "Pullout"]
         target_mandatory = ["Material Transfer", "Adjustments", "Pullout"]
 
+        if self.ppp_from and frappe.db.exists('Warehouse', {"ppp_location_code": self.ppp_from}):
+            dfrom_warehouse = frappe.get_doc('Warehouse', {"ppp_location_code": self.ppp_from})
+            self.from_warehouse = dfrom_warehouse.name
+        if self.ppp_to and frappe.db.exists('Warehouse', {"ppp_location_code": self.ppp_to}):
+            dto_warehouse = frappe.get_doc('Warehouse', {"ppp_location_code": self.ppp_to})
+            self.from_warehouse = dto_warehouse.name
+
         # MARLO 20170405
         if self.purpose in source_mandatory and self.purpose not in target_mandatory:
             self.to_warehouse = None
@@ -201,7 +208,7 @@ class StockEntry(StockController):
             self.from_warehouse = None
             for d in self.get('items'):
                 d.s_warehouse = None
-        
+
         if self.purpose in source_mandatory and not self.from_warehouse:
             frappe.throw(_("Source warehouse is mandatory"))
             
@@ -214,59 +221,6 @@ class StockEntry(StockController):
         for d in self.get('items'):
             d.s_warehouse = self.from_warehouse
             d.t_warehouse = self.to_warehouse
-
-            
-        """
-        validate_for_manufacture_repack = any([d.bom_no for d in self.get("items")])
-
-        if self.purpose in source_mandatory and self.purpose not in target_mandatory:
-            self.to_warehouse = None
-            for d in self.get('items'):
-                d.t_warehouse = None
-        elif self.purpose in target_mandatory and self.purpose not in source_mandatory:
-            self.from_warehouse = None
-            for d in self.get('items'):
-                d.s_warehouse = None
-
-        for d in self.get('items'):
-            if not d.s_warehouse and not d.t_warehouse:
-                d.s_warehouse = self.from_warehouse
-                d.t_warehouse = self.to_warehouse
-
-            if not (d.s_warehouse or d.t_warehouse):
-                frappe.throw(_("Atleast one warehouse is mandatory"))
-
-            if self.purpose in source_mandatory and not d.s_warehouse:
-                if self.from_warehouse:
-                    d.s_warehouse = self.from_warehouse
-                else:
-                    frappe.throw(_("Source warehouse is mandatory for row {0}").format(d.idx))
-
-            if self.purpose in target_mandatory and not d.t_warehouse:
-                if self.to_warehouse:
-                    d.t_warehouse = self.to_warehouse
-                else:
-                    frappe.throw(_("Target warehouse is mandatory for row {0}").format(d.idx))
-
-            if self.purpose in ["Manufacture", "Repack"]:
-                if validate_for_manufacture_repack:
-                    if d.bom_no:
-                        d.s_warehouse = None
-
-                        if not d.t_warehouse:
-                            frappe.throw(_("Target warehouse is mandatory for row {0}").format(d.idx))
-
-                        elif self.pro_doc and cstr(d.t_warehouse) != self.pro_doc.fg_warehouse:
-                            frappe.throw(_("Target warehouse in row {0} must be same as Production Order").format(d.idx))
-
-                    else:
-                        d.t_warehouse = None
-                        if not d.s_warehouse:
-                            frappe.throw(_("Source warehouse is mandatory for row {0}").format(d.idx))
-
-            if cstr(d.s_warehouse) == cstr(d.t_warehouse):
-                frappe.throw(_("Source and target warehouse cannot be same for row {0}").format(d.idx))
-        """
         
     def validate_production_order(self):
         if self.purpose in ("Manufacture", "Material Transfer for Manufacture"):

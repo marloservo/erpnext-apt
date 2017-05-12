@@ -8,19 +8,16 @@ from frappe import _
 def execute(filters=None):
     columns = get_columns(filters)
     sl_entries = get_stock_ledger_entries(filters)
-    item_details = get_item_details(filters)
-    
+
     data = []
     for sle in sl_entries:
-        item_detail = item_details[sle.item_code]
-        
         temp_data = []
-        if not filters.warehouse :
+        if not filters.warehouse:
             temp_data.append(sle.warehouse)
         temp_data.append(sle.item_code)
-        temp_data.append(item_detail.description)
-        temp_data.append(item_detail.brand)
-        temp_data.append(item_detail.stock_uom)
+        temp_data.append(sle.description)
+        temp_data.append(sle.brand)
+        temp_data.append(sle.stock_uom)
         temp_data.append(sle.qty_after_transaction)
         temp_data.append(sle.stock_value)
         
@@ -43,53 +40,30 @@ def get_columns(filters=None):
 
 def get_stock_ledger_entries(filters):
     return frappe.db.sql("""select date(sle.posting_date) date,
-            sle.item_code, sle.warehouse, sle.qty_after_transaction, sle.valuation_rate, sle.stock_value
+            sle.item_code, sle.warehouse, sle.qty_after_transaction, sle.stock_value,
+            i.description, i.brand, i.stock_uom
         from `tabStock Ledger Entry` sle
         inner join (
             select max( name ) name, warehouse, item_code
             from  `tabStock Ledger Entry` 
             where date( posting_date ) <=  %(to_date)s
+              and warehouse = %(warehouse)s
             group by warehouse, item_code
             ) a on a.name = sle.name
+        left join `tabItem` i on i.name = sle.item_code
         where 1=1
             {sle_conditions}
             """\
         .format(sle_conditions=get_sle_conditions(filters)), filters, as_dict=1)
 
-def get_item_details(filters):
-    item_details = {}
-    for item in frappe.db.sql("""select name, item_name, description, item_group,
-            brand, stock_uom from `tabItem` {item_conditions}"""\
-            .format(item_conditions=get_item_conditions(filters)), filters, as_dict=1):
-        item_details.setdefault(item.name, item)
-
-    return item_details
-
-def get_item_conditions(filters):
-    conditions = []
-    if filters.get("item_code"):
-        conditions.append("name=%(item_code)s")
-    if filters.get("brand"):
-        conditions.append("brand=%(brand)s")
-
-    return "where {}".format(" and ".join(conditions)) if conditions else ""
-
 def get_sle_conditions(filters):
     conditions = []
-    item_conditions=get_item_conditions(filters)
-    if item_conditions:
-        conditions.append("""sle.item_code in (select name from tabItem
-            {item_conditions})""".format(item_conditions=item_conditions))
+    if filters.item_code:
+        conditions.append("sle.item_code=%(item_code)s")
     if filters.warehouse:
-        conditions.append(get_warehouse_condition(filters.get("warehouse")))
+        conditions.append("sle.warehouse=%(warehouse)s")
+    if filters.brand:
+        conditions.append("i.brand=%(brand)s")
 
     return "and {}".format(" and ".join(conditions)) if conditions else ""
     
-def get_warehouse_condition(warehouse):
-    warehouse_details = frappe.db.get_value("Warehouse", warehouse, ["lft", "rgt"], as_dict=1)
-    if warehouse_details:
-        return " exists (select name from `tabWarehouse` wh \
-            where wh.lft >= %s and wh.rgt <= %s and sle.warehouse = wh.name)"%(warehouse_details.lft,
-            warehouse_details.rgt)
-
-    return ''

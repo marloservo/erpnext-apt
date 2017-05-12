@@ -43,7 +43,7 @@ class Customer(TransactionBase):
             store = frappe.new_doc("Warehouse")
             store.warehouse_name = self.customer_name
             store.customer_group = self.customer_group
-            store.store_code = self.store_code
+            store.ppp_store_code = self.store_code
             
             #  MARLO 20170410
             if self.ppp_location_code:

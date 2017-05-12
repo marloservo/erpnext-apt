@@ -15,6 +15,8 @@ frappe.query_reports["Stock Position"] = {
 			"label": __("Warehouse"),
 			"fieldtype": "Link",
 			"options": "Warehouse",
+            "default": "Head Office - Pasig - APT",
+			"reqd": 1
 		},
 		{
 			"fieldname":"item_code",
