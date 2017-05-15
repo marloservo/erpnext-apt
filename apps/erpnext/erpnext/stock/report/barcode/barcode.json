@@ -7,12 +7,12 @@
  "doctype": "Report", 
  "idx": 0, 
  "is_standard": "Yes", 
- "modified": "2017-05-12 11:14:28.456302", 
+ "modified": "2017-05-13 17:39:38.494675", 
  "modified_by": "Administrator", 
  "module": "Stock", 
  "name": "Barcode", 
  "owner": "Administrator", 
- "ref_doctype": "Stock Entry Detail", 
+ "ref_doctype": "Stock Entry", 
  "report_name": "Barcode", 
  "report_type": "Script Report"
 }

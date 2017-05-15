@@ -13,7 +13,7 @@ from frappe.utils.csvutils import getlink
 from frappe.utils.dateutils import parse_date
 
 from frappe.utils import cint, cstr, flt, getdate, get_datetime
-from frappe.core.page.import_sales_report.import_sales_report import get_data_keys
+from frappe.core.page.data_import_tool.data_import_tool import get_data_keys
 
 @frappe.whitelist()
 def upload(rows = None, submit_after_import=None, ignore_encoding_errors=False, overwrite=None,

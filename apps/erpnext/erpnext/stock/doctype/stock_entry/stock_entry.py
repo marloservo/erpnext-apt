@@ -6,8 +6,9 @@ import frappe
 import frappe.defaults
 from frappe import _
 from frappe.utils import cstr, cint, flt, comma_or, getdate, nowdate, formatdate, format_time, nowtime
-from erpnext.stock.utils import get_incoming_rate
-from erpnext.stock.stock_ledger import get_previous_sle, NegativeStockError
+# from erpnext.stock.utils import get_incoming_rate
+# from erpnext.stock.stock_ledger import get_previous_sle, NegativeStockError
+from erpnext.stock.stock_ledger import NegativeStockError
 from erpnext.stock.get_item_details import get_bin_details, get_default_cost_center, get_conversion_factor
 from erpnext.manufacturing.doctype.bom.bom import validate_bom_no
 import json
@@ -26,7 +27,7 @@ form_grid_templates = {
 class StockEntry(StockController):
     # MARLO 20170426
     def has_amendments(self) :
-        if frappe.db.exists("Stock Entry", {"amended_from": self.name, "docstatus": 1}) :
+        if frappe.db.exists("Stock Entry", {"amended_from": self.name, "docstatus": 1}):
             return True
         return False
 
@@ -48,7 +49,7 @@ class StockEntry(StockController):
     # MARLO 20170329
     def validate_amendment(self) :
         if self.amended_from :
-            if frappe.db.exists("Stock Entry", {"amended_from": self.amended_from, "docstatus": 1}) :
+            if frappe.db.exists("Stock Entry", {"amended_from": self.amended_from, "docstatus": 1}):
                 frappe.throw(_("{0} has existing adjustment").format(self.amended_from))
                 
             # check if from_warehouse, to_warehouse, purpose are not changed
@@ -60,6 +61,15 @@ class StockEntry(StockController):
             not self.to_warehouse == base_voucher.to_warehouse or \
             not self.purpose == base_voucher.purpose :
                 frappe.throw(_("Amended Voucher {0} have mismatched details").format(self.amended_from))
+
+            if frappe.db.exists("Stock Entry", {"name": self.amended_from}):
+                from_doc = frappe.get_doc("Stock Entry", {"name": self.amended_from})
+                if not from_doc.ppp_original_doc:
+                    self.ppp_original_doc = from_doc.name
+                    from_doc.ppp_original_doc = from_doc.name
+                    from_doc.save()
+                else:
+                    self.ppp_original_doc = from_doc.ppp_original_doc
 
     # MARLO 20170324
     def update_pending_count(self, clear_pending=False):
@@ -123,11 +133,11 @@ class StockEntry(StockController):
         self.validate_uom_is_integer("uom", "qty")
         self.validate_uom_is_integer("stock_uom", "transfer_qty")
         self.validate_warehouse()
-        self.validate_production_order()
-        self.validate_bom()
-        self.validate_finished_goods()
-        self.validate_with_material_request()
-        self.validate_batch()
+        #self.validate_production_order()
+        #self.validate_bom()
+        #self.validate_finished_goods()
+        #self.validate_with_material_request()
+        #self.validate_batch()
 
         self.set_actual_qty()
         self.calculate_rate_and_amount(update_finished_item_rate=False)
@@ -135,10 +145,10 @@ class StockEntry(StockController):
     def on_submit(self):
         self.update_stock_ledger()
         
-        from erpnext.stock.doctype.serial_no.serial_no import update_serial_nos_after_submit
-        update_serial_nos_after_submit(self, "items")
-        self.update_production_order()
-        self.validate_purchase_order()
+        # from erpnext.stock.doctype.serial_no.serial_no import update_serial_nos_after_submit
+        # update_serial_nos_after_submit(self, "items")
+        # self.update_production_order()
+        # self.validate_purchase_order()
         self.make_gl_entries()
         
         # MARLO 20170324
@@ -164,7 +174,7 @@ class StockEntry(StockController):
 
     def validate_item(self):
         stock_items = self.get_stock_items()
-        serialized_items = self.get_serialized_items()
+        #serialized_items = self.get_serialized_items()
         for item in self.get("items"):
             if item.item_code not in stock_items:
                 frappe.throw(_("{0} is not a stock Item").format(item.item_code))
@@ -180,11 +190,11 @@ class StockEntry(StockController):
             if not item.transfer_qty and item.qty:
                 item.transfer_qty = item.qty * item.conversion_factor
 
-            if (self.purpose in ("Material Transfer", "Material Transfer for Manufacture")
-                and not item.serial_no
-                and item.item_code in serialized_items):
-                frappe.throw(_("Row #{0}: Please specify Serial No for Item {1}").format(item.idx, item.item_code),
-                    frappe.MandatoryError)
+            #if (self.purpose in ("Material Transfer", "Material Transfer for Manufacture")
+            #    and not item.serial_no
+            #    and item.item_code in serialized_items):
+            #    frappe.throw(_("Row #{0}: Please specify Serial No for Item {1}").format(item.idx, item.item_code),
+            #        frappe.MandatoryError)
 
     def validate_warehouse(self):
         """perform various (sometimes conditional) validations on warehouse"""
@@ -197,7 +207,7 @@ class StockEntry(StockController):
             self.from_warehouse = dfrom_warehouse.name
         if self.ppp_to and frappe.db.exists('Warehouse', {"ppp_location_code": self.ppp_to}):
             dto_warehouse = frappe.get_doc('Warehouse', {"ppp_location_code": self.ppp_to})
-            self.from_warehouse = dto_warehouse.name
+            self.to_warehouse = dto_warehouse.name
 
         # MARLO 20170405
         if self.purpose in source_mandatory and self.purpose not in target_mandatory:
@@ -270,15 +280,19 @@ class StockEntry(StockController):
         allow_negative_stock = cint(frappe.db.get_value("Stock Settings", None, "allow_negative_stock"))
 
         for d in self.get('items'):
-            previous_sle = get_previous_sle({
-                "item_code": d.item_code,
-                "warehouse": d.s_warehouse or d.t_warehouse,
-                "posting_date": self.posting_date,
-                "posting_time": self.posting_time
-            })
+
+            #previous_sle = get_previous_sle({
+            #    "item_code": d.item_code,
+            #    "warehouse": d.s_warehouse or d.t_warehouse,
+            #    "posting_date": self.posting_date,
+            #    "posting_time": self.posting_time
+            #})
 
             # get actual stock at source warehouse
-            d.actual_qty = previous_sle.get("qty_after_transaction") or 0
+            #d.actual_qty = previous_sle.get("qty_after_transaction") or 0
+
+            bin_warehouse = frappe.get_doc("Bin", {"item_code": d.item_code, "warehouse": d.s_warehouse or d.t_warehouse})
+            d.actual_qty = bin_warehouse.actual_qty
 
             # validate qty during submit
             if d.docstatus==1 and d.s_warehouse and not allow_negative_stock and d.actual_qty < d.transfer_qty:
@@ -320,7 +334,9 @@ class StockEntry(StockController):
             # get basic rate
             if not d.bom_no:
                 if not flt(d.basic_rate) or d.s_warehouse or force:
-                    basic_rate = flt(get_incoming_rate(args), self.precision("basic_rate", d))
+                    #basic_rate = flt(get_incoming_rate(args), self.precision("basic_rate", d))
+                    bin_warehouse = frappe.get_doc("Bin", {"item_code": args.item_code, "warehouse": args.warehouse})
+                    basic_rate = bin_warehouse.valuation_rate
                     if basic_rate > 0:
                         d.basic_rate = basic_rate
 
@@ -553,19 +569,19 @@ class StockEntry(StockController):
         item = item[0]
 
         ret = {
-            'uom'                      : item.stock_uom,
-            'stock_uom'                  : item.stock_uom,
-            'description'              : item.description,
-            'image'                    : item.image,
-            'item_name'               : item.item_name,
-            'expense_account'        : args.get("expense_account"),
-            'cost_center'            : get_default_cost_center(args, item),
-            'qty'                    : 0,
-            'transfer_qty'            : 0,
-            'conversion_factor'        : 1,
-            'batch_no'                : '',
-            'actual_qty'            : 0,
-            'basic_rate'            : 0
+            'uom'               : item.stock_uom,
+            'stock_uom'         : item.stock_uom,
+            'description'       : item.description,
+            'image'             : item.image,
+            'item_name'         : item.item_name,
+            'expense_account'   : args.get("expense_account"),
+            'cost_center'       : get_default_cost_center(args, item),
+            'qty'               : 0,
+            'transfer_qty'      : 0,
+            'conversion_factor' : 1,
+            'batch_no'          : '',
+            'actual_qty'        : 0,
+            'basic_rate'        : 0
         }
         for d in [["Account", "expense_account", "default_expense_account"],
             ["Cost Center", "cost_center", "cost_center"]]:
@@ -915,9 +931,10 @@ def get_warehouse_details(args):
             "posting_date": args.posting_date,
             "posting_time": args.posting_time,
         })
+        bin_warehouse = frappe.get_doc("Bin", {"item_code": args.item_code, "warehouse": args.warehouse})
         ret = {
-            "actual_qty" : get_previous_sle(args).get("qty_after_transaction") or 0,
-            "basic_rate" : get_incoming_rate(args)
+            "actual_qty" : bin_warehouse.actual_qty or 0,
+            "basic_rate" : bin_warehouse.valuation_rate or 0
         }
 
     return ret

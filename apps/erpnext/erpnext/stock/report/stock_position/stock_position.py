@@ -47,23 +47,32 @@ def get_stock_ledger_entries(filters):
             select max( name ) name, warehouse, item_code
             from  `tabStock Ledger Entry` 
             where date( posting_date ) <=  %(to_date)s
-              and warehouse = %(warehouse)s
+              and {item_conditions}
             group by warehouse, item_code
             ) a on a.name = sle.name
         left join `tabItem` i on i.name = sle.item_code
-        where 1=1
+        where 
             {sle_conditions}
             """\
-        .format(sle_conditions=get_sle_conditions(filters)), filters, as_dict=1)
+        .format(sle_conditions=get_sle_conditions(filters), item_conditions=get_item_conditions(filters) ), filters, as_dict=1)
+
+def get_item_conditions(filters):
+    conditions = []
+    if filters.warehouse:
+        conditions.append("warehouse=%(warehouse)s")
+    if filters.item_code:
+        conditions.append("item_code=%(item_code)s")
+
+    return "{}".format(" and ".join(conditions)) if conditions else ""
 
 def get_sle_conditions(filters):
     conditions = []
-    if filters.item_code:
-        conditions.append("sle.item_code=%(item_code)s")
     if filters.warehouse:
         conditions.append("sle.warehouse=%(warehouse)s")
+    if filters.item_code:
+        conditions.append("sle.item_code=%(item_code)s")
     if filters.brand:
         conditions.append("i.brand=%(brand)s")
 
-    return "and {}".format(" and ".join(conditions)) if conditions else ""
+    return "{}".format(" and ".join(conditions)) if conditions else ""
     

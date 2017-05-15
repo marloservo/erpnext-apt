@@ -55,7 +55,7 @@ def get_columns(filters=None):
 def get_stock_ledger_entries(filters):
     return frappe.db.sql("""select date(sle.posting_date) date,
             sle.item_code, sle.warehouse, sle.actual_qty, sle.qty_after_transaction, sle.incoming_rate, sle.valuation_rate,
-            sle.stock_value, sle.voucher_type, sle.voucher_no, i.item_description
+            sle.stock_value, sle.voucher_type, sle.voucher_no, i.description
         from `tabStock Ledger Entry` sle
         left join `tabItem` i on i.name = sle.item_code
         where 

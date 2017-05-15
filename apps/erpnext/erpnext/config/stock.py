@@ -41,7 +41,7 @@ def get_data():
                     "type": "doctype",
                     "name": "Warehouse",
                     "description": _("Where items are stored."),
-                    "label": _("Stores / Warehouses"),
+                    "label": _("Stores or Warehouses"),
                 },
                 {
                     "type": "doctype",
@@ -55,9 +55,22 @@ def get_data():
             "icon": "icon-wrench",
             "items": [
                 {
-                    "type": "doctype",
-                    "name": "Stock Reconciliation",
-                    "description": _("Upload stock balance via csv.")
+                    "type"          : "doctype",
+                    "name"          : "Stock Reconciliation",
+                    "description"   : _("Upload stock balance via csv.")
+                },
+                {
+                    "type"  : "page",
+                    "name"  : "import_refill_templa",
+                    "label" : _("Upload from Refill Template"),
+                    "icon"  : "icon-upload-alt",
+                },
+                {
+                    "type"           : "report",
+                    "is_query_report": True,
+                    "name"           : "Barcode",
+                    "doctype"        : "Stock Entry",
+                    "label"          : _("Barcode Export for Printing"),
                 },
             ]
         },
