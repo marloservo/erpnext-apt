@@ -1062,7 +1062,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2017-04-10 10:43:14.162843", 
+ "modified": "2017-05-16 11:21:08.877951", 
  "modified_by": "Administrator", 
  "module": "Selling", 
  "name": "Customer", 
@@ -1293,7 +1293,7 @@
  "quick_entry": 1, 
  "read_only": 0, 
  "read_only_onload": 0, 
- "search_fields": "customer_name, customer_group, store_code", 
+ "search_fields": "customer_name, customer_group, ppp_location_code", 
  "sort_order": "ASC", 
  "title_field": "customer_name", 
  "track_seen": 0

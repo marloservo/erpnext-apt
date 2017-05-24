@@ -291,8 +291,11 @@ class StockEntry(StockController):
             # get actual stock at source warehouse
             #d.actual_qty = previous_sle.get("qty_after_transaction") or 0
 
-            bin_warehouse = frappe.get_doc("Bin", {"item_code": d.item_code, "warehouse": d.s_warehouse or d.t_warehouse})
-            d.actual_qty = bin_warehouse.actual_qty
+            if not frappe.db.exists('Bin', {"warehouse": self.to_warehouse, "item_code": d.item_code}):
+                d.actual_qty = 0
+            else:
+                bin_warehouse = frappe.get_doc("Bin", {"item_code": d.item_code, "warehouse": d.s_warehouse or d.t_warehouse})
+                d.actual_qty = bin_warehouse.actual_qty
 
             # validate qty during submit
             if d.docstatus==1 and d.s_warehouse and not allow_negative_stock and d.actual_qty < d.transfer_qty:
@@ -335,10 +338,13 @@ class StockEntry(StockController):
             if not d.bom_no:
                 if not flt(d.basic_rate) or d.s_warehouse or force:
                     #basic_rate = flt(get_incoming_rate(args), self.precision("basic_rate", d))
-                    bin_warehouse = frappe.get_doc("Bin", {"item_code": args.item_code, "warehouse": args.warehouse})
-                    basic_rate = bin_warehouse.valuation_rate
-                    if basic_rate > 0:
-                        d.basic_rate = basic_rate
+                    if frappe.db.exists("Bin", {"item_code": args.item_code, "warehouse": args.warehouse}):
+                        bin_warehouse = frappe.get_doc("Bin", {"item_code": args.item_code, "warehouse": args.warehouse})
+                        basic_rate = bin_warehouse.valuation_rate
+                        if basic_rate > 0:
+                            d.basic_rate = basic_rate
+                    else:
+                        d.basic_rate = 0
 
                 d.basic_amount = flt(flt(d.transfer_qty) * flt(d.basic_rate), d.precision("basic_amount"))
                 if not d.t_warehouse:
@@ -463,7 +469,10 @@ class StockEntry(StockController):
                     }))
         else :
             #for amendments
-            orig_items = frappe.get_all("Stock Entry Detail", {"parent": self.amended_from}, ["item_code", "transfer_qty", "name"])
+            orig_items = frappe.get_all("Stock Entry Detail", filters = { "parent" :self.amended_from }, \
+                                                            fields = ["item_code", "transfer_qty", "name"],\
+                                                            order_by = "idx" \
+                                                            )
             new_items = self.get('items')
             for d in new_items:
                 if cstr(self.from_warehouse):
@@ -954,7 +963,7 @@ def validate_date(date_string):
 def ppp_confirm_dc(stock_entry_tr, date_confirmed):
     if not validate_date(date_confirmed):
         frappe.throw("Please supply a valid date");
-        
+
     stock_entry = frappe.get_doc("Stock Entry", stock_entry_tr)
     if stock_entry.ppp_is_adjustable and not stock_entry.has_amendments():
         stock_entry.ppp_confirmed_in_dc = date_confirmed

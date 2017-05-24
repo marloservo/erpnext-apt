@@ -45,8 +45,8 @@ erpnext.stock.StockEntry = erpnext.stock.StockController.extend({
         this.frm.get_field('items').grid.editable_fields = [
             {fieldname: 'item_code', columns: 3},
             {fieldname: 'qty', columns: 2},
-            {fieldname: 'basic_rate', columns: 2 },
-            {fieldname: 'basic_amount', columns: 2 },
+            {fieldname: 'ppp_srp', columns: 2 },
+            {fieldname: 'ppp_amount', columns: 2 },
             // MARLO 20170328
             // {fieldname: 's_warehouse', columns: 2},
             // {fieldname: 't_warehouse', columns: 2}
@@ -263,6 +263,11 @@ erpnext.stock.StockEntry = erpnext.stock.StockController.extend({
         this.calculate_basic_amount(item);
     },
 
+    ppp_srp: function(doc, cdt, cdn) {
+        var item = frappe.model.get_doc(cdt, cdn);
+        this.calculate_basic_amount(item);
+    },
+
     s_warehouse: function(doc, cdt, cdn) {
         this.get_warehouse_details(doc, cdt, cdn)
     },
@@ -301,6 +306,9 @@ erpnext.stock.StockEntry = erpnext.stock.StockController.extend({
     calculate_basic_amount: function(item) {
         item.basic_amount = flt(flt(item.transfer_qty) * flt(item.basic_rate),
             precision("basic_amount", item));
+
+        item.ppp_amount = flt(flt(item.transfer_qty) * flt(item.ppp_srp),
+            precision("ppp_amount", item));
 
         this.calculate_amount();
     },
