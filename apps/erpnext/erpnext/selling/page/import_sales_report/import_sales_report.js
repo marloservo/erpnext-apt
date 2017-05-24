@@ -192,7 +192,7 @@ frappe.ImportSalesReport = Class.extend({
     write_messages: function(data) {
         this.page.main.find(".import-log").removeClass("hide");
         var parent = this.page.main.find(".import-log-messages").empty();
-        
+
         for (var i=0, l=data.length; i<l; i++) {
             var v = data[i];
             var $p = $('<p></p>').html(frappe.markdown(v)).appendTo(parent);
