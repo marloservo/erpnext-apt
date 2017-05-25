@@ -68,7 +68,13 @@ frappe.ImportSalesReport = Class.extend({
                     
                     //MARLO 20161108
                     //check only essential fields
-                    var required_fields = ['naming_series', 'posting_date', 'company', 'currency', 'conversion_rate', 'selling_price_list', 'price_list_currency', 'plc_conversion_rate', 'base_net_total', 'base_grand_total', 'grand_total', 'debit_to', 'customer_group', 'store_code', 'due_date', 'update_stock', 'apply_discount_on', 'discount_amount', ' item_name', 'description', 'rate', 'amount', 'base_rate', 'base_amount', 'income_account', 'cost_center', 'item_code', 'qty', 'cashier', 'time_sold', 'sku'];
+                    var required_fields = ['naming_series', 'posting_date', 'company', 'currency', 'conversion_rate',
+                        'selling_price_list', 'price_list_currency', 'plc_conversion_rate',
+                        'base_net_total', 'base_grand_total', 'grand_total', 'debit_to',
+                        'customer_group', 'store_code', 'due_date', 'update_stock',
+                        'apply_discount_on', 'discount_amount', ' item_name', 'description', 'rate', 'amount',
+                        'base_rate', 'base_amount', 'income_account', 'cost_center', 'item_code',
+                        'qty', 'cashier', 'time_sold', 'sku'];
                     $.each( required_fields, function(i, fieldName) {
                         $("input[data-fieldname=" + fieldName + "]")[0].checked = true;
                     });

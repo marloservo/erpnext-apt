@@ -52,6 +52,9 @@ class SalesInvoice(SellingController):
             self.indicator_title = _("Paid")
 
     def validate(self):
+        if self.get("__islocal"):
+            self.posting_time = None;
+
         self.set_customer_from_store_code()
         self.validate_item_code()
         self.validate_amounts()
@@ -59,7 +62,7 @@ class SalesInvoice(SellingController):
         self.validate_posting_time()
         # self.so_dn_required()
         # self.validate_proj_cust()
-        self.validate_with_previous_doc()
+        # self.validate_with_previous_doc()
         self.validate_uom_is_integer("stock_uom", "qty")
         # self.check_close_sales_order("sales_order")
         self.validate_debit_to_acc()
@@ -93,21 +96,21 @@ class SalesInvoice(SellingController):
         set_account_for_mode_of_payment(self)
 
     def on_submit(self):
-        self.validate_pos_paid_amount()
+        # self.validate_pos_paid_amount()
 
-        if not self.recurring_id:
-            frappe.get_doc('Authorization Control').validate_approving_authority(self.doctype,
-                 self.company, self.base_grand_total, self)
+        #if not self.recurring_id:
+        #    frappe.get_doc('Authorization Control').validate_approving_authority(self.doctype,
+        #         self.company, self.base_grand_total, self)
 
-        self.check_prev_docstatus()
+        # self.check_prev_docstatus()
 
         if self.is_return:
             # NOTE status updating bypassed for is_return
             self.status_updater = []
 
         self.update_status_updater_args()
-        self.update_prevdoc_status()
-        self.update_billing_status_in_dn()
+        # self.update_prevdoc_status()
+        # self.update_billing_status_in_dn()
         self.clear_unallocated_mode_of_payments()
 
         # Updating stock ledger should always be called after updating prevdoc status,
@@ -118,14 +121,14 @@ class SalesInvoice(SellingController):
         # this sequence because outstanding may get -ve
         self.make_gl_entries()
 
-        if not self.is_return:
-            self.update_billing_status_for_zero_amount_refdoc("Sales Order")
-            self.check_credit_limit()
+        # if not self.is_return:
+        #    self.update_billing_status_for_zero_amount_refdoc("Sales Order")
+        #    self.check_credit_limit()
 
         if not cint(self.is_pos) == 1 and not self.is_return:
             self.update_against_document_in_jv()
 
-        self.update_time_sheet(self.name)
+        # self.update_time_sheet(self.name)
 
     def validate_pos_paid_amount(self):
         if len(self.payments) == 0 and self.is_pos:
@@ -384,11 +387,21 @@ class SalesInvoice(SellingController):
                 - flt(self.grand_total) > 1/(10**(self.precision("grand_total") + 1)) and self.is_return:
             frappe.throw(_("""Paid amount + Write Off Amount can not be greater than Grand Total"""))
 
+    @staticmethod
+    def get_actual_sku(sku, customer_group):
+        retrieved_sku = sku
+        if frappe.db.exists("SKU", {"sku_name": sku}):
+            retrieved_sku = frappe.db.get_value("SKU", {"sku_name": sku, "consignee": customer_group}, "name")
+        elif frappe.db.exists("SKU", {"upc": sku}):
+            retrieved_sku = frappe.db.get_value("SKU", {"upc": sku, "consignee": customer_group}, "name")
+        return retrieved_sku
+
     #MARLO 20170207
     def get_item_code_from_sku(self, items):
         for d in items:
             if not d.item_code:
                 # MARLO 20161213 GET ITEM CODE FROM SKU
+                d.sku = self.get_actual_sku(d.sku, self.customer_group)
                 if not d.sku:
                     msgprint(_("SKU required at Row No {0}").format(d.idx), raise_exception=True)
                 else:
@@ -415,7 +428,7 @@ class SalesInvoice(SellingController):
         if not the_customer.default_warehouse:
             frappe.throw(_("Default Warehouse required for Customer: {0}").format(the_customer.customer_name))
         default_warehouse = the_customer.default_warehouse
-        
+
         for d in self.get('items'):
             #MARLO updated 20161021
             d.warehouse = default_warehouse

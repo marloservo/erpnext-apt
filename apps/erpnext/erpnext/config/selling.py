@@ -9,11 +9,6 @@ def get_data():
 			"items": [
 				{
 					"type": "doctype",
-					"name": "Sales Invoice",
-					"description": _("Confirmed orders from Customers."),
-				},
-				{
-					"type": "doctype",
 					"name": "Customer",
 					"description": _("Customer database."),
 				},
@@ -22,6 +17,11 @@ def get_data():
 					"name": "Item",
 					"description": _("All Products."),
                     "label": _("Items / Products List"),
+				},
+				{
+					"type"       : "doctype",
+					"name"       : "Sales Invoice",
+					"description": _("Confirmed orders from Customers."),
 				},
 			]
 		},
